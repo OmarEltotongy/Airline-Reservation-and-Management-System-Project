@@ -163,6 +163,15 @@ Passenger::Passenger(const std::string &name, const std::string &pass, const rol
 #endif
 }
 
+void Passenger::displayMenu()
+{
+    // Display passenger-specific menu options
+    std::cout << ("1. Search Flights") << endl;
+    std::cout << ("2. View Reservations") << endl;
+    std::cout << ("3. Check-In") << endl;
+    std::cout << ("4. Logout") << endl;
+}
+
 Passenger::~Passenger()
 {
 #if DEBUG
@@ -183,6 +192,16 @@ Administrator::Administrator(const std::string &name, const std::string &pass, c
 #endif
 }
 
+void Administrator::displayMenu()
+{
+    // Display admin-specific menu options
+    std::cout << ("1. Manage Flights") << endl;
+    std::cout << ("2. Manage Aircraft") << endl;
+    std::cout << ("3. Manage Users") << endl;
+    std::cout << ("4. Generate Reports") << endl;
+    std::cout << ("5. Logout") << endl;
+}
+
 Administrator::~Administrator()
 {
 #if DEBUG
@@ -201,6 +220,15 @@ BookingAgent::BookingAgent(const std::string &name, const std::string &pass, con
 #if DEBUG
     cout << "Constructor of BookingAgent is called" << endl;
 #endif
+}
+
+void BookingAgent::displayMenu()
+{
+    // Display booking agent-specific menu options
+    std::cout << ("1. Book a Flight") << endl;
+    std::cout << ("2. Modify Reservation") << endl;
+    std::cout << ("3. Cancel Reservation") << endl;
+    std::cout << ("4. Logout") << endl;
 }
 
 BookingAgent::~BookingAgent()

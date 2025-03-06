@@ -1,5 +1,4 @@
-#include "../../include/FLIGHT_HPP/Flight.hpp"
-
+c
 Flight::Flight(const std::string &FN, const std::string &origin, const std::string &destination,
                const std::string &DT, const std::string &AT, const flightStatus &FS,
                const std::string &ACID)

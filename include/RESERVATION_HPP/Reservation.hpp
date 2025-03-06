@@ -6,26 +6,34 @@
 #include <string>
 using namespace std;
 
+#define DEBUG 1
+
 enum reservationState
 {
-    CREATED_RESERVATION,
-    EXISTED_RESERVATION,
-    MODIFIED_RESERVATION,
-    CANCELED_RESERVATION
+    CREAT_RESERVATION,
+    EXIST_RESERVATION,
+    MODIFY_RESERVATION,
+    CANCEL_RESERVATION
 };
 
 class Reservation
 {
-    private:
+private:
     std::string reservationID;
     std::string flightNumber;
-    std::string passengerID; 
-    std::string seatNumber; 
-    std::string status;
-    public:
-    Reservation();
-    reservationState createReservation();
-    reservationState modifyReservation();
-    reservationState cancelReservation();
+    std::string passengerID;
+    std::string seatNumber;
+    reservationState status;
+
+public:
+    Reservation(const reservationState &st = CREAT_RESERVATION);
+    reservationState createReservation( const std::string &reservationID = " ",
+                                        const std::string &flightNumber = " ",
+                                        const std::string &passengerID = " ",
+                                        const std::string &seatNumber = " ");
+
+    reservationState modifyReservation(const std::string &reservationID = " ");
+    reservationState cancelReservation(const std::string &reservationID = " ");
 };
+
 #endif // __RESERVATION_H__
