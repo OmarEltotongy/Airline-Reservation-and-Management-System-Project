@@ -13,17 +13,17 @@ logState User::login()
     {
     case ADMIN:
     {
-        if (username == "Passenger" && password == "Passenger")
+        if (username == "admin" && password == "admin")
         {
 #if DEBUG
-            cout << "Passenger login succeed" << endl;
+            cout << "admin login succeed" << endl;
 #endif
             loginState = LOG_STATE_SUCCESSFUL;
         }
         else
         {
 #if DEBUG
-            cout << "Passenger login failed" << endl;
+            cout << "admin login failed" << endl;
 #endif
             loginState = LOG_STATE_FAILED;
         }
@@ -79,17 +79,17 @@ logState User::logout()
     {
     case ADMIN:
     {
-        if (username == "Passenger" && password == "Passenger")
+        if (username == "admin" && password == "admin")
         {
 #if DEBUG
-            cout << "Passenger logout succeed" << endl;
+            cout << "admin logout succeed" << endl;
 #endif
             logoutState = LOG_STATE_SUCCESSFUL;
         }
         else
         {
 #if DEBUG
-            cout << "Passenger logout failed" << endl;
+            cout << "admin logout failed" << endl;
 #endif
             logoutState = LOG_STATE_FAILED;
         }

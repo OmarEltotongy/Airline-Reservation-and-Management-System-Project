@@ -7,7 +7,7 @@
 #include "../../include/FLIGHT_HPP/Flight.hpp"
 #include "../../include/RESERVATION_HPP/Reservation.hpp"
 #include <map>
-
+#include <memory>
 using namespace std;
 
 #define DEBUG 1

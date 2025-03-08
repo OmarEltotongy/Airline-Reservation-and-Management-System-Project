@@ -1,9 +1,10 @@
-c
-Flight::Flight(const std::string &FN, const std::string &origin, const std::string &destination,
-               const std::string &DT, const std::string &AT, const flightStatus &FS,
-               const std::string &ACID)
+#include "../../include/FLIGHT_HPP/Flight.hpp"
+
+Flight::Flight( const std::string &FN, const std::string &origin, const std::string &destination,
+                const std::string &DT, const std::string &AT, const flightStatus &FS,
+                const std::string &ACID)
     : flightNumber(FN), departureLocation(origin), arrivalLocation(destination),
-      departureTime(DT), arrivalTime(AT), status(FS), aircraftID(ACID)
+        departureTime(DT), arrivalTime(AT), status(FS), aircraftID(ACID)
 {
 #if DEBUG
     cout << "Constructor of Flight is called" << endl;
