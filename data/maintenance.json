@@ -1,0 +1,74 @@
+{
+    "maintenance": [
+        {
+            "maintenanceID": "M001",
+            "aircraftID": "B737",
+            "maintenanceDate": "2023-12-31",
+            "description": "Routine check",
+            "status": "COMPLETED"
+        },
+        {
+            "maintenanceID": "M002",
+            "aircraftID": "A320",
+            "maintenanceDate": "2024-01-15",
+            "description": "Engine inspection",
+            "status": "SCHEDULED"
+        },
+        {
+            "maintenanceID": "M003",
+            "aircraftID": "B757",
+            "maintenanceDate": "2024-02-01",
+            "description": "Landing gear repair",
+            "status": "IN_PROGRESS"
+        },
+        {
+            "maintenanceID": "M004",
+            "aircraftID": "B787",
+            "maintenanceDate": "2024-03-01",
+            "description": "Avionics upgrade",
+            "status": "SCHEDULED"
+        },
+        {
+            "maintenanceID": "M005",
+            "aircraftID": "A380",
+            "maintenanceDate": "2024-04-01",
+            "description": "Interior refurbishment",
+            "status": "SCHEDULED"
+        },
+        {
+            "maintenanceID": "M006",
+            "aircraftID": "B777",
+            "maintenanceDate": "2024-05-01",
+            "description": "Engine replacement",
+            "status": "SCHEDULED"
+        },
+        {
+            "maintenanceID": "M007",
+            "aircraftID": "A350",
+            "maintenanceDate": "2024-06-01",
+            "description": "Routine check",
+            "status": "SCHEDULED"
+        },
+        {
+            "maintenanceID": "M008",
+            "aircraftID": "B747",
+            "maintenanceDate": "2024-07-01",
+            "description": "Paint job",
+            "status": "SCHEDULED"
+        },
+        {
+            "maintenanceID": "M009",
+            "aircraftID": "A330",
+            "maintenanceDate": "2024-08-01",
+            "description": "Engine inspection",
+            "status": "SCHEDULED"
+        },
+        {
+            "maintenanceID": "M010",
+            "aircraftID": "B767",
+            "maintenanceDate": "2024-09-01",
+            "description": "Landing gear repair",
+            "status": "SCHEDULED"
+        }
+    ]
+}

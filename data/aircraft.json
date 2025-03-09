@@ -1,0 +1,64 @@
+{
+    "aircraft": [
+        {
+            "aircraftID": "B737",
+            "model": "Boeing 737",
+            "maintenanceSchedule": "2023-12-31",
+            "availability": true
+        },
+        {
+            "aircraftID": "A320",
+            "model": "Airbus A320",
+            "maintenanceSchedule": "2024-01-15",
+            "availability": true
+        },
+        {
+            "aircraftID": "B757",
+            "model": "Boeing 757",
+            "maintenanceSchedule": "2024-02-01",
+            "availability": false
+        },
+        {
+            "aircraftID": "B787",
+            "model": "Boeing 787",
+            "maintenanceSchedule": "2024-03-01",
+            "availability": true
+        },
+        {
+            "aircraftID": "A380",
+            "model": "Airbus A380",
+            "maintenanceSchedule": "2024-04-01",
+            "availability": true
+        },
+        {
+            "aircraftID": "B777",
+            "model": "Boeing 777",
+            "maintenanceSchedule": "2024-05-01",
+            "availability": false
+        },
+        {
+            "aircraftID": "A350",
+            "model": "Airbus A350",
+            "maintenanceSchedule": "2024-06-01",
+            "availability": true
+        },
+        {
+            "aircraftID": "B747",
+            "model": "Boeing 747",
+            "maintenanceSchedule": "2024-07-01",
+            "availability": true
+        },
+        {
+            "aircraftID": "A330",
+            "model": "Airbus A330",
+            "maintenanceSchedule": "2024-08-01",
+            "availability": false
+        },
+        {
+            "aircraftID": "B767",
+            "model": "Boeing 767",
+            "maintenanceSchedule": "2024-09-01",
+            "availability": true
+        }
+    ]
+}

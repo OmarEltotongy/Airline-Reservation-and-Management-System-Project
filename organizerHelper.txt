@@ -1,0 +1,44 @@
+ADMIN :
+--- Administrator Menu ---
+1. Manage Flights - > menu below -- (DONE)
+2. Manage Aircraft -> Ur implementation -------------------------------------
+3. Manage Users -> Ur implementation ------------------------------------------
+4. Generate Reports -> exist sequence ----------------------------------------- 
+5. Logout (DONE)
+
+-- Manage Flights ---
+1. Add New Flight (DONE)
+2. Update Existing Flight -> menu bleow (DONE)
+/*********************************/
+Select information to update:
+
+1. Flight Details (flightNumber, origin, destination, departureTime,
+arrivalTime, aircraftID) -> Ur implementation (DONE)
+
+2. Crew Assignments -> exist sequence -- (Done)
+3. Status -> Ur implementation -- (DONE)
+4. Back to Manage Flights -- main (DONE)
+/**********************************/
+
+3. Remove Flight -> Ur implementation (DONE)
+4. View All Flights -> Ur implementation (DONE)
+5. Back to Main Menu -- main (DONE)
+
+/----------------------------------------------------/
+
+BookingAgent:
+--- Booking Agent Menu ---
+1. Search Flights -> Ur implementation
+2. Book a Flight	-> Ur implementation
+3. Modify Reservation -> Ur implementation
+4. Cancel Reservation -> exist sequence --
+5. Logout (DONE)
+
+/***********************************************************/
+--- Passenger Menu ---
+1. Search Flights and book one -> exist sequence -- 
+2. View My Reservations (travel histroy) -> exist sequence --
+3. Check-In -> exist sequence --
+4. Logout (DONE)
+
+add try catch to not break the program and start from the begining again

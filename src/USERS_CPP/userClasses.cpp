@@ -1,13 +1,20 @@
 #include "../../include/USERS_HPP/userClasses.hpp"
+#include "../../include/FLIGHT_HPP/Flight.hpp" // Including the full definition of Flight in cpp
 
-std::string DP ="data/users.json";
+std::string DP = "data/users.json";
 
-std::string roleToString(rolesTypes role) {
-    switch (role) {
-        case ADMIN: return "ADMIN";
-        case BOOKING_AGENT: return "BOOKING_AGENT";
-        case PASSENGER: return "PASSENGER";
-        default: throw std::invalid_argument("Invalid role type");
+std::string roleToString(rolesTypes role)
+{
+    switch (role)
+    {
+    case ADMIN:
+        return "ADMIN";
+    case BOOKING_AGENT:
+        return "BOOKING_AGENT";
+    case PASSENGER:
+        return "PASSENGER";
+    default:
+        throw std::invalid_argument("Invalid role type");
     }
 }
 
@@ -19,7 +26,7 @@ User::User(const std::string &name, const std::string &pass, const rolesTypes &r
 }
 bool User::validateCredentials(const std::string &username, const std::string &password, const rolesTypes &role)
 {
-    json users = readUsersFromFile(DP);
+    json users = readFromDP(DP);
 
     // Convert the role enum to a string
     std::string roleStr = roleToString(role);
@@ -215,14 +222,16 @@ Administrator::Administrator(const std::string &name, const std::string &pass, c
 #endif
 }
 
-void Administrator::displayMenu()
+void Administrator::mainDisplayMenu()
 {
     // Display admin-specific menu options
+    std::cout << "--- Administrator Menu ---\n";
     std::cout << ("1. Manage Flights") << endl;
     std::cout << ("2. Manage Aircraft") << endl;
     std::cout << ("3. Manage Users") << endl;
     std::cout << ("4. Generate Reports") << endl;
     std::cout << ("5. Logout") << endl;
+    std::cout << "Enter choice: ";
 }
 
 Administrator::~Administrator()

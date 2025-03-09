@@ -1,0 +1,54 @@
+{
+    "flight_attendants": [
+        {
+            "ID": "FA001",
+            "name": "Alice Johnson",
+            "status": "FREE"
+        },
+        {
+            "ID": "FA002",
+            "name": "Bob Brown",
+            "status": "FREE"
+        },
+        {
+            "ID": "FA003",
+            "name": "Charlie Davis",
+            "status": "BUSY"
+        },
+        {
+            "ID": "FA004",
+            "name": "Diana Evans",
+            "status": "FREE"
+        },
+        {
+            "ID": "FA005",
+            "name": "Ethan Harris",
+            "status": "FREE"
+        },
+        {
+            "ID": "FA006",
+            "name": "Fiona Clark",
+            "status": "FREE"
+        },
+        {
+            "ID": "FA007",
+            "name": "George Lewis",
+            "status": "FREE"
+        },
+        {
+            "ID": "FA008",
+            "name": "Hannah Walker",
+            "status": "FREE"
+        },
+        {
+            "ID": "FA009",
+            "name": "Ian Hall",
+            "status": "FREE"
+        },
+        {
+            "ID": "FA010",
+            "name": "Julia Young",
+            "status": "FREE"
+        }
+    ]
+}

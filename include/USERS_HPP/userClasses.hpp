@@ -1,7 +1,7 @@
 #ifndef __USERCLASSES_H__
 #define __USERCLASSES_H__
 
-#include "../FLIGHT_HPP/Flight.hpp"
+// #include "../FLIGHT_HPP/Flight.hpp" -> make Circular Dependency Issue , insted i will use fwd decleration
 #include "../RESERVATION_HPP/Reservation.hpp"
 #include "../JSON_HPP/jsonHelperFunctions.hpp"
 
@@ -11,6 +11,10 @@
 #include <map>
 #include <memory>
 using namespace std;
+
+
+// Forward declaration of Flight class
+class Flight;
 
 #define DEBUG 1
 enum infoState
@@ -47,7 +51,7 @@ public:
     bool validateCredentials(const std::string &username, const std::string &password, const rolesTypes &role);
     logState login();
     logState logout();
-    virtual void displayMenu() = 0; // Pure virtual function for role-specific menus
+    // virtual void displayMenu() = 0 ; //pure virtual function
 
     virtual ~User();
 };
@@ -63,7 +67,7 @@ private:
 
 public:
     Passenger(const std::string &name, const std::string &pass, const rolesTypes &r);
-    void displayMenu() override;
+    static void displayMenu();
     void searchFlight();
     void viewReservation();
     void checkIn();
@@ -79,7 +83,7 @@ private:
     std::vector<Reservation> reservationsHandled; // A list of reservations handled by the booking agent
 public:
     BookingAgent(const std::string &name, const std::string &pass, const rolesTypes &r);
-    void displayMenu() override; // if pure virtual function is used, must have prototype in inhereted too
+    static void displayMenu(); // if pure virtual function is used, must have prototype in inhereted too
 
     void bookFlight();
     void modifyReservation();
@@ -99,12 +103,8 @@ private:
 
 public:
     Administrator(const std::string &name, const std::string &pass, const rolesTypes &r);
-    void displayMenu() override;
-    void addFlight();
-    void updateFlight();
-    void assignCrew();
+    static void mainDisplayMenu();
     void generateReports();
-
     ~Administrator();
 };
 

@@ -1,0 +1,74 @@
+{
+    "reservations": [
+        {
+            "reservationID": "R001",
+            "flightNumber": "AA123",
+            "passengerID": "U003",
+            "seatNumber": "12A",
+            "status": "CONFIRMED"
+        },
+        {
+            "reservationID": "R002",
+            "flightNumber": "BA456",
+            "passengerID": "U004",
+            "seatNumber": "15B",
+            "status": "PENDING"
+        },
+        {
+            "reservationID": "R003",
+            "flightNumber": "DL789",
+            "passengerID": "U007",
+            "seatNumber": "8C",
+            "status": "CONFIRMED"
+        },
+        {
+            "reservationID": "R004",
+            "flightNumber": "UA101",
+            "passengerID": "U008",
+            "seatNumber": "10D",
+            "status": "CANCELLED"
+        },
+        {
+            "reservationID": "R005",
+            "flightNumber": "SW202",
+            "passengerID": "U003",
+            "seatNumber": "5A",
+            "status": "CONFIRMED"
+        },
+        {
+            "reservationID": "R006",
+            "flightNumber": "AF303",
+            "passengerID": "U004",
+            "seatNumber": "20F",
+            "status": "PENDING"
+        },
+        {
+            "reservationID": "R007",
+            "flightNumber": "LH404",
+            "passengerID": "U007",
+            "seatNumber": "14E",
+            "status": "CONFIRMED"
+        },
+        {
+            "reservationID": "R008",
+            "flightNumber": "QF505",
+            "passengerID": "U008",
+            "seatNumber": "3B",
+            "status": "CANCELLED"
+        },
+        {
+            "reservationID": "R009",
+            "flightNumber": "EK606",
+            "passengerID": "U003",
+            "seatNumber": "7C",
+            "status": "CONFIRMED"
+        },
+        {
+            "reservationID": "R010",
+            "flightNumber": "SQ707",
+            "passengerID": "U004",
+            "seatNumber": "18A",
+            "status": "PENDING"
+        }
+    ]
+}

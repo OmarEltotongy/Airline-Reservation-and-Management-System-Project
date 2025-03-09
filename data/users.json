@@ -1,24 +1,78 @@
 {
     "users": [
         {
-            "password": "adminPass",
+            "password": "1",
             "role": "ADMIN",
-            "username": "adminUser"
+            "username": "1"
+        },
+        
+        {
+            "username": "admin1",
+            "password": "admin123",
+            "role": "ADMIN",
+            "userID": "U001"
         },
         {
-            "password": "agentPass",
+            "username": "agent1",
+            "password": "agent123",
             "role": "BOOKING_AGENT",
-            "username": "agentJane"
+            "userID": "U002"
         },
         {
-            "password": "passengerPass",
+            "username": "passenger1",
+            "password": "pass123",
             "role": "PASSENGER",
-            "username": "passengerMike"
+            "userID": "U003",
+            "contactInfo": "passenger1@example.com",
+            "loyaltyPoints": 100
         },
         {
-            "password": "Eltoutongy",
+            "username": "passenger2",
+            "password": "pass456",
             "role": "PASSENGER",
-            "username": "omar"
+            "userID": "U004",
+            "contactInfo": "passenger2@example.com",
+            "loyaltyPoints": 50
+        },
+        {
+            "username": "admin2",
+            "password": "admin456",
+            "role": "ADMIN",
+            "userID": "U005"
+        },
+        {
+            "username": "agent2",
+            "password": "agent456",
+            "role": "BOOKING_AGENT",
+            "userID": "U006"
+        },
+        {
+            "username": "passenger3",
+            "password": "pass789",
+            "role": "PASSENGER",
+            "userID": "U007",
+            "contactInfo": "passenger3@example.com",
+            "loyaltyPoints": 200
+        },
+        {
+            "username": "passenger4",
+            "password": "pass101",
+            "role": "PASSENGER",
+            "userID": "U008",
+            "contactInfo": "passenger4@example.com",
+            "loyaltyPoints": 75
+        },
+        {
+            "username": "admin3",
+            "password": "admin789",
+            "role": "ADMIN",
+            "userID": "U009"
+        },
+        {
+            "username": "agent3",
+            "password": "agent789",
+            "role": "BOOKING_AGENT",
+            "userID": "U010"
         }
     ]
 }

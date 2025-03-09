@@ -1,0 +1,54 @@
+{
+    "pilots": [
+        {
+            "ID": "P001",
+            "name": "John Doe",
+            "status": "FREE"
+        },
+        {
+            "ID": "P002",
+            "name": "Jane Smith",
+            "status": "BUSY"
+        },
+        {
+            "ID": "P003",
+            "name": "Michael Johnson",
+            "status": "FREE"
+        },
+        {
+            "ID": "P004",
+            "name": "Emily Davis",
+            "status": "FREE"
+        },
+        {
+            "ID": "P005",
+            "name": "David Wilson",
+            "status": "FREE"
+        },
+        {
+            "ID": "P006",
+            "name": "Sarah Brown",
+            "status": "FREE"
+        },
+        {
+            "ID": "P007",
+            "name": "James Miller",
+            "status": "FREE"
+        },
+        {
+            "ID": "P008",
+            "name": "Linda Garcia",
+            "status": "FREE"
+        },
+        {
+            "ID": "P009",
+            "name": "Robert Martinez",
+            "status": "FREE"
+        },
+        {
+            "ID": "P010",
+            "name": "Patricia Anderson",
+            "status": "FREE"
+        }
+    ]
+}
