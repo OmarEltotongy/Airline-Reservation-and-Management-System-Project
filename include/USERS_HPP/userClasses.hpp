@@ -1,11 +1,13 @@
 #ifndef __USERCLASSES_H__
 #define __USERCLASSES_H__
 
+#include "../FLIGHT_HPP/Flight.hpp"
+#include "../RESERVATION_HPP/Reservation.hpp"
+#include "../JSON_HPP/jsonHelperFunctions.hpp"
+
 #include <iostream>
 #include <vector>
 #include <string>
-#include "../../include/FLIGHT_HPP/Flight.hpp"
-#include "../../include/RESERVATION_HPP/Reservation.hpp"
 #include <map>
 #include <memory>
 using namespace std;
@@ -42,6 +44,7 @@ protected:
 
 public:
     User(const std::string &name = " ", const std::string &pass = " ", const rolesTypes &r = PASSENGER);
+    bool validateCredentials(const std::string &username, const std::string &password, const rolesTypes &role);
     logState login();
     logState logout();
     virtual void displayMenu() = 0; // Pure virtual function for role-specific menus
@@ -113,4 +116,5 @@ public:
     std::unique_ptr<User> createUser(const std::string &name, const std::string &pass, const rolesTypes &role);
 };
 
+std::string roleToString(rolesTypes role);
 #endif // __USERCLASSES_H__

@@ -1,10 +1,37 @@
 #include "../../include/USERS_HPP/userClasses.hpp"
 
+std::string DP ="data/users.json";
+
+std::string roleToString(rolesTypes role) {
+    switch (role) {
+        case ADMIN: return "ADMIN";
+        case BOOKING_AGENT: return "BOOKING_AGENT";
+        case PASSENGER: return "PASSENGER";
+        default: throw std::invalid_argument("Invalid role type");
+    }
+}
+
 User::User(const std::string &name, const std::string &pass, const rolesTypes &r)
 {
 #if DEBUG
     cout << "Constructor of User is called" << endl;
 #endif
+}
+bool User::validateCredentials(const std::string &username, const std::string &password, const rolesTypes &role)
+{
+    json users = readUsersFromFile(DP);
+
+    // Convert the role enum to a string
+    std::string roleStr = roleToString(role);
+
+    for (const auto &user : users["users"])
+    {
+        if (user["username"] == username && user["password"] == password && user["role"] == roleStr)
+        {
+            return true; // Credentials are valid
+        }
+    }
+    return false; // Credentials are invalid
 }
 
 logState User::login()
@@ -13,7 +40,7 @@ logState User::login()
     {
     case ADMIN:
     {
-        if (username == "admin" && password == "admin")
+        if (validateCredentials(username, password, role))
         {
 #if DEBUG
             cout << "admin login succeed" << endl;
@@ -31,7 +58,7 @@ logState User::login()
     }
     case BOOKING_AGENT:
     {
-        if (username == "agent" && password == "agent")
+        if (validateCredentials(username, password, role))
         {
 #if DEBUG
             cout << "BookingAgent login succeed" << endl;
@@ -51,7 +78,7 @@ logState User::login()
     case PASSENGER:
     {
 
-        if (username == "Passenger" && password == "Passenger")
+        if (validateCredentials(username, password, role))
         {
 #if DEBUG
             cout << "Passenger login succeed" << endl;
@@ -79,7 +106,7 @@ logState User::logout()
     {
     case ADMIN:
     {
-        if (username == "admin" && password == "admin")
+        if (loginState == LOG_STATE_SUCCESSFUL)
         {
 #if DEBUG
             cout << "admin logout succeed" << endl;
@@ -97,7 +124,7 @@ logState User::logout()
     }
     case BOOKING_AGENT:
     {
-        if (username == "agent" && password == "agent")
+        if (loginState == LOG_STATE_SUCCESSFUL)
         {
 #if DEBUG
             cout << "BookingAgent logout succeed" << endl;
@@ -117,7 +144,7 @@ logState User::logout()
     case PASSENGER:
     {
 
-        if (username == "Passenger" && password == "Passenger")
+        if (loginState == LOG_STATE_SUCCESSFUL)
         {
 #if DEBUG
             cout << "Passenger logout succeed" << endl;
@@ -137,10 +164,6 @@ logState User::logout()
     default:
         return LOG_STATE_FAILED;
     };
-}
-
-infoState setInfo(const std::string &passengerID, const std::string &contactInfo)
-{
 }
 
 User::~User()

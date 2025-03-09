@@ -1,0 +1,24 @@
+{
+    "users": [
+        {
+            "password": "adminPass",
+            "role": "ADMIN",
+            "username": "adminUser"
+        },
+        {
+            "password": "agentPass",
+            "role": "BOOKING_AGENT",
+            "username": "agentJane"
+        },
+        {
+            "password": "passengerPass",
+            "role": "PASSENGER",
+            "username": "passengerMike"
+        },
+        {
+            "password": "Eltoutongy",
+            "role": "PASSENGER",
+            "username": "omar"
+        }
+    ]
+}
