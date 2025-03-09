@@ -1,9 +1,9 @@
 ADMIN :
 --- Administrator Menu ---
 1. Manage Flights - > menu below -- (DONE)
-2. Manage Aircraft -> Ur implementation -------------------------------------
-3. Manage Users -> Ur implementation ------------------------------------------
-4. Generate Reports -> exist sequence ----------------------------------------- 
+2. Manage Aircraft -> Ur implementation 
+3. Manage Users -> Ur implementation 
+4. Generate Reports -> exist sequence 
 5. Logout (DONE)
 
 -- Manage Flights ---
