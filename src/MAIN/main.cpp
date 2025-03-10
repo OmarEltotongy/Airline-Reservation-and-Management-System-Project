@@ -1,6 +1,6 @@
 #include "../../include/USERS_HPP/userClasses.hpp"
 #include "../../include/FLIGHT_HPP/Flight.hpp"
-// #include "../../include/AIRCRAFT_HPP/Aircraft.hpp"
+#include "../../include/AIRCRAFT_HPP/AirCraft.hpp"
 // #include "../../include/RESERVATION_HPP/Reservation.hpp"
 #include <memory> // for unique ptr
 
@@ -136,7 +136,7 @@ int main()
             std::cout << "Password: ";
             std::getline(std::cin, password);
 
-            std::unique_ptr<User> admin = factory.createUser(username, password, ADMIN);
+            std::unique_ptr<User> admin = factory.createUser(username, password, rolesTypes::ADMIN);
             if (admin->login() == LOG_STATE_SUCCESSFUL)
             {
                 std::cout << "Login successful!\n";
@@ -150,12 +150,11 @@ int main()
 
                     if (choice == 1)
                     { // Manage Flights
-                        Flight::ManageFlightsMenu();
+                        Flight::ManageFlightsMenu(username, password, rolesTypes::ADMIN);
                     }
                     else if (choice == 2)
                     { // Manage Aircraft
-                        // Implement Manage Aircraft functionality
-                        std::cout << "Manage Aircraft functionality not implemented yet.\n";
+                        AirCraft::ManageAirCraftMenu(username, password, rolesTypes::ADMIN);
                     }
                     else if (choice == 3)
                     { // Manage Users
@@ -192,7 +191,7 @@ int main()
             std::cout << "Password: ";
             std::getline(cin, password);
 
-            std::unique_ptr<User> agent = factory.createUser(username, password, BOOKING_AGENT);
+            std::unique_ptr<User> agent = factory.createUser(username, password, rolesTypes::BOOKING_AGENT);
             if (agent->login() == LOG_STATE_SUCCESSFUL)
             {
                 std::cout << "Login successful!\n";
@@ -244,7 +243,7 @@ int main()
             std::cout << "Password: ";
             std::getline(std::cin, password);
 
-            std::unique_ptr<User> passenger = factory.createUser(username, password, PASSENGER);
+            std::unique_ptr<User> passenger = factory.createUser(username, password, rolesTypes::PASSENGER);
             if (passenger->login() == LOG_STATE_SUCCESSFUL)
             {
                 std::cout << "Login successful!\n";

@@ -2,6 +2,9 @@
 #define __FLIGHT_H__
 #include "../USERS_HPP/userClasses.hpp"
 #include "../JSON_HPP/jsonHelperFunctions.hpp"
+#include "../ENUMS/flights_enum.hpp"
+#include "../ENUMS/user_enums.hpp"
+
 
 #include <iostream>
 #include <vector>
@@ -10,23 +13,9 @@ using namespace std;
 
 #define DEBUG 1
 
-enum flightProcess
-{
-    FLIGHT_PROCESS_IS_SUCCESSFUL,
-    FLIGHT_PROCESS_IS_FAILED,
-    FLIGHT_PROCESS_IS_NULL
-};
-enum flightStatus
-{
-    ON_TIME,
-    DELAYED,
-    CANCELLED
-};
-struct AssignedCrew
-{
-    std::string pilotID;                         // ID of the assigned pilot
-    std::vector<std::string> flightAttendantIDs; // IDs of the assigned flight attendants
-};
+// Forward declaration of Administrator class
+class User;
+class Administrator;
 
 class Flight
 {
@@ -45,12 +34,8 @@ public:
            const std::string &DT, const std::string &AT, const flightStatus &FS,
            const std::string &ACID, const AssignedCrew& assignedCrew);
 
-    static void ManageFlightsMenu();
-    static AssignedCrew assignCrewToFlight(const std::string& flightNumber, json &pilots ,json &Flight_Attendant);
-    static flightProcess addFlight();
-    static flightProcess updateFlight();
-    static flightProcess deleteFlight();
-    static void viewAllFlights();
+    static void ManageFlightsMenu(const std::string& username, const std::string& password, const rolesTypes& r);
+    static void viewAllFlights(); // print the database
 
     ~Flight();
 };

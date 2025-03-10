@@ -1,9 +1,10 @@
 #ifndef __USERCLASSES_H__
 #define __USERCLASSES_H__
 
-// #include "../FLIGHT_HPP/Flight.hpp" -> make Circular Dependency Issue , insted i will use fwd decleration
 #include "../RESERVATION_HPP/Reservation.hpp"
 #include "../JSON_HPP/jsonHelperFunctions.hpp"
+#include "../ENUMS/flights_enum.hpp"
+#include "../ENUMS/user_enums.hpp"
 
 #include <iostream>
 #include <vector>
@@ -12,42 +13,30 @@
 #include <memory>
 using namespace std;
 
-
-// Forward declaration of Flight class
+// Forward declaration
 class Flight;
+class AirCraft;
+extern std::string flightDP;
+extern std::string UserDP;
+extern std::string flightDP;
+extern std::string pilotDP;
+extern std::string flightAttendantDB;
+extern std::string AirCraftDB;
 
 #define DEBUG 1
-enum infoState
-{
-    INFO_STATE_SUCCESSFUL,
-    INFO_STATE_FAILED
-};
-
-enum rolesTypes
-{
-    ADMIN,
-    BOOKING_AGENT,
-    PASSENGER
-};
-
-enum logState
-{
-    LOG_STATE_SUCCESSFUL,
-    LOG_STATE_FAILED
-};
 
 class User
 {
 protected:
     std::string username;
     std::string password;
-    enum rolesTypes role;
+    rolesTypes role;
 
     enum logState loginState;
     enum logState logoutState;
 
 public:
-    User(const std::string &name = " ", const std::string &pass = " ", const rolesTypes &r = PASSENGER);
+    User(const std::string &name = " ", const std::string &pass = " ", const rolesTypes &r = rolesTypes::PASSENGER);
     bool validateCredentials(const std::string &username, const std::string &password, const rolesTypes &role);
     logState login();
     logState logout();
@@ -104,7 +93,26 @@ private:
 public:
     Administrator(const std::string &name, const std::string &pass, const rolesTypes &r);
     static void mainDisplayMenu();
+
+    /************************************Flights Functions*************************************/
+    AssignedCrew assignCrewToFlight(const std::string &flightNumber, json &pilots, json &Flight_Attendant);
+    flightProcess addFlight();
+    flightProcess updateFlight();
+    flightProcess deleteFlight();
+    /******************************************************************************************/
+
+    /***********************************Air Crafts Functions***********************************/
+    void assignAircraftToFlight();
+    void scheduleMaintenance(); // Schedules maintenance for the aircraft.
+    bool checkAvailability();   // Checks if the aircraft is available.
+    void addAircraft();
+    void removeAircraft();
+    void updateAircraft();
+    void searchAircraft();
+    /*********************************************************************************************/
+
     void generateReports();
+
     ~Administrator();
 };
 

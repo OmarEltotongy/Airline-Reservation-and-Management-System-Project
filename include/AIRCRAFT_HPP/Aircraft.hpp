@@ -1,12 +1,13 @@
 #ifndef __AIRCRAFT_H__
 #define __AIRCRAFT_H__
 
+#include "../../include/USERS_HPP/userClasses.hpp"
 #include <iostream>
 #include <vector>
 #include <string>
 using namespace std;
 
-class Aircraft
+class AirCraft
 {
 private:
     std::string aircraftID;          // Unique identifier for the aircraft.
@@ -15,10 +16,10 @@ private:
     bool availability;
 
 public:
-    Aircraft(const std::string &aircraftID, const std::string &model, const std::string &maintenanceSchedule, const bool &availability);
-    void scheduleMaintenance(); // Schedules maintenance for the aircraft.
-    bool checkAvailability();   // Checks if the aircraft is available.
-    ~Aircraft();
+    AirCraft(const std::string &aircraftID, const std::string &model, const std::string &maintenanceSchedule, const bool &availability);
+    static void ManageAirCraftMenu(const std::string& username, const std::string& password,const rolesTypes& r);
+    static void viewAllAircraft();
+    ~AirCraft();
 };
 
 #endif // __AIRCRAFT_H__
