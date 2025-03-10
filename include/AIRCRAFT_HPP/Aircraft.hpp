@@ -2,6 +2,8 @@
 #define __AIRCRAFT_H__
 
 #include "../../include/USERS_HPP/userClasses.hpp"
+#include "../ENUMS/aircraft_enums.hpp"
+
 #include <iostream>
 #include <vector>
 #include <string>

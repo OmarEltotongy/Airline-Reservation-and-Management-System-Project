@@ -16,6 +16,7 @@ Flight::Flight(const std::string &FN, const std::string &origin, const std::stri
 
 void Flight::ManageFlightsMenu(const std::string &username, const std::string &password, const rolesTypes &r)
 {
+    /*already validated the username and the password in the main*/
     Administrator admin(username, password, r);
 
     int choice;

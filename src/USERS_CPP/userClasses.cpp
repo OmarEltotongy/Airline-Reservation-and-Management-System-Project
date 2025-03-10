@@ -366,7 +366,7 @@ flightProcess Administrator::addFlight()
     // Create a new Flight object
     Flight newFlight(flightNumber, origin, destination, departureTime, arrivalTime, status, aircraftID, crew);
 
-    // Add the flight to the JSON file (or database)
+    // Add the flight to the JSON file
     json flights = readFromDP(flightDP);
     // Create a JSON object for the new flight, including the assigned crew
     json newFlightEntry = {
@@ -633,27 +633,73 @@ flightProcess Administrator::deleteFlight()
 /****************************************************************************************/
 
 /***********************Admin Air Crafts*************************************************/
+aircraftProcess Administrator::addAircraft()
+{
+    std::string aircraftID, model, maintenanceSchedule;
+    int a;
+    bool availability;
+    std::cout << "--- Add New Aircraft ---\n";
+    std::cout << "Enter Aircraft ID: ";
+    std::cin.ignore(); // Clear the input buffer
+    std::getline(std::cin, aircraftID);
+    std::cout << "Enter Model: ";
+    std::getline(std::cin, model);
+    std::cout << "Enter maintenanceSchedule Date (DD-MM-YYYY): ";
+    std::getline(std::cin, maintenanceSchedule);
+
+    std::cout << "Enter availability (0: Not Available, 1: Available): ";
+    cin >> a;
+    if (a == 0)
+        availability = false;
+    else if (a == 1)
+        availability = true;
+    else
+    {
+        return AIRCRAFT_PROCESS_IS_FAILED; // MAKE IT CATCH
+        throw invalid_argument("Invalid Available State");
+    }
+
+    // Create a new aircraft object
+    Aircraft newAircraft(aircraftID, model, maintenanceSchedule, availability);
+
+    // read the database to add to it
+    json aircrafts = readFromDP(AirCraftDB);
+
+    // Create a JSON object for the new aircraft
+    json newAircraftEntry = {
+        {"aircraftID", aircraftID},
+        {"model", model},
+        {"maintenanceSchedule", maintenanceSchedule},
+        {"availability", availability}};
+
+    // add the new aircraft
+    aircrafts["aircraft"].push_back(newAircraftEntry);
+    // Write the updated flights back to the file
+    writeToDP(AirCraftDB, aircrafts);
+    std::cout << "Aircraft ID " << aircraftID << " has been successfully added to DB.\n";
+
+    return AIRCRAFT_PROCESS_IS_SUCCESSFUL;
+}
+
+aircraftProcess Administrator::updateAircraft()
+{
+}
+
+aircraftProcess Administrator::removeAircraft()
+{
+}
+
 void Administrator::assignAircraftToFlight()
 {
 }
+
 void Administrator::scheduleMaintenance()
 {
 }
+
 bool Administrator::checkAvailability()
 {
     return true;
-}
-void Administrator::addAircraft()
-{
-}
-void Administrator::removeAircraft()
-{
-}
-void Administrator::updateAircraft()
-{
-}
-void Administrator::searchAircraft()
-{
 }
 
 /*********************************************************************************/

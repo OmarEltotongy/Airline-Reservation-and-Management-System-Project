@@ -2,63 +2,63 @@
     "aircraft": [
         {
             "aircraftID": "B737",
-            "model": "Boeing 737",
-            "maintenanceSchedule": "2023-12-31",
-            "availability": true
+            "availability": true,
+            "maintenanceSchedule": "21-03-2025",
+            "model": "Boeing 737"
         },
         {
             "aircraftID": "A320",
-            "model": "Airbus A320",
-            "maintenanceSchedule": "2024-01-15",
-            "availability": true
+            "availability": true,
+            "maintenanceSchedule": "22-03-2025",
+            "model": "Airbus A320"
         },
         {
             "aircraftID": "B757",
-            "model": "Boeing 757",
-            "maintenanceSchedule": "2024-02-01",
-            "availability": false
+            "availability": false,
+            "maintenanceSchedule": "23-03-2025",
+            "model": "Boeing 757"
         },
         {
             "aircraftID": "B787",
-            "model": "Boeing 787",
-            "maintenanceSchedule": "2024-03-01",
-            "availability": true
+            "availability": true,
+            "maintenanceSchedule": "24-03-2025",
+            "model": "Boeing 787"
         },
         {
             "aircraftID": "A380",
-            "model": "Airbus A380",
-            "maintenanceSchedule": "2024-04-01",
-            "availability": true
+            "availability": true,
+            "maintenanceSchedule": "25-03-2025",
+            "model": "Airbus A380"
         },
         {
             "aircraftID": "B777",
-            "model": "Boeing 777",
-            "maintenanceSchedule": "2024-05-01",
-            "availability": false
+            "availability": false,
+            "maintenanceSchedule": "26-03-2025",
+            "model": "Boeing 777"
         },
         {
             "aircraftID": "A350",
-            "model": "Airbus A350",
-            "maintenanceSchedule": "2024-06-01",
-            "availability": true
+            "availability": true,
+            "maintenanceSchedule": "27-03-2025",
+            "model": "Airbus A350"
         },
         {
             "aircraftID": "B747",
-            "model": "Boeing 747",
-            "maintenanceSchedule": "2024-07-01",
-            "availability": true
+            "availability": true,
+            "maintenanceSchedule": "28-03-2025",
+            "model": "Boeing 747"
         },
         {
             "aircraftID": "A330",
-            "model": "Airbus A330",
-            "maintenanceSchedule": "2024-08-01",
-            "availability": false
+            "availability": false,
+            "maintenanceSchedule": "29-03-2025",
+            "model": "Airbus A330"
         },
         {
             "aircraftID": "B767",
-            "model": "Boeing 767",
-            "maintenanceSchedule": "2024-09-01",
-            "availability": true
+            "availability": true,
+            "maintenanceSchedule": "30-03-2025",
+            "model": "Boeing 767"
         }
     ]
 }

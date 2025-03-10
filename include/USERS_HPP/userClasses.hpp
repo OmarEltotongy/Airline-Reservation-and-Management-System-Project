@@ -5,6 +5,7 @@
 #include "../JSON_HPP/jsonHelperFunctions.hpp"
 #include "../ENUMS/flights_enum.hpp"
 #include "../ENUMS/user_enums.hpp"
+#include "../ENUMS/aircraft_enums.hpp"
 
 #include <iostream>
 #include <vector>
@@ -102,13 +103,12 @@ public:
     /******************************************************************************************/
 
     /***********************************Air Crafts Functions***********************************/
+    aircraftProcess addAircraft();
+    aircraftProcess removeAircraft();
+    aircraftProcess updateAircraft();
     void assignAircraftToFlight();
     void scheduleMaintenance(); // Schedules maintenance for the aircraft.
     bool checkAvailability();   // Checks if the aircraft is available.
-    void addAircraft();
-    void removeAircraft();
-    void updateAircraft();
-    void searchAircraft();
     /*********************************************************************************************/
 
     void generateReports();

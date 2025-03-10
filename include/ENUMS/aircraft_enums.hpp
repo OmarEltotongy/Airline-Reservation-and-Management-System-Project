@@ -1,0 +1,11 @@
+#ifndef __AIRCRAFT_ENUMS_H__
+#define __AIRCRAFT_ENUMS_H__
+
+enum aircraftProcess
+{
+    AIRCRAFT_PROCESS_IS_SUCCESSFUL,
+    AIRCRAFT_PROCESS_IS_FAILED,
+    AIRCRAFT_PROCESS_IS_NULL
+};
+
+#endif // __AIRCRAFT_ENUMS_H__
