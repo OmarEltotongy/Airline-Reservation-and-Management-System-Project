@@ -73,5 +73,8 @@
         "unordered_map": "cpp",
         "valarray": "cpp",
         "xhash": "cpp"
-    }
+    },
+    "cSpell.words": [
+        "aircrafts"
+    ]
 }

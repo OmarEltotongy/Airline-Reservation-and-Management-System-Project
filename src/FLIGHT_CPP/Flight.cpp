@@ -1,5 +1,6 @@
 #include "../../include/FLIGHT_HPP/Flight.hpp"
 #include "../../include/USERS_HPP/userClasses.hpp"
+#include <iomanip> // For std::setw, std::left, etc.
 
 Flight::Flight(const std::string &FN, const std::string &origin, const std::string &destination,
                const std::string &DT, const std::string &AT, const flightStatus &FS,
@@ -69,17 +70,17 @@ void Flight::viewAllFlights()
     std::cout << "+------------+------------------+------------------+---------------------+---------------------+------------------+------------------+\n";
 
     // Print each flight's data
+    /*using printf for */
     for (const auto &flight : flights["flights"])
     {
-        std::printf("| %-10s | %-16s | %-16s | %-19s | %-19s | %-16s | %-16s |\n",
-                    flight["flightNumber"].get<std::string>().c_str(),
-                    flight["origin"].get<std::string>().c_str(),
-                    flight["destination"].get<std::string>().c_str(),
-                    flight["departureTime"].get<std::string>().c_str(),
-                    flight["arrivalTime"].get<std::string>().c_str(),
-                    flight["aircraftID"].get<std::string>().c_str(),
-                    flight["status"].get<std::string>().c_str());
-
+        std::cout << "| "
+                  << std::left << std::setw(10) << flight["flightNumber"].get<std::string>() << " | "
+                  << std::left << std::setw(16) << flight["origin"].get<std::string>() << " | "
+                  << std::left << std::setw(16) << flight["destination"].get<std::string>() << " | "
+                  << std::left << std::setw(19) << flight["departureTime"].get<std::string>() << " | "
+                  << std::left << std::setw(19) << flight["arrivalTime"].get<std::string>() << " | "
+                  << std::left << std::setw(16) << flight["aircraftID"].get<std::string>() << " | "
+                  << std::left << std::setw(16) << flight["status"].get<std::string>() << " |\n";
         // Display assigned crew
         std::cout << "+------------+------------------+------------------+---------------------+---------------------+------------------+------------------+\n";
         std::cout << "| Assigned Crew:                                                                                                                         |\n";

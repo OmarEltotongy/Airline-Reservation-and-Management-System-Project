@@ -1,11 +1,7 @@
 ADMIN :
 --- Administrator Menu ---
 1. Manage Flights - > menu below -- (DONE)
-2. Manage Aircraft -> Ur implementation 
-3. Manage Users -> Ur implementation 
-4. Generate Reports -> exist sequence 
-5. Logout (DONE)
-
+-----------------------------------------------
 -- Manage Flights ---
 1. Add New Flight (DONE)
 2. Update Existing Flight -> menu bleow (DONE)
@@ -14,7 +10,6 @@ Select information to update:
 
 1. Flight Details (flightNumber, origin, destination, departureTime,
 arrivalTime, aircraftID) -> Ur implementation (DONE)
-
 2. Crew Assignments -> exist sequence -- (Done)
 3. Status -> Ur implementation -- (DONE)
 4. Back to Manage Flights -- main (DONE)
@@ -23,6 +18,27 @@ arrivalTime, aircraftID) -> Ur implementation (DONE)
 3. Remove Flight -> Ur implementation (DONE)
 4. View All Flights -> Ur implementation (DONE)
 5. Back to Main Menu -- main (DONE)
+----------------------------------------------------
+
+2. Manage Aircraft -> Ur implementation -> menu below
+    --- Manage Air Crafts ---
+    1. Assign Aircraft to Flight
+    2. Schedule Maintenance
+    3. Check Availability
+    4. Add New Aircraft
+    5. Remove Aircraft
+    6. Update Aircraft Information
+    7. View All Aircraft (DONE)
+    8. Search Aircraft
+    9. Back to Main Menu (DONE)
+-----------------------------------------------
+
+3. Manage Users -> Ur implementation 
+4. Generate Reports -> exist sequence 
+5. Logout (DONE)
+
+
+
 
 /----------------------------------------------------/
 

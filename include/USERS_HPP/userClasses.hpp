@@ -13,9 +13,9 @@
 #include <memory>
 using namespace std;
 
-// Forward declaration
+// Forward declaration and Externs
 class Flight;
-class AirCraft;
+class Aircraft;
 extern std::string flightDP;
 extern std::string UserDP;
 extern std::string flightDP;

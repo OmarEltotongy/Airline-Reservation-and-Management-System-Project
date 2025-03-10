@@ -1,7 +1,6 @@
 #ifndef __FLIGHT_H__
 #define __FLIGHT_H__
 #include "../USERS_HPP/userClasses.hpp"
-#include "../JSON_HPP/jsonHelperFunctions.hpp"
 #include "../ENUMS/flights_enum.hpp"
 #include "../ENUMS/user_enums.hpp"
 
