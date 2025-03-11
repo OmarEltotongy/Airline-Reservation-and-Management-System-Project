@@ -306,7 +306,7 @@ aircraftProcess Aircraft::assignAircraftToFlight()
     }
     json &aircraft = aircrafts["aircraft"][index_AC];
 
-    if(aircraft["availability"] == false)
+    if (aircraft["availability"] == false)
     {
         std::cout << "Error: Aircraft " << newAircraftID << " is not available.\n";
         aircraft_state = AIRCRAFT_PROCESS_IS_NULL;
@@ -317,12 +317,12 @@ aircraftProcess Aircraft::assignAircraftToFlight()
     aircraft["availability"] = false;
     // Write the updated data back to the file
     writeToDP(flightDP, flights);
-    writeToDP(AirCraftDB,aircrafts);
+    writeToDP(AirCraftDB, aircrafts);
     std::cout << "Flight " << flightNumber << " has been successfully updated.\n";
     aircraft_state = AIRCRAFT_PROCESS_IS_SUCCESSFUL;
 
     return aircraft_state;
-} 
+}
 
 aircraftProcess Aircraft::scheduleMaintenance()
 {
@@ -350,16 +350,41 @@ aircraftProcess Aircraft::scheduleMaintenance()
 
     aircraft["maintenanceSchedule"] = maintenanceDate;
 
-    writeToDP(AirCraftDB,aircrafts);
+    writeToDP(AirCraftDB, aircrafts);
 
     ap = AIRCRAFT_PROCESS_IS_SUCCESSFUL;
     return ap;
-
 }
 
 bool Aircraft::checkAvailability()
 {
-    return true;
+    int choice;
+    aircraftProcess ap = AIRCRAFT_PROCESS_IS_NULL;
+    std::string aircraftId;
+    std::cout << "--- Update Aircraft ---\n";
+    std::cout << "Enter Aircraft ID to Check avaliablity: ";
+    std::cin.ignore(); // Clear the input buffer
+
+    std::getline(std::cin, aircraftId);
+    json aircrafts = readFromDP(AirCraftDB);
+    int index = isAircraftExist(aircrafts, aircraftId);
+    if (index == -1)
+    {
+        std::cout << "Error: Aircraft " << aircraftId << " does not exist.\n";
+        ap = AIRCRAFT_PROCESS_IS_FAILED;
+        return ap;
+    }
+    json &aircraft = aircrafts["aircraft"][index];
+    if (aircraft["availability"] == true)
+    {
+        std::cout<<"The Aircraft is Available!"<<std::endl;
+        return true;
+    }
+    else{
+        std::cout<<"The Aircraft is not Available!"<<std::endl;
+
+        return false;
+    }
 }
 
 Aircraft::~Aircraft()
