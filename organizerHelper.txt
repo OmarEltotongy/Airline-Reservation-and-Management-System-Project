@@ -3,7 +3,8 @@ ADMIN :
 1. Manage Flights - > menu below -- (DONE)
 -----------------------------------------------
 -flights doesnot update with the new crew,
--the crew is not updated with the statw or the assigned flight
+-the crew is not updated with the new state (update the state if they are assigned to a flight)
+-the crew is not assigned to flight if they are updated (add fligh for each pilot and FA)
 -- Manage Flights ---
 1. Add New Flight (DONE)
 2. Update Existing Flight -> menu bleow (DONE)
@@ -26,8 +27,8 @@ arrivalTime, aircraftID) -> Ur implementation (DONE)
 --- Manage Air Crafts ---
 1. View All Aircraft (DONE)
 2. Add New Aircraft (DONE)
-3. Update Aircraft Information
-4. Remove Aircraft
+3. Update Aircraft Information (DONE)
+4. Remove Aircraft (DONE)
 5. Assign Aircraft to Flight
 6. Schedule Maintenance
 7. Check Availability

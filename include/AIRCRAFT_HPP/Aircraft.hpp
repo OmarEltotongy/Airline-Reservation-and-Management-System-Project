@@ -19,8 +19,19 @@ private:
 
 public:
     Aircraft(const std::string &aircraftID, const std::string &model, const std::string &maintenanceSchedule, const bool &availability);
-    static void ManageAircraftMenu(const std::string& username, const std::string& password,const rolesTypes& r);
-    static void viewAllAircraft();
+    Aircraft(Administrator &admin);
+    static void ManageAircraftMenu(Administrator &admin);
+
+    /***********************************Air Crafts Functions***********************************/
+    aircraftProcess addAircraft();
+    aircraftProcess removeAircraft();
+    aircraftProcess updateAircraft();
+    aircraftProcess assignAircraftToFlight();
+    aircraftProcess scheduleMaintenance(); // Schedules maintenance for the aircraft.
+    bool checkAvailability();   // Checks if the aircraft is available.
+    /*********************************************************************************************/
+
+    void viewAllAircraft();
     ~Aircraft();
 };
 

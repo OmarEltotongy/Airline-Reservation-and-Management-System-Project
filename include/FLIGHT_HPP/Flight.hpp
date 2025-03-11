@@ -4,7 +4,6 @@
 #include "../ENUMS/flights_enum.hpp"
 #include "../ENUMS/user_enums.hpp"
 
-
 #include <iostream>
 #include <vector>
 #include <string>
@@ -31,10 +30,18 @@ private:
 public:
     Flight(const std::string &FN, const std::string &origin, const std::string &destination,
            const std::string &DT, const std::string &AT, const flightStatus &FS,
-           const std::string &ACID, const AssignedCrew& assignedCrew);
+           const std::string &ACID, const AssignedCrew &assignedCrew);
+    Flight(Administrator &admin);
+    static void ManageFlightsMenu(Administrator &admin);
 
-    static void ManageFlightsMenu(const std::string& username, const std::string& password, const rolesTypes& r);
-    static void viewAllFlights(); // print the database
+    /************************************Flights Functions*************************************/
+    AssignedCrew assignCrewToFlight(const std::string &flightNumber, json &pilots, json &Flight_Attendant);
+    flightProcess addFlight(Flight &flight_admin);
+    flightProcess updateFlight(Flight &flight_admin);
+    flightProcess deleteFlight();
+    /******************************************************************************************/
+
+    void viewAllFlights(); // print the database
 
     ~Flight();
 };

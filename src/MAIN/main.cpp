@@ -31,6 +31,9 @@ int main()
             std::getline(std::cin, password);
 
             std::unique_ptr<User> admin = factory.createUser(username, password, rolesTypes::ADMIN);
+            // Cast the User pointer to an Administrator pointer
+            Administrator *adminPtr = dynamic_cast<Administrator *>(admin.get());
+
             if (admin->login() == LOG_STATE_SUCCESSFUL)
             {
                 std::cout << "Login successful!\n";
@@ -44,11 +47,11 @@ int main()
 
                     if (choice == 1)
                     { // Manage Flights
-                        Flight::ManageFlightsMenu(username, password, rolesTypes::ADMIN);
+                        Flight::ManageFlightsMenu(*adminPtr);
                     }
                     else if (choice == 2)
                     { // Manage Aircraft
-                        Aircraft::ManageAircraftMenu(username, password, rolesTypes::ADMIN);
+                        Aircraft::ManageAircraftMenu(*adminPtr);
                     }
                     else if (choice == 3)
                     { // Manage Users

@@ -20,7 +20,7 @@ enum flightStatus
 
 struct AssignedCrew
 {
-    std::string pilotID;                         // ID of the assigned pilot
+    std::vector<std::string> pilotID;                         // ID of the assigned pilot
     std::vector<std::string> flightAttendantIDs; // IDs of the assigned flight attendants
 };
 

@@ -2,8 +2,8 @@
     "aircraft": [
         {
             "aircraftID": "B737",
-            "availability": true,
-            "maintenanceSchedule": "21-03-2025",
+            "availability": false,
+            "maintenanceSchedule": "2-03-2025",
             "model": "Boeing 737"
         },
         {

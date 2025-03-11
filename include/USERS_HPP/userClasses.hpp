@@ -41,6 +41,7 @@ public:
     bool validateCredentials(const std::string &username, const std::string &password, const rolesTypes &role);
     logState login();
     logState logout();
+    std::string getName();
     // virtual void displayMenu() = 0 ; //pure virtual function
 
     virtual ~User();
@@ -94,23 +95,6 @@ private:
 public:
     Administrator(const std::string &name, const std::string &pass, const rolesTypes &r);
     static void mainDisplayMenu();
-
-    /************************************Flights Functions*************************************/
-    AssignedCrew assignCrewToFlight(const std::string &flightNumber, json &pilots, json &Flight_Attendant);
-    flightProcess addFlight();
-    flightProcess updateFlight();
-    flightProcess deleteFlight();
-    /******************************************************************************************/
-
-    /***********************************Air Crafts Functions***********************************/
-    aircraftProcess addAircraft();
-    aircraftProcess removeAircraft();
-    aircraftProcess updateAircraft();
-    void assignAircraftToFlight();
-    void scheduleMaintenance(); // Schedules maintenance for the aircraft.
-    bool checkAvailability();   // Checks if the aircraft is available.
-    /*********************************************************************************************/
-
     void generateReports();
 
     ~Administrator();
