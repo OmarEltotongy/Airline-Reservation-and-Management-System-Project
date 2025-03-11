@@ -392,7 +392,7 @@ flightProcess Administrator::addFlight()
 flightProcess Administrator::updateFlight()
 {
     int choice;
-    flightProcess fp = FLIGHT_PROCESS_IS_FAILED;
+    flightProcess fp = FLIGHT_PROCESS_IS_NULL;
     std::string flightNumber;
     std::cout << "--- Update Flight ---\n";
     std::cout << "Enter Flight Number to Update: ";
@@ -403,11 +403,14 @@ flightProcess Administrator::updateFlight()
     // Read existing flights from the file
     json flights = readFromDP(flightDP);
 
+    int index = isFlightExists(flights, flightNumber);
+
     // Check if the flight exists
-    if (!isFlightExists(flights, flightNumber))
+    if (index == -1)
     {
         std::cout << "Error: Flight " << flightNumber << " does not exist.\n";
-        return FLIGHT_PROCESS_IS_FAILED;
+        fp = FLIGHT_PROCESS_IS_FAILED;
+        return fp;
     }
 
     std::cout << " --- Updating Existing Flight ---" << std::endl;
@@ -419,8 +422,11 @@ flightProcess Administrator::updateFlight()
     std::cout << "Enter choice: ";
     cin >> choice;
 
+    json &flight = flights["flights"][index];
+
     switch (choice)
     {
+
     case 1:
     {
         // Update Flight Details
@@ -436,88 +442,73 @@ flightProcess Administrator::updateFlight()
         std::cin >> detailChoice;
         std::cin.ignore(); // Clear the input buffer
 
-        // Find the flight to update
-        for (auto &flight : flights["flights"])
+        switch (detailChoice)
         {
-            if (flight["flightNumber"] == flightNumber)
-            {
-                switch (detailChoice)
-                {
-                case 1:
-                {
-                    std::string newFlightNumber;
-                    std::cout << "Enter new Flight Number: ";
-                    std::getline(std::cin, newFlightNumber);
-                    flight["flightNumber"] = newFlightNumber;
-                    break;
-                }
-                case 2:
-                {
-                    std::string newOrigin;
-                    std::cout << "Enter new Origin: ";
-                    std::getline(std::cin, newOrigin);
-                    flight["origin"] = newOrigin;
-                    break;
-                }
-                case 3:
-                {
-                    std::string newDestination;
-                    std::cout << "Enter new Destination: ";
-                    std::getline(std::cin, newDestination);
-                    flight["destination"] = newDestination;
-                    break;
-                }
-                case 4:
-                {
-                    std::string newDepartureTime;
-                    std::cout << "Enter new Departure Time (DD-MM-YYYY HH:MM): ";
-                    std::getline(std::cin, newDepartureTime);
-                    flight["departureTime"] = newDepartureTime;
-                    break;
-                }
-                case 5:
-                {
-                    std::string newArrivalTime;
-                    std::cout << "Enter new Arrival Time (DD-MM-YYYY HH:MM): ";
-                    std::getline(std::cin, newArrivalTime);
-                    flight["arrivalTime"] = newArrivalTime;
-                    break;
-                }
-                case 6:
-                {
-                    std::string newAircraftID;
-                    std::cout << "Enter new Aircraft ID: ";
-                    std::getline(std::cin, newAircraftID);
-                    flight["aircraftID"] = newAircraftID;
-                    break;
-                }
-                default:
-                {
-                    std::cout << "Invalid choice. No changes made.\n";
-                    return FLIGHT_PROCESS_IS_FAILED;
-                }
-                }
 
-                // Write the updated data back to the file
-                writeToDP(flightDP, flights);
-                std::cout << "Flight " << flightNumber << " has been successfully updated.\n";
-                fp = FLIGHT_PROCESS_IS_SUCCESSFUL;
-                break;
-            }
+        case 1:
+        {
+            std::string newFlightNumber;
+            std::cout << "Enter new Flight Number: ";
+            std::getline(std::cin, newFlightNumber);
+            flight["flightNumber"] = newFlightNumber;
+            break;
         }
+        case 2:
+        {
+            std::string newOrigin;
+            std::cout << "Enter new Origin: ";
+            std::getline(std::cin, newOrigin);
+            flight["origin"] = newOrigin;
+            break;
+        }
+        case 3:
+        {
+            std::string newDestination;
+            std::cout << "Enter new Destination: ";
+            std::getline(std::cin, newDestination);
+            flight["destination"] = newDestination;
+            break;
+        }
+        case 4:
+        {
+            std::string newDepartureTime;
+            std::cout << "Enter new Departure Time (DD-MM-YYYY HH:MM): ";
+            std::getline(std::cin, newDepartureTime);
+            flight["departureTime"] = newDepartureTime;
+            break;
+        }
+        case 5:
+        {
+            std::string newArrivalTime;
+            std::cout << "Enter new Arrival Time (DD-MM-YYYY HH:MM): ";
+            std::getline(std::cin, newArrivalTime);
+            flight["arrivalTime"] = newArrivalTime;
+            break;
+        }
+        case 6:
+        {
+            std::string newAircraftID;
+            std::cout << "Enter new Aircraft ID: ";
+            std::getline(std::cin, newAircraftID);
+            flight["aircraftID"] = newAircraftID;
+            break;
+        }
+        default:
+        {
+            std::cout << "Invalid choice. No changes made.\n";
+            fp = FLIGHT_PROCESS_IS_FAILED;
+            return fp;
+        }
+        }
+
+        // Write the updated data back to the file
+        writeToDP(flightDP, flights);
+        std::cout << "Flight " << flightNumber << " has been successfully updated.\n";
+        fp = FLIGHT_PROCESS_IS_SUCCESSFUL;
         break;
     }
     case 2:
     {
-        // Read existing flights from the file
-        json flights = readFromDP(flightDP);
-
-        // Check if the flight exists
-        if (!isFlightExists(flights, flightNumber))
-        {
-            std::cout << "Error: Flight " << flightNumber << " does not exist.\n";
-            return FLIGHT_PROCESS_IS_FAILED;
-        }
 
         // Read existing pilots and flight attendants from their files
         json pilots = readFromDP(pilotDP);
@@ -526,26 +517,13 @@ flightProcess Administrator::updateFlight()
         // Assign new crew to the flight
         auto newCrew = Administrator::assignCrewToFlight(flightNumber, pilots, flightAttendant);
 
-        // Find the flight in the flights array
-        for (auto &flight : flights["flights"])
-        {
-            if (flight["flightNumber"] == flightNumber)
-            {
-                // Update the assigned crew for the flight
-                flight["assignedCrew"]["pilotID"] = newCrew.pilotID;
-                flight["assignedCrew"]["flightAttendantIDs"] = newCrew.flightAttendantIDs;
+        flight["assignedCrew"]["pilotID"] = newCrew.pilotID;
+        flight["assignedCrew"]["flightAttendantIDs"] = newCrew.flightAttendantIDs;
 
-                std::cout << "Crew for flight " << flightNumber << " has been updated.\n";
-                break;
-            }
-        }
+        std::cout << "Crew for flight " << flightNumber << " has been updated.\n";
 
         // Write the updated flights back to the file
         writeToDP(flightDP, flights);
-
-        // // Write updated pilots and flight attendants back to their files
-        // writeToDP(pilotDP, pilots);
-        // writeToDP(flightAttendantDB, flightAttendant);
 
         break;
     }
@@ -557,19 +535,10 @@ flightProcess Administrator::updateFlight()
         std::cin >> newStatus;
         std::string state;
         state = intStatusToStringStatus(newStatus);
-
-        // Find and update the flight
-        for (auto &flight : flights["flights"])
-        {
-            if (flight["flightNumber"] == flightNumber)
-            {
-                flight["status"] = state;
-                break;
-            }
-        }
+        flight["status"] = state;
 
         // Write the updated data back to the file
-        writeToDP("data/flights.json", flights);
+        writeToDP(flightDP, flights);
 
         std::cout << "Flight " << flightNumber << " has been successfully updated.\n";
         fp = FLIGHT_PROCESS_IS_SUCCESSFUL;
@@ -582,9 +551,10 @@ flightProcess Administrator::updateFlight()
     }
     default:
         throw invalid_argument("incorrect choice");
-    };
+    }
     return fp;
 }
+
 flightProcess Administrator::deleteFlight()
 {
     int choice;
@@ -597,37 +567,23 @@ flightProcess Administrator::deleteFlight()
 
     // Read existing flights from the file
     json flights = readFromDP(flightDP);
+    int index = isFlightExists(flights, flightNumber);
 
     // Check if the flight exists
-    if (!isFlightExists(flights, flightNumber))
+    if (index == -1)
     {
         std::cout << "Error: Flight " << flightNumber << " does not exist already.\n";
         return FLIGHT_PROCESS_IS_FAILED;
     }
 
-    // Find and remove the flight
-    auto &flightsArray = flights["flights"];
-    auto it = std::remove_if(flightsArray.begin(), flightsArray.end(),
-                             [&flightNumber](const json &flight)
-                             {
-                                 return flight["flightNumber"] == flightNumber;
-                             });
+    json &flight = flights["flights"][index];
 
-    // Check if the flight was found and removed
-    if (it != flightsArray.end())
-    {
-        flightsArray.erase(it, flightsArray.end()); // Erase the removed element
-        std::cout << "Flight " << flightNumber << " has been successfully deleted.\n";
+    flights["flights"].erase(flights["flights"].begin()+index);
+    std::cout << "Flight with number " << flightNumber << " has been successfully deleted.\n";
 
-        // Write the updated data back to the file
-        writeToDP("data/flights.json", flights);
-        return FLIGHT_PROCESS_IS_SUCCESSFUL;
-    }
-    else
-    {
-        std::cout << "Error: Flight " << flightNumber << " could not be deleted.\n";
-        return FLIGHT_PROCESS_IS_FAILED;
-    }
+    // Write the updated data back to the file
+    writeToDP(flightDP, flights);
+    return FLIGHT_PROCESS_IS_SUCCESSFUL;
 }
 
 /****************************************************************************************/
@@ -683,10 +639,122 @@ aircraftProcess Administrator::addAircraft()
 
 aircraftProcess Administrator::updateAircraft()
 {
+    int choice;
+    aircraftProcess ap = AIRCRAFT_PROCESS_IS_NULL;
+    std::string aircraftId;
+    std::cout << "--- Update Aircraft ---\n";
+    std::cout << "Enter Flight Number to Update: ";
+    std::cin.ignore(); // Clear the input buffer
+
+    std::getline(std::cin, aircraftId);
+    json aircrafts = readFromDP(AirCraftDB);
+    int index = isAircraftExist(aircrafts, aircraftId);
+    if (index == -1)
+    {
+        std::cout << "Error: Aircraft " << aircraftId << " does not exist.\n";
+        ap = AIRCRAFT_PROCESS_IS_FAILED;
+        return ap;
+    }
+
+    std::cout << " --- Updating Existing aircraft ---" << std::endl;
+    std::cout << "Select information to update:" << std::endl;
+    std::cout << "1. Aircraft ID" << std::endl;
+    std::cout << "2. Aircraft Availability" << std::endl;
+    std::cout << "3. Aircraft Maintenance Schedule" << std::endl;
+    std::cout << "4. Aircraft Model" << std::endl;
+    std::cout << "5. Back to Manage Flights" << std::endl;
+    std::cout << "Enter choice: ";
+    cin >> choice;
+
+    // Access the aircraft using the index
+    json &aircraft = aircrafts["aircraft"][index];
+
+    switch (choice)
+    {
+    case 1:
+    {
+        std::string newID;
+
+        std::cout << "Enter new Aircraft ID: ";
+        std::cin.ignore();
+        std::getline(cin, newID);
+        aircraft["aircraftID"] = newID;
+        break;
+    }
+    case 2:
+    {
+        int availability;
+        bool ava;
+        std::cout << "Enter new Aircraft availability (0: false, 1: true) ";
+        cin >> availability;
+
+        if (availability == 0)
+            aircraft["availability"] = false;
+        else
+            aircraft["availability"] = true;
+
+        break;
+    }
+    case 3:
+    {
+        std::string newMaintenanceSchedule;
+
+        std::cout << "Enter new Aircraft Maintenance Schedule(DD-MM-YYYY): ";
+        std::cin.ignore();
+        std::getline(cin, newMaintenanceSchedule);
+        aircraft["maintenanceSchedule"] = newMaintenanceSchedule;
+        break;
+    }
+    case 4:
+    {
+        std::string newModel;
+
+        std::cout << "Enter new Aircraft Model: ";
+        std::cin.ignore();
+        std::getline(cin, newModel);
+        aircraft["model"] = newModel;
+        break;
+    }
+    default:
+        throw invalid_argument("incorrect choice");
+    }
+    // Write the updated data back to the file
+    writeToDP(AirCraftDB, aircrafts);
+    std::cout << "Aircraft " << aircraftId << " has been successfully updated.\n";
+    ap = AIRCRAFT_PROCESS_IS_SUCCESSFUL;
+
+    return ap;
 }
 
 aircraftProcess Administrator::removeAircraft()
 {
+    int choice;
+    aircraftProcess ap = AIRCRAFT_PROCESS_IS_FAILED;
+    std::string aircraftID;
+    std::cout << "--- Delete Aircraft ---\n";
+    std::cin.ignore(); // Clear the input buffer
+    std::cout << "Enter Flight Number to Delete: ";
+    std::getline(std::cin, aircraftID);
+
+    // Read existing flights from the file
+    json aircrafts = readFromDP(AirCraftDB);
+    int index = isAircraftExist(aircrafts, aircraftID);
+    if (index == -1)
+    {
+        std::cout << "Error: Aircraft " << aircraftID << " does not exist.\n";
+        ap = AIRCRAFT_PROCESS_IS_FAILED;
+        return ap;
+    }
+
+    json &aircraft = aircrafts["aircraft"][index];
+
+    // Remove the aircraft at the found index
+    aircrafts["aircraft"].erase(aircrafts["aircraft"].begin() + index);
+    std::cout << "Aircraft with ID " << aircraftID << " has been successfully deleted.\n";
+
+    // Write the updated data back to the file
+    writeToDP(AirCraftDB, aircrafts);
+    return AIRCRAFT_PROCESS_IS_SUCCESSFUL;
 }
 
 void Administrator::assignAircraftToFlight()

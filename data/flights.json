@@ -1,64 +1,134 @@
 {
-    "aircraft": [
+    "flights": [
         {
+            "flightNumber": "AA123",
+            "origin": "New York (JFK)",
+            "destination": "Los Angeles (LAX)",
+            "departureTime": "2023-12-15 08:30",
+            "arrivalTime": "2023-12-15 11:45",
             "aircraftID": "B737",
-            "availability": true,
-            "maintenanceSchedule": "21-03-2025",
-            "model": "Boeing 737"
+            "status": "Scheduled",
+            "assignedCrew": {
+                "pilotID": "P001",
+                "flightAttendantIDs": ["FA001", "FA002"]
+            }
         },
         {
+            "flightNumber": "BA456",
+            "origin": "London (LHR)",
+            "destination": "Paris (CDG)",
+            "departureTime": "2023-12-20 09:00",
+            "arrivalTime": "2023-12-20 11:00",
             "aircraftID": "A320",
-            "availability": true,
-            "maintenanceSchedule": "22-03-2025",
-            "model": "Airbus A320"
+            "status": "Delayed",
+            "assignedCrew": {
+                "pilotID": "P002",
+                "flightAttendantIDs": ["FA003"]
+            }
         },
         {
+            "flightNumber": "DL789",
+            "origin": "Atlanta (ATL)",
+            "destination": "Chicago (ORD)",
+            "departureTime": "2023-12-18 10:15",
+            "arrivalTime": "2023-12-18 12:30",
             "aircraftID": "B757",
-            "availability": false,
-            "maintenanceSchedule": "23-03-2025",
-            "model": "Boeing 757"
+            "status": "Scheduled",
+            "assignedCrew": {
+                "pilotID": "P003",
+                "flightAttendantIDs": ["FA004", "FA005"]
+            }
         },
         {
+            "flightNumber": "UA101",
+            "origin": "San Francisco (SFO)",
+            "destination": "Seattle (SEA)",
+            "departureTime": "2023-12-22 07:00",
+            "arrivalTime": "2023-12-22 09:15",
+            "aircraftID": "B737",
+            "status": "Scheduled",
+            "assignedCrew": {
+                "pilotID": "P004",
+                "flightAttendantIDs": ["FA006"]
+            }
+        },
+        {
+            "flightNumber": "SW202",
+            "origin": "Dallas (DFW)",
+            "destination": "Denver (DEN)",
+            "departureTime": "2023-12-25 12:00",
+            "arrivalTime": "2023-12-25 14:30",
+            "aircraftID": "B737",
+            "status": "Scheduled",
+            "assignedCrew": {
+                "pilotID": "P005",
+                "flightAttendantIDs": ["FA007", "FA008"]
+            }
+        },
+        {
+            "flightNumber": "AF303",
+            "origin": "Paris (CDG)",
+            "destination": "Berlin (BER)",
+            "departureTime": "2023-12-28 08:45",
+            "arrivalTime": "2023-12-28 10:30",
+            "aircraftID": "A320",
+            "status": "Scheduled",
+            "assignedCrew": {
+                "pilotID": "P006",
+                "flightAttendantIDs": ["FA009"]
+            }
+        },
+        {
+            "flightNumber": "LH404",
+            "origin": "Frankfurt (FRA)",
+            "destination": "Munich (MUC)",
+            "departureTime": "2023-12-30 11:00",
+            "arrivalTime": "2023-12-30 12:00",
+            "aircraftID": "A321",
+            "status": "Scheduled",
+            "assignedCrew": {
+                "pilotID": "P007",
+                "flightAttendantIDs": ["FA010"]
+            }
+        },
+        {
+            "flightNumber": "QF505",
+            "origin": "Sydney (SYD)",
+            "destination": "Melbourne (MEL)",
+            "departureTime": "2024-01-05 06:30",
+            "arrivalTime": "2024-01-05 08:00",
             "aircraftID": "B787",
-            "availability": true,
-            "maintenanceSchedule": "24-03-2025",
-            "model": "Boeing 787"
+            "status": "Scheduled",
+            "assignedCrew": {
+                "pilotID": "P008",
+                "flightAttendantIDs": ["FA011", "FA012"]
+            }
         },
         {
+            "flightNumber": "EK606",
+            "origin": "Dubai (DXB)",
+            "destination": "London (LHR)",
+            "departureTime": "2024-01-10 14:00",
+            "arrivalTime": "2024-01-10 18:00",
             "aircraftID": "A380",
-            "availability": true,
-            "maintenanceSchedule": "25-03-2025",
-            "model": "Airbus A380"
+            "status": "Scheduled",
+            "assignedCrew": {
+                "pilotID": "P009",
+                "flightAttendantIDs": ["FA013"]
+            }
         },
         {
+            "flightNumber": "SQ707",
+            "origin": "Singapore (SIN)",
+            "destination": "Tokyo (NRT)",
+            "departureTime": "2024-01-15 09:00",
+            "arrivalTime": "2024-01-15 16:00",
             "aircraftID": "B777",
-            "availability": false,
-            "maintenanceSchedule": "26-03-2025",
-            "model": "Boeing 777"
-        },
-        {
-            "aircraftID": "A350",
-            "availability": true,
-            "maintenanceSchedule": "27-03-2025",
-            "model": "Airbus A350"
-        },
-        {
-            "aircraftID": "B747",
-            "availability": true,
-            "maintenanceSchedule": "28-03-2025",
-            "model": "Boeing 747"
-        },
-        {
-            "aircraftID": "A330",
-            "availability": false,
-            "maintenanceSchedule": "29-03-2025",
-            "model": "Airbus A330"
-        },
-        {
-            "aircraftID": "B767",
-            "availability": true,
-            "maintenanceSchedule": "30-03-2025",
-            "model": "Boeing 767"
+            "status": "Scheduled",
+            "assignedCrew": {
+                "pilotID": "P010",
+                "flightAttendantIDs": ["FA014", "FA015"]
+            }
         }
     ]
 }

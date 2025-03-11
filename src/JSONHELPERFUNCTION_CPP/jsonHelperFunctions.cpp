@@ -59,18 +59,32 @@ bool isUsernameExists(const json &users, const std::string &username)
     return false; // Username does not exist
 }
 
-bool isFlightExists(const json &flights, const std::string &flightNumber)
+int isFlightExists(const json &flights, const std::string &flightNumber)
 {
-    for (const auto &flight : flights["flights"])
+    // Iterate through the "flight" array
+    for (size_t i = 0; i < flights["flights"].size(); ++i)
     {
-        if (flight["flightNumber"] == flightNumber)
-        {
-            return true; // Flight exists
+        if (flights["flights"][i]["flightNumber"] == flightNumber)
+        {                               // Check the "flightNumber" field
+            return static_cast<int>(i); // Return the index if found
         }
     }
-    return false; // Flight does not exist
+    return -1; // Return -1 if not found
 }
 
+
+int isAircraftExist(const json &aircrafts, const std::string &aid)
+{
+    // Iterate through the "aircraft" array
+    for (size_t i = 0; i < aircrafts["aircraft"].size(); ++i)
+    {
+        if (aircrafts["aircraft"][i]["aircraftID"] == aid)
+        {                               // Check the "aircraftID" field
+            return static_cast<int>(i); // Return the index if found
+        }
+    }
+    return -1; // Return -1 if not found
+}
 // Function to add a new flight to the JSON file
 void addFlightToDP(const std::string &filename, const std::string &flightNumber, const std::string &origin,
                    const std::string &destination, const std::string &departureTime, const std::string &arrivalTime,
@@ -102,7 +116,7 @@ void addFlightToDP(const std::string &filename, const std::string &flightNumber,
     std::cout << "Flight " << flightNumber << " has been successfully added to the schedule.\n";
 }
 
-bool isPilotExists(json& pilots, const std::string& ID)
+bool isPilotExists(json &pilots, const std::string &ID)
 {
     // Loop through the pilots to check if the ID exists
     bool pilotFound = false;
@@ -135,7 +149,7 @@ bool isPilotExists(json& pilots, const std::string& ID)
     return pilotFound;
 }
 
-bool isFlightAttendantExist(json& flightAttendant, const std::string& ID)
+bool isFlightAttendantExist(json &flightAttendant, const std::string &ID)
 {
     // Loop through the flight attendants to check if the ID exists
     bool flightAttendantFound = false;

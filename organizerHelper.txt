@@ -2,6 +2,8 @@ ADMIN :
 --- Administrator Menu ---
 1. Manage Flights - > menu below -- (DONE)
 -----------------------------------------------
+-flights doesnot update with the new crew,
+-the crew is not updated with the statw or the assigned flight
 -- Manage Flights ---
 1. Add New Flight (DONE)
 2. Update Existing Flight -> menu bleow (DONE)
@@ -21,16 +23,15 @@ arrivalTime, aircraftID) -> Ur implementation (DONE)
 ----------------------------------------------------
 
 2. Manage Aircraft -> Ur implementation -> menu below
-    --- Manage Air Crafts ---
-    1. Assign Aircraft to Flight
-    2. Schedule Maintenance
-    3. Check Availability
-    4. Add New Aircraft
-    5. Remove Aircraft
-    6. Update Aircraft Information
-    7. View All Aircraft (DONE)
-    8. Search Aircraft
-    9. Back to Main Menu (DONE)
+--- Manage Air Crafts ---
+1. View All Aircraft (DONE)
+2. Add New Aircraft (DONE)
+3. Update Aircraft Information
+4. Remove Aircraft
+5. Assign Aircraft to Flight
+6. Schedule Maintenance
+7. Check Availability
+8. Back to Main Menu (DONE)
 -----------------------------------------------
 
 3. Manage Users -> Ur implementation 
