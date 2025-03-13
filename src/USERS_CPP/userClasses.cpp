@@ -339,11 +339,25 @@ userState Administrator::addNewUser()
     std::string username, password, role, userID, contactInfo;
     int LP;
     userFactory factory;
+    while (true)
+    {
+        std::cout << "--- Add New user ---\n";
+        std::cout << "Enter User Name(Spaces will be removed): ";
+        std::cin.ignore(); // Clear the input buffer
+        std::getline(std::cin, username);
+        // Remove spaces from the username
+        username.erase(std::remove_if(username.begin(), username.end(), ::isspace), username.end());
 
-    std::cout << "--- Add New user ---\n";
-    std::cout << "Enter User Name: ";
-    std::cin.ignore(); // Clear the input buffer
-    std::getline(std::cin, username);
+        int index = isUsernameExists(users, username);
+        if (index == -1)
+        {
+            cout << "Sorry, but this username is used" << endl;
+        }
+        else
+        {
+            break;
+        }
+    }
     std::cout << "Enter Password: ";
     std::getline(std::cin, password);
     std::cout << "Enter User ID: ";
@@ -351,7 +365,7 @@ userState Administrator::addNewUser()
     std::cout << "Enter Role: ";
     std::getline(std::cin, role);
 
-    json newUserEntry ;
+    json newUserEntry;
     if (role == "BOOKING_AGENT")
     {
         std::unique_ptr<User> user = factory.createUser(username, password, rolesTypes::BOOKING_AGENT);
@@ -381,7 +395,160 @@ userState Administrator::addNewUser()
 }
 userState Administrator::updateUserInfo()
 {
-    return UPDATED_USER;
+    int choice;
+    userState state = FAILED_OPERATION;
+    std::string un;
+    json users = readFromDP(UserDP);
+    int index = 0;
+    while (true)
+    {
+        std::cout << "--- Update User ---\n";
+        std::cout << "Enter Username to Update: ";
+        std::cin.ignore(); // Clear the input buffer
+
+        std::getline(std::cin, un);
+        // Remove spaces from the username
+        un.erase(std::remove_if(un.begin(), un.end(), ::isspace), un.end());
+
+        index = isUsernameExists(users, un);
+        if (index != -1)
+        {
+            cout << "Sorry, but this username is not found" << endl;
+        }
+        else
+        {
+            break;
+        }
+    }
+    // Access the user using the index
+    json &user = users["users"][index];
+
+    if (user["role"] == "PASSENGER")
+    {
+        std::cout << " --- Updating Existing User ---" << std::endl;
+        std::cout << "Select information to update:" << std::endl;
+        std::cout << "1. Username" << std::endl;
+        std::cout << "2. User ID" << std::endl;
+        std::cout << "3. Password" << std::endl;
+        std::cout << "4. Role" << std::endl;
+        std::cout << "5. Contact Info" << std::endl;
+        std::cout << "6. Loyalty Points" << std::endl;
+        std::cout << "7. Back to Manage Flights" << std::endl;
+        std::cout << "Enter choice: ";
+        cin >> choice;
+    }
+    else
+    {
+        std::cout << " --- Updating Existing User ---" << std::endl;
+        std::cout << "Select information to update:" << std::endl;
+        std::cout << "1. Username" << std::endl;
+        std::cout << "2. User ID" << std::endl;
+        std::cout << "3. Password" << std::endl;
+        std::cout << "4. Role" << std::endl;
+        std::cout << "5. Back to Manage Flights" << std::endl;
+        std::cout << "Enter choice: ";
+        cin >> choice;
+    }
+    std::string newValue;
+    int newPoints;
+
+    switch (choice)
+    {
+    case 1: // Update Username
+        std::cout << "Enter new username: ";
+        std::cin.ignore(); // Clear the input buffer
+        std::getline(std::cin, newValue);
+        user["username"] = newValue;
+        std::cout << "Username updated successfully.\n";
+        state = UPDATED_USER;
+        break;
+
+    case 2: // Update User ID
+        std::cout << "Enter new user ID: ";
+        std::cin.ignore(); // Clear the input buffer
+        std::getline(std::cin, newValue);
+        user["userID"] = newValue;
+        std::cout << "User ID updated successfully.\n";
+        state = UPDATED_USER;
+        break;
+
+    case 3: // Update Password
+        std::cout << "Enter new password: ";
+        std::cin.ignore(); // Clear the input buffer
+        std::getline(std::cin, newValue);
+        user["password"] = newValue;
+        std::cout << "Password updated successfully.\n";
+        state = UPDATED_USER;
+        break;
+
+    case 4: // Update Role
+        std::cout << "Enter new role (ADMIN, BOOKING_AGENT, PASSENGER): ";
+        std::cin.ignore(); // Clear the input buffer
+        std::getline(std::cin, newValue);
+        user["role"] = newValue;
+        std::cout << "Role updated successfully.\n";
+        state = UPDATED_USER;
+        break;
+
+    case 5: // Update Contact Info (Only for PASSENGER)
+        if (user["role"] == "PASSENGER")
+        {
+            std::cout << "Enter new contact info: ";
+            std::cin.ignore(); // Clear the input buffer
+            std::getline(std::cin, newValue);
+            user["contactInfo"] = newValue;
+            std::cout << "Contact info updated successfully.\n";
+            state = UPDATED_USER;
+        }
+        else
+        {
+            std::cout << "Only for Passenger, Returning to the main menu.\n";
+            state = FAILED_OPERATION;
+        }
+        break;
+
+    case 6: // Update Loyalty Points (Only for PASSENGER)
+        if (user["role"] == "PASSENGER")
+        {
+            std::cout << "Enter new loyalty points: ";
+            std::cin >> newPoints;
+            user["loyaltyPoints"] = newPoints;
+            std::cout << "Loyalty points updated successfully.\n";
+            state = UPDATED_USER;
+        }
+        else
+        {
+            std::cout << "Only for Passenger, Returning to the main menu.\n";
+            state = FAILED_OPERATION;
+        }
+        break;
+
+    case 7: // Back to Manage Users (Only for PASSENGER)
+        if (user["role"] == "PASSENGER")
+        {
+            std::cout << "Returning to the main menu.\n";
+            state = FAILED_OPERATION;
+        }
+        else
+        {
+            std::cout << "Invalid choice. Please try again.\n";
+            state = FAILED_OPERATION;
+        }
+        break;
+
+    default:
+        std::cout << "Invalid choice. Please try again.\n";
+        state = FAILED_OPERATION;
+        break;
+    }
+
+    // Write the updated users back to the file
+    if (state == UPDATED_USER)
+    {
+        writeToDP(UserDP, users);
+    }
+
+    return state;
 }
 userState Administrator::deleteUser()
 {
@@ -389,7 +556,29 @@ userState Administrator::deleteUser()
 }
 userState Administrator::searchForUser()
 {
-    return USER_VIEWED;
+    userState state = FAILED_OPERATION;
+    std::string un;
+    json users = readFromDP(UserDP);
+    int index = 0;
+    std::cout << "--- Search for User ---\n";
+    std::cout << "Enter Username to Search on: ";
+    std::cin.ignore(); // Clear the input buffer
+
+    std::getline(std::cin, un);
+    // Remove spaces from the username
+    un.erase(std::remove_if(un.begin(), un.end(), ::isspace), un.end());
+
+    index = isUsernameExists(users, un);
+    if (index != -1)
+    {
+        cout << "Sorry, but this username is not found" << std::endl;
+    }
+    else
+    {
+        std::cout<<"Username is found at index: " << index +1  <<std::endl;
+        state = USER_VIEWED;
+    }
+    return state;
 }
 
 Administrator::~Administrator()

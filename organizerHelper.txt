@@ -37,18 +37,16 @@ arrivalTime, aircraftID) -> Ur implementation (DONE)
 8. Back to Main Menu (DONE)
 -if the flight has assigned with flight, make it avaliable before delete
 -who the admin that edited the aircraft or made one
--make the constructor who push in the database
 -----------------------------------------------
 
 3. Manage Users -> Ur implementation
 --- Manage Users ---
 1. View All Users (DONE)
 2. Add a New User (DONE)
-3. Update User Information
+3. Update User Information (DONE)
 4. Delete a User
-5. Search for a User
+5. Search for a User (DONE)
 6. Back to Administrator Menu (DONE)
--make the constructor who push in the database
 
 
 
