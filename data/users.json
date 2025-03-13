@@ -3,78 +3,96 @@
         {
             "password": "1",
             "role": "ADMIN",
-            "username": "1",
-            "userID": "U000"
-
+            "userID": "U000",
+            "username": "1"
         },
-        
         {
-            "username": "admin1",
             "password": "admin123",
             "role": "ADMIN",
-            "userID": "U001"
+            "userID": "U001",
+            "username": "admin1"
         },
         {
-            "username": "agent1",
             "password": "agent123",
             "role": "BOOKING_AGENT",
-            "userID": "U002"
+            "userID": "U002",
+            "username": "agent1"
         },
         {
-            "username": "passenger1",
+            "contactInfo": "passenger1@example.com",
+            "loyaltyPoints": 100,
             "password": "pass123",
             "role": "PASSENGER",
             "userID": "U003",
-            "contactInfo": "passenger1@example.com",
-            "loyaltyPoints": 100
+            "username": "passenger1"
         },
         {
-            "username": "passenger2",
+            "contactInfo": "passenger2@example.com",
+            "loyaltyPoints": 50,
             "password": "pass456",
             "role": "PASSENGER",
             "userID": "U004",
-            "contactInfo": "passenger2@example.com",
-            "loyaltyPoints": 50
+            "username": "passenger2"
         },
         {
-            "username": "admin2",
             "password": "admin456",
             "role": "ADMIN",
-            "userID": "U005"
+            "userID": "U005",
+            "username": "admin2"
         },
         {
-            "username": "agent2",
             "password": "agent456",
             "role": "BOOKING_AGENT",
-            "userID": "U006"
+            "userID": "U006",
+            "username": "agent2"
         },
         {
-            "username": "passenger3",
+            "contactInfo": "passenger3@example.com",
+            "loyaltyPoints": 200,
             "password": "pass789",
             "role": "PASSENGER",
             "userID": "U007",
-            "contactInfo": "passenger3@example.com",
-            "loyaltyPoints": 200
+            "username": "passenger3"
         },
         {
-            "username": "passenger4",
+            "contactInfo": "passenger4@example.com",
+            "loyaltyPoints": 75,
             "password": "pass101",
             "role": "PASSENGER",
             "userID": "U008",
-            "contactInfo": "passenger4@example.com",
-            "loyaltyPoints": 75
+            "username": "passenger4"
         },
         {
-            "username": "admin3",
             "password": "admin789",
             "role": "ADMIN",
-            "userID": "U009"
+            "userID": "U009",
+            "username": "admin3"
         },
         {
-            "username": "agent3",
             "password": "agent789",
             "role": "BOOKING_AGENT",
-            "userID": "U010"
+            "userID": "U010",
+            "username": "agent4"
+        },
+        {
+            "password": "123",
+            "role": 0,
+            "userID": "",
+            "username": "omarMahrous"
+        },
+        {
+            "contactInfo": "",
+            "loyaltyPoints": 0,
+            "password": "123",
+            "role": 2,
+            "userID": "",
+            "username": "Omarya3m"
+        },
+        {
+            "password": "1523",
+            "role": 1,
+            "userID": "",
+            "username": "BOOK"
         }
     ]
 }

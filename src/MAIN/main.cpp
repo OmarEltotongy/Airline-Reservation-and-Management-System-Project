@@ -21,7 +21,7 @@ int main()
         displayMainMenu();
         std::cin >> choice;
         std::cin.ignore(); // Clear the input buffer
-
+        std::string vID;
         if (choice == 1)
         { // Administrator
             std::cout << "--- Administrator Login ---\n";
@@ -30,7 +30,7 @@ int main()
             std::cout << "Password: ";
             std::getline(std::cin, password);
 
-            std::unique_ptr<User> admin = factory.createUser(username, password, rolesTypes::ADMIN);
+            std::unique_ptr<User> admin = factory.createUser(username, password, rolesTypes::ADMIN,vID);
             // Cast the User pointer to an Administrator pointer
             Administrator *adminPtr = dynamic_cast<Administrator *>(admin.get());
 
@@ -87,7 +87,7 @@ int main()
             std::cout << "Password: ";
             std::getline(cin, password);
 
-            std::unique_ptr<User> agent = factory.createUser(username, password, rolesTypes::BOOKING_AGENT);
+            std::unique_ptr<User> agent = factory.createUser(username, password, rolesTypes::BOOKING_AGENT, vID);
             if (agent->login() == LOG_STATE_SUCCESSFUL)
             {
                 std::cout << "Login successful!\n";
@@ -139,7 +139,7 @@ int main()
             std::cout << "Password: ";
             std::getline(std::cin, password);
 
-            std::unique_ptr<User> passenger = factory.createUser(username, password, rolesTypes::PASSENGER);
+            std::unique_ptr<User> passenger = factory.createUser(username, password, rolesTypes::PASSENGER, vID);
             if (passenger->login() == LOG_STATE_SUCCESSFUL)
             {
                 std::cout << "Login successful!\n";

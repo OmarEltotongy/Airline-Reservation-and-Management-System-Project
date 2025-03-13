@@ -24,7 +24,6 @@ arrivalTime, aircraftID) -> Ur implementation (DONE)
 5. Back to Main Menu -- main (DONE)
 ----------------------------------------------------
 
-
 2. Manage Aircraft -> Ur implementation -> menu below (DONE)
 --- Manage Air Crafts ---
 1. View All Aircraft (DONE)
@@ -35,19 +34,21 @@ arrivalTime, aircraftID) -> Ur implementation (DONE)
 6. Schedule Maintenance (DONE)
 7. Check Availability (DONE)
 8. Back to Main Menu (DONE)
+
 -if the flight has assigned with flight, make it avaliable before delete
 -who the admin that edited the aircraft or made one
 -----------------------------------------------
 
-3. Manage Users -> Ur implementation
+3. Manage Users -> Ur implementation (DONE)
+-convert from role number to string in add
+-check for id is not repeated
 --- Manage Users ---
 1. View All Users (DONE)
 2. Add a New User (DONE)
 3. Update User Information (DONE)
-4. Delete a User
+4. Delete a User (DONE)
 5. Search for a User (DONE)
 6. Back to Administrator Menu (DONE)
-
 
 
 4. Generate Reports -> exist sequence 

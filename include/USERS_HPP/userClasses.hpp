@@ -43,7 +43,6 @@ public:
     logState logout();
     std::string getName();
     virtual json toJson() const = 0;// pure virtual function
-
     virtual ~User();
 };
 
@@ -57,7 +56,7 @@ private:
     int loyaltyPoints;                                // counter
 
 public:
-    Passenger(const std::string &name, const std::string &pass, const rolesTypes &r, const std::string &contactInfo, int &loyaltyPoints);
+    Passenger(const std::string &name, const std::string &pass, const rolesTypes &r, const std::string &contactInfo, int &loyaltyPoints, const std::string &id);
     static void displayMenu();
     virtual json toJson() const;
     void searchFlight();
@@ -75,7 +74,7 @@ private:
     std::vector<Reservation> reservationsHandled; // A list of reservations handled by the booking agent
 public:
     BookingAgent(const std::string &name, const std::string &pass, const rolesTypes &r,
-        const std::string &contactinfo = "", int loyaltyPoints = 0);
+        const std::string &contactinfo = "", int loyaltyPoints = 0, const std::string &id = "");
     static void displayMenu(); // if pure virtual function is used, must have prototype in inhereted too
     virtual json toJson() const;
     void bookFlight();
@@ -96,7 +95,7 @@ private:
 
 public:
     Administrator(const std::string &name, const std::string &pass, const rolesTypes &r,
-        const std::string &contactinfo = "", int loyaltyPoints = 0);
+        const std::string &contactinfo = "", int loyaltyPoints = 0, const std::string &id ="");
     static void mainDisplayMenu();
     static void mangeUsersMenu(Administrator &admin);
     virtual json toJson() const;
@@ -116,7 +115,7 @@ public:
 class userFactory
 {
 public:
-    std::unique_ptr<User> createUser(const std::string &name, const std::string &pass, const rolesTypes &role, const std::string &contactinfo = "", int loyaltyPoints = 0);
+    std::unique_ptr<User> createUser(const std::string &name, const std::string &pass, const rolesTypes &role, const std::string &contactinfo = "", int loyaltyPoints = 0, const std::string &userID ="");
 };
 
 std::string roleToString(rolesTypes role);

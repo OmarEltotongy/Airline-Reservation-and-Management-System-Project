@@ -179,11 +179,10 @@ User::~User()
 
 /********************************************************************/
 
-Passenger::Passenger(const std::string &name, const std::string &pass, const rolesTypes &r, const std::string &contactInfo, int &loyaltyPoints)
+Passenger::Passenger(const std::string &name, const std::string &pass, const rolesTypes &r, const std::string &contactInfo, int &loyaltyPoints,const std::string &id )
+: User(name, pass, r), passengerID(id), contactInfo(contactInfo), loyaltyPoints(loyaltyPoints)
 {
-    this->username = name;
-    this->password = pass;
-    this->role = r;
+
 
 #if DEBUG
     cout << "Constructor of Passenger is called" << endl;
@@ -220,12 +219,9 @@ Passenger::~Passenger()
 /************************************************************************/
 
 Administrator::Administrator(const std::string &name, const std::string &pass, const rolesTypes &r,
-                             const std::string &contactinfo, int loyaltyPoints)
+                             const std::string &contactinfo, int loyaltyPoints, const std::string &id)
+    : User(name, pass, r), adminId(id)
 {
-    this->username = name;
-    this->password = pass;
-    this->role = r;
-
 #if DEBUG
     cout << "Constructor of Administrator is called" << endl;
 #endif
@@ -348,7 +344,7 @@ userState Administrator::addNewUser()
     username.erase(std::remove_if(username.begin(), username.end(), ::isspace), username.end());
 
     int index = isUsernameExists(users, username);
-    if (index == -1)
+    if (index != -1)
     {
         cout << "Sorry, but this username is used" << endl;
         return FAILED_OPERATION;
@@ -364,13 +360,13 @@ userState Administrator::addNewUser()
     json newUserEntry;
     if (role == "BOOKING_AGENT")
     {
-        std::unique_ptr<User> user = factory.createUser(username, password, rolesTypes::BOOKING_AGENT);
-        json newUserEntry = user->toJson();
+        std::unique_ptr<User> user = factory.createUser(username, password, rolesTypes::BOOKING_AGENT, userID);
+        newUserEntry = user->toJson();
     }
     else if (role == "ADMIN")
     {
-        std::unique_ptr<User> user = factory.createUser(username, password, rolesTypes::ADMIN);
-        json newUserEntry = user->toJson();
+        std::unique_ptr<User> user = factory.createUser(username, password, rolesTypes::ADMIN, userID);
+        newUserEntry = user->toJson();
     }
     else
     {
@@ -379,8 +375,8 @@ userState Administrator::addNewUser()
         std::cout << "Enter Loyalty Points: ";
         std::cin >> LP;
         std::cin.ignore(); // Clear the input buffer after reading the status
-        std::unique_ptr<User> user = factory.createUser(username, password, rolesTypes::PASSENGER, contactInfo, LP);
-        json newUserEntry = user->toJson();
+        std::unique_ptr<User> user = factory.createUser(username, password, rolesTypes::PASSENGER, contactInfo, LP, userID);
+        newUserEntry = user->toJson();
     }
 
     users["users"].push_back(newUserEntry);
@@ -562,7 +558,7 @@ userState Administrator::deleteUser()
         return state;
     }
 
-    json &user= users["users"][index];
+    json &user = users["users"][index];
 
     users["users"].erase(users["users"].begin() + index);
     std::cout << "username: " << un << " has been successfully deleted.\n";
@@ -591,7 +587,7 @@ userState Administrator::searchForUser()
     }
     else
     {
-        std::cout << "Username is found at index: " << index + 1 << std::endl;
+        std::cout << "Username is found at index: " << index << std::endl;
         state = USER_VIEWED;
     }
     return state;
@@ -607,12 +603,9 @@ Administrator::~Administrator()
 /************************************************************************/
 
 BookingAgent::BookingAgent(const std::string &name, const std::string &pass, const rolesTypes &r,
-                           const std::string &contactinfo, int loyaltyPoints)
+                           const std::string &contactinfo, int loyaltyPoints, const std::string &id)
+    : User(name, pass, r), agentID(id)
 {
-    this->username = name;
-    this->password = pass;
-    this->role = r;
-
 #if DEBUG
     cout << "Constructor of BookingAgent is called" << endl;
 #endif
@@ -644,16 +637,16 @@ BookingAgent::~BookingAgent()
 
 /*****************************************************************/
 
-std::unique_ptr<User> userFactory::createUser(const std::string &name, const std::string &pass, const rolesTypes &role, const std::string &contactinfo, int loyaltyPoints)
+std::unique_ptr<User> userFactory::createUser(const std::string &name, const std::string &pass, const rolesTypes &role, const std::string &contactinfo, int loyaltyPoints, const std::string &userID)
 {
     switch (role)
     {
     case rolesTypes::ADMIN:
-        return std::make_unique<Administrator>(name, pass, role);
+        return std::make_unique<Administrator>(name, pass, role,userID);
     case rolesTypes::BOOKING_AGENT:
-        return std::make_unique<BookingAgent>(name, pass, role);
+        return std::make_unique<BookingAgent>(name, pass, role, userID);
     case rolesTypes::PASSENGER:
-        return std::make_unique<Passenger>(name, pass, role, contactinfo, loyaltyPoints);
+        return std::make_unique<Passenger>(name, pass, role, contactinfo, loyaltyPoints, userID);
     default:
         throw std::invalid_argument("Invalid role type");
         ;
