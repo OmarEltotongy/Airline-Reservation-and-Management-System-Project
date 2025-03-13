@@ -33,6 +33,8 @@ public:
            const std::string &ACID, const AssignedCrew &assignedCrew);
     Flight(Administrator &admin);
     static void ManageFlightsMenu(Administrator &admin);
+    // Method to convert Flight object to JSON
+    json toJson() const;
 
     /************************************Flights Functions*************************************/
     AssignedCrew assignCrewToFlight(const std::string &flightNumber, json &pilots, json &Flight_Attendant);

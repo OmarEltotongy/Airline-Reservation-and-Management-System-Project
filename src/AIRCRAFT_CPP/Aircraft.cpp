@@ -13,6 +13,16 @@ Aircraft::Aircraft(Administrator &admin)
     cout << "Edits will be done with Admin: " << admin.getName() << endl;
 }
 
+json Aircraft::toJson() const
+{
+    return {
+        {"aircraftID", aircraftID},
+        {"availability", availability},
+        {"maintenanceSchedule", maintenanceSchedule},
+        {"model", model},
+    };
+}
+
 void Aircraft::ManageAircraftMenu(Administrator &Admin)
 {
     Aircraft AircraftAdmin(Admin);
@@ -129,16 +139,9 @@ aircraftProcess Aircraft::addAircraft()
     // Create a new aircraft object
     Aircraft newAircraft(aircraftID, model, maintenanceSchedule, availability);
 
-    // read the database to add to it
+    json newAircraftEntry = newAircraft.toJson();
     json aircrafts = readFromDP(AirCraftDB);
-
-    // Create a JSON object for the new aircraft
-    json newAircraftEntry = {
-        {"aircraftID", aircraftID},
-        {"model", model},
-        {"maintenanceSchedule", maintenanceSchedule},
-        {"availability", availability}};
-
+    
     // add the new aircraft
     aircrafts["aircraft"].push_back(newAircraftEntry);
     // Write the updated flights back to the file
@@ -377,11 +380,12 @@ bool Aircraft::checkAvailability()
     json &aircraft = aircrafts["aircraft"][index];
     if (aircraft["availability"] == true)
     {
-        std::cout<<"The Aircraft is Available!"<<std::endl;
+        std::cout << "The Aircraft is Available!" << std::endl;
         return true;
     }
-    else{
-        std::cout<<"The Aircraft is not Available!"<<std::endl;
+    else
+    {
+        std::cout << "The Aircraft is not Available!" << std::endl;
 
         return false;
     }

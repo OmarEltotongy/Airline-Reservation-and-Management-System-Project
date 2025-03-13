@@ -210,6 +210,20 @@ AssignedCrew Flight::assignCrewToFlight(const std::string &flightNumber, json &p
     return crew;
 }
 
+// Method to convert Flight object to JSON
+json Flight::toJson() const
+{
+    return {
+        {"flightNumber", flightNumber},
+        {"origin", departureLocation},
+        {"destination", arrivalLocation},
+        {"departureTime", departureTime},
+        {"arrivalTime", arrivalTime},
+        {"status", status},
+        {"aircraftID", aircraftID},
+        {"assignedCrew", {{"pilotID", assignedCrew.pilotID}, {"flightAttendantIDs", assignedCrew.flightAttendantIDs}}}};
+}
+
 flightProcess Flight::addFlight(Flight &flight_admin)
 {
     int s;
@@ -246,20 +260,11 @@ flightProcess Flight::addFlight(Flight &flight_admin)
     // Create a new Flight object
     Flight newFlight(flightNumber, origin, destination, departureTime, arrivalTime, status, aircraftID, crew);
 
+    // Convert the Flight object to JSON
+    json newFlightEntry = newFlight.toJson();
+
     // Add the flight to the JSON file
     json flights = readFromDP(flightDP);
-    // Create a JSON object for the new flight, including the assigned crew
-    json newFlightEntry = {
-        {"flightNumber", flightNumber},
-        {"origin", origin},
-        {"destination", destination},
-        {"departureTime", departureTime},
-        {"arrivalTime", arrivalTime},
-        {"aircraftID", aircraftID},
-        {"status", status},
-        {"assignedCrew", {{"pilotID", crew.pilotID}, {"flightAttendantIDs", crew.flightAttendantIDs}}}};
-
-    // Add the new flight to the flights array
     flights["flights"].push_back(newFlightEntry);
 
     // Write the updated flights back to the file
@@ -400,13 +405,12 @@ flightProcess Flight::updateFlight(Flight &flight_admin)
         flight["assignedCrew"]["pilotID"] = newCrew.pilotID;
         flight["assignedCrew"]["flightAttendantIDs"] = newCrew.flightAttendantIDs;
 
-
         std::cout << "Crew for flight " << flightNumber << " has been updated.\n";
 
         // Write the updated flights back to the file
         writeToDP(flightDP, flights);
-        writeToDP(pilotDP,pilots);
-        writeToDP(flightAttendantDB,flightAttendant);
+        writeToDP(pilotDP, pilots);
+        writeToDP(flightAttendantDB, flightAttendant);
 
         break;
     }

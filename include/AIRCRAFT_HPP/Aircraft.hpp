@@ -21,6 +21,7 @@ public:
     Aircraft(const std::string &aircraftID, const std::string &model, const std::string &maintenanceSchedule, const bool &availability);
     Aircraft(Administrator &admin);
     static void ManageAircraftMenu(Administrator &admin);
+    json toJson() const;
 
     /***********************************Air Crafts Functions***********************************/
     aircraftProcess addAircraft();
