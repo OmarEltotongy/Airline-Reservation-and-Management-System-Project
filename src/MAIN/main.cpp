@@ -139,7 +139,7 @@ int main()
             std::cout << "Password: ";
             std::getline(std::cin, password);
 
-            std::unique_ptr<User> passenger = factory.createUser(username, password, rolesTypes::PASSENGER, vID);
+            std::unique_ptr<User> passenger = factory.createUser(username, password, rolesTypes::PASSENGER);
             if (passenger->login() == LOG_STATE_SUCCESSFUL)
             {
                 std::cout << "Login successful!\n";

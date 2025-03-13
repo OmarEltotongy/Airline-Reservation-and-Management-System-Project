@@ -10,6 +10,8 @@ std::string flightAttendantDB = "data/flightAttendant.json";
 std::string AirCraftDB = "data/aircraft.json";
 
 User::User(const std::string &name, const std::string &pass, const rolesTypes &r)
+: username(name), password(pass), role(r)
+
 {
 #if DEBUG
     cout << "Constructor of User is called" << endl;
