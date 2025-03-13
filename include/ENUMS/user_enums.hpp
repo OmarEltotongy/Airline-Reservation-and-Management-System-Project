@@ -14,6 +14,15 @@ enum rolesTypes
     PASSENGER
 };
 
+enum userState
+{
+    USER_VIEWED,
+    ADDED_USER,
+    UPDATED_USER,
+    DELETED_USER,
+    FAILED_OPERATION
+};
+
 enum logState
 {
     LOG_STATE_SUCCESSFUL,

@@ -42,7 +42,7 @@ public:
     logState login();
     logState logout();
     std::string getName();
-    // virtual void displayMenu() = 0 ; //pure virtual function
+    virtual json toJson() const = 0;// pure virtual function
 
     virtual ~User();
 };
@@ -57,8 +57,9 @@ private:
     int loyaltyPoints;                                // counter
 
 public:
-    Passenger(const std::string &name, const std::string &pass, const rolesTypes &r);
+    Passenger(const std::string &name, const std::string &pass, const rolesTypes &r, const std::string &contactInfo, int &loyaltyPoints);
     static void displayMenu();
+    virtual json toJson() const;
     void searchFlight();
     void viewReservation();
     void checkIn();
@@ -73,9 +74,10 @@ private:
     std::vector<Flight> assignedFlights;
     std::vector<Reservation> reservationsHandled; // A list of reservations handled by the booking agent
 public:
-    BookingAgent(const std::string &name, const std::string &pass, const rolesTypes &r);
+    BookingAgent(const std::string &name, const std::string &pass, const rolesTypes &r,
+        const std::string &contactinfo = "", int loyaltyPoints = 0);
     static void displayMenu(); // if pure virtual function is used, must have prototype in inhereted too
-
+    virtual json toJson() const;
     void bookFlight();
     void modifyReservation();
     void cancelReservation();
@@ -93,8 +95,17 @@ private:
     std::vector<User> managedUsers;
 
 public:
-    Administrator(const std::string &name, const std::string &pass, const rolesTypes &r);
+    Administrator(const std::string &name, const std::string &pass, const rolesTypes &r,
+        const std::string &contactinfo = "", int loyaltyPoints = 0);
     static void mainDisplayMenu();
+    static void mangeUsersMenu(Administrator &admin);
+    virtual json toJson() const;
+    userState viewAllUsers();
+    userState addNewUser();
+    userState updateUserInfo();
+    userState deleteUser();
+    userState searchForUser();
+
     void generateReports();
 
     ~Administrator();
@@ -105,7 +116,7 @@ public:
 class userFactory
 {
 public:
-    std::unique_ptr<User> createUser(const std::string &name, const std::string &pass, const rolesTypes &role);
+    std::unique_ptr<User> createUser(const std::string &name, const std::string &pass, const rolesTypes &role, const std::string &contactinfo = "", int loyaltyPoints = 0);
 };
 
 std::string roleToString(rolesTypes role);

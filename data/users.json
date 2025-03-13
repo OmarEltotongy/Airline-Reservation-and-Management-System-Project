@@ -3,7 +3,9 @@
         {
             "password": "1",
             "role": "ADMIN",
-            "username": "1"
+            "username": "1",
+            "userID": "U000"
+
         },
         
         {

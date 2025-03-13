@@ -55,8 +55,7 @@ int main()
                     }
                     else if (choice == 3)
                     { // Manage Users
-                        // Implement Manage Users functionality
-                        std::cout << "Manage Users functionality not implemented yet.\n";
+                        Administrator::mangeUsersMenu(*adminPtr);
                     }
                     else if (choice == 4)
                     { // Generate Reports

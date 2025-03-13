@@ -2,9 +2,10 @@ ADMIN :
 --- Administrator Menu ---
 1. Manage Flights - > menu below -- (DONE)
 -----------------------------------------------
--flights doesnot update with the new crew,
+-if the flight has assigned with crew, make them avaliable before delete
 -the crew is not updated with the new state (update the state if they are assigned to a flight)
 -the crew is not assigned to flight if they are updated (add fligh for each pilot and FA)
+-who the admin that edited the flight or made one
 -- Manage Flights ---
 1. Add New Flight (DONE)
 2. Update Existing Flight -> menu bleow (DONE)
@@ -23,25 +24,41 @@ arrivalTime, aircraftID) -> Ur implementation (DONE)
 5. Back to Main Menu -- main (DONE)
 ----------------------------------------------------
 
-2. Manage Aircraft -> Ur implementation -> menu below
+
+2. Manage Aircraft -> Ur implementation -> menu below (DONE)
 --- Manage Air Crafts ---
 1. View All Aircraft (DONE)
 2. Add New Aircraft (DONE)
 3. Update Aircraft Information (DONE)
 4. Remove Aircraft (DONE)
-5. Assign Aircraft to Flight
-6. Schedule Maintenance
-7. Check Availability
+5. Assign Aircraft to Flight (DONE)
+6. Schedule Maintenance (DONE)
+7. Check Availability (DONE)
 8. Back to Main Menu (DONE)
+-if the flight has assigned with flight, make it avaliable before delete
+-who the admin that edited the aircraft or made one
+-make the constructor who push in the database
 -----------------------------------------------
 
-3. Manage Users -> Ur implementation 
+3. Manage Users -> Ur implementation
+--- Manage Users ---
+1. View All Users (DONE)
+2. Add a New User (DONE)
+3. Update User Information
+4. Delete a User
+5. Search for a User
+6. Back to Administrator Menu (DONE)
+-make the constructor who push in the database
+
+
+
 4. Generate Reports -> exist sequence 
 5. Logout (DONE)
 
 
 
-
+TESTCASES FOR ADMIN:
+-
 /----------------------------------------------------/
 
 BookingAgent:
