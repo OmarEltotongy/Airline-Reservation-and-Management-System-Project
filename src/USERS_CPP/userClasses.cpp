@@ -339,25 +339,21 @@ userState Administrator::addNewUser()
     std::string username, password, role, userID, contactInfo;
     int LP;
     userFactory factory;
-    while (true)
-    {
-        std::cout << "--- Add New user ---\n";
-        std::cout << "Enter User Name(Spaces will be removed): ";
-        std::cin.ignore(); // Clear the input buffer
-        std::getline(std::cin, username);
-        // Remove spaces from the username
-        username.erase(std::remove_if(username.begin(), username.end(), ::isspace), username.end());
 
-        int index = isUsernameExists(users, username);
-        if (index == -1)
-        {
-            cout << "Sorry, but this username is used" << endl;
-        }
-        else
-        {
-            break;
-        }
+    std::cout << "--- Add New user ---\n";
+    std::cout << "Enter User Name(Spaces will be removed): ";
+    std::cin.ignore(); // Clear the input buffer
+    std::getline(std::cin, username);
+    // Remove spaces from the username
+    username.erase(std::remove_if(username.begin(), username.end(), ::isspace), username.end());
+
+    int index = isUsernameExists(users, username);
+    if (index == -1)
+    {
+        cout << "Sorry, but this username is used" << endl;
+        return FAILED_OPERATION;
     }
+
     std::cout << "Enter Password: ";
     std::getline(std::cin, password);
     std::cout << "Enter User ID: ";
@@ -391,7 +387,7 @@ userState Administrator::addNewUser()
     writeToDP(UserDP, users);
     std::cout << "User ID " << userID << " has been successfully added to DB.\n";
 
-    return ADDED_USER;
+    return USER_ADDED;
 }
 userState Administrator::updateUserInfo()
 {
@@ -400,25 +396,20 @@ userState Administrator::updateUserInfo()
     std::string un;
     json users = readFromDP(UserDP);
     int index = 0;
-    while (true)
+
+    std::cout << "--- Update User ---\n";
+    std::cout << "Enter Username to Update: ";
+    std::cin.ignore(); // Clear the input buffer
+
+    std::getline(std::cin, un);
+    // Remove spaces from the username
+    un.erase(std::remove_if(un.begin(), un.end(), ::isspace), un.end());
+
+    index = isUsernameExists(users, un);
+    if (index == -1)
     {
-        std::cout << "--- Update User ---\n";
-        std::cout << "Enter Username to Update: ";
-        std::cin.ignore(); // Clear the input buffer
-
-        std::getline(std::cin, un);
-        // Remove spaces from the username
-        un.erase(std::remove_if(un.begin(), un.end(), ::isspace), un.end());
-
-        index = isUsernameExists(users, un);
-        if (index != -1)
-        {
-            cout << "Sorry, but this username is not found" << endl;
-        }
-        else
-        {
-            break;
-        }
+        cout << "Sorry, but this username is not found" << endl;
+        return state;
     }
     // Access the user using the index
     json &user = users["users"][index];
@@ -552,6 +543,31 @@ userState Administrator::updateUserInfo()
 }
 userState Administrator::deleteUser()
 {
+    userState state = FAILED_OPERATION;
+    std::string un;
+    json users = readFromDP(UserDP);
+    int index = 0;
+    std::cout << "--- Search for User ---\n";
+    std::cout << "Enter Username to Delete: ";
+    std::cin.ignore(); // Clear the input buffer
+
+    std::getline(std::cin, un);
+    // Remove spaces from the username
+    un.erase(std::remove_if(un.begin(), un.end(), ::isspace), un.end());
+
+    index = isUsernameExists(users, un);
+    if (index == -1)
+    {
+        cout << "Sorry, but this username is not found" << std::endl;
+        return state;
+    }
+
+    json &user= users["users"][index];
+
+    users["users"].erase(users["users"].begin() + index);
+    std::cout << "username: " << un << " has been successfully deleted.\n";
+
+    writeToDP(UserDP, users);
     return DELETED_USER;
 }
 userState Administrator::searchForUser()
@@ -569,13 +585,13 @@ userState Administrator::searchForUser()
     un.erase(std::remove_if(un.begin(), un.end(), ::isspace), un.end());
 
     index = isUsernameExists(users, un);
-    if (index != -1)
+    if (index == -1)
     {
         cout << "Sorry, but this username is not found" << std::endl;
     }
     else
     {
-        std::cout<<"Username is found at index: " << index +1  <<std::endl;
+        std::cout << "Username is found at index: " << index + 1 << std::endl;
         state = USER_VIEWED;
     }
     return state;

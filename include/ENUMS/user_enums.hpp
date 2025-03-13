@@ -17,7 +17,7 @@ enum rolesTypes
 enum userState
 {
     USER_VIEWED,
-    ADDED_USER,
+    USER_ADDED,
     UPDATED_USER,
     DELETED_USER,
     FAILED_OPERATION
