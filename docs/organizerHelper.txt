@@ -51,7 +51,13 @@ arrivalTime, aircraftID) -> Ur implementation (DONE)
 6. Back to Administrator Menu (DONE)
 
 
-4. Generate Reports -> exist sequence 
+4. Generate Reports -> exist sequence
+ --- Generate Reports ---
+1. Operational Reports
+2. Maintenance Reports
+3. User Activity Reports
+4. Back to Main Menu
+
 5. Logout (DONE)
 
 
