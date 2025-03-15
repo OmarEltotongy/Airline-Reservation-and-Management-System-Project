@@ -75,13 +75,14 @@ private:
 public:
     BookingAgent(const std::string &name, const std::string &pass, const rolesTypes &r,
         const std::string &contactinfo = "", int loyaltyPoints = 0, const std::string &id = "");
-    static void displayMenu(); // if pure virtual function is used, must have prototype in inhereted too
+    static void displayMenu(BookingAgent &agent); // if pure virtual function is used, must have prototype in inhereted too
     virtual json toJson() const;
+
+    void searchFlight();
     void bookFlight();
     void modifyReservation();
     void cancelReservation();
-    void viewAssignedFlights(); // Displays flights assigned to the booking agent.
-    void viewReservations();    // Displays all reservations handled by the booking agent.
+    
     ~BookingAgent();
 };
 
@@ -98,6 +99,7 @@ public:
         const std::string &contactinfo = "", int loyaltyPoints = 0, const std::string &id ="");
     static void mainDisplayMenu();
     static void mangeUsersMenu(Administrator &admin);
+    /*****************************Users Functions****************************/
     virtual json toJson() const;
     userState viewAllUsers();
     userState addNewUser();
@@ -105,7 +107,10 @@ public:
     userState deleteUser();
     userState searchForUser();
 
-    void generateReports();
+    static void generateReportsMenu(Administrator &admin);
+    void operationalReports();
+    void maintenanceReports();
+    void userActivityReports();
 
     ~Administrator();
 };

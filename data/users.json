@@ -14,18 +14,18 @@
             "username": "admin1"
         },
         {
-            "password": "agent123",
+            "password": "11",
             "role": "BOOKING_AGENT",
             "userID": "U002",
-            "username": "agent1"
+            "username": "11"
         },
         {
             "contactInfo": "passenger1@example.com",
             "loyaltyPoints": 100,
-            "password": "pass123",
+            "password": "111",
             "role": "PASSENGER",
             "userID": "U003",
-            "username": "passenger1"
+            "username": "111"
         },
         {
             "contactInfo": "passenger2@example.com",

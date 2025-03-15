@@ -21,16 +21,16 @@ int main()
         displayMainMenu();
         std::cin >> choice;
         std::cin.ignore(); // Clear the input buffer
-        std::string vID;
         if (choice == 1)
-        { // Administrator
+        {
+            // Administrator
             std::cout << "--- Administrator Login ---\n";
             std::cout << "Username: ";
             std::getline(std::cin, username);
             std::cout << "Password: ";
             std::getline(std::cin, password);
 
-            std::unique_ptr<User> admin = factory.createUser(username, password, rolesTypes::ADMIN,vID);
+            std::unique_ptr<User> admin = factory.createUser(username, password, rolesTypes::ADMIN);
             // Cast the User pointer to an Administrator pointer
             Administrator *adminPtr = dynamic_cast<Administrator *>(admin.get());
 
@@ -46,24 +46,28 @@ int main()
                     std::cin.ignore(); // Clear the input buffer
 
                     if (choice == 1)
-                    { // Manage Flights
+                    {
+                        // Manage Flights
                         Flight::ManageFlightsMenu(*adminPtr);
                     }
                     else if (choice == 2)
-                    { // Manage Aircraft
+                    {
+                        // Manage Aircraft
                         Aircraft::ManageAircraftMenu(*adminPtr);
                     }
                     else if (choice == 3)
-                    { // Manage Users
+                    {
+                        // Manage Users
                         Administrator::mangeUsersMenu(*adminPtr);
                     }
                     else if (choice == 4)
-                    { // Generate Reports
-                        // Implement Generate Reports functionality
-                        std::cout << "Generate Reports functionality not implemented yet.\n";
+                    {
+                        // Generate Reports
+                        Administrator::generateReportsMenu(*adminPtr);
                     }
                     else if (choice == 5)
-                    { // Logout
+                    {
+                        // Logout
                         admin->logout();
                         std::cout << "Logging out...\n";
                         break;
@@ -80,14 +84,18 @@ int main()
             }
         }
         else if (choice == 2)
-        { // Booking Agent
+        {
+            // Booking Agent
             std::cout << "--- Booking Agent Login ---\n";
             std::cout << "Username: ";
             std::getline(cin, username);
             std::cout << "Password: ";
             std::getline(cin, password);
 
-            std::unique_ptr<User> agent = factory.createUser(username, password, rolesTypes::BOOKING_AGENT, vID);
+            std::unique_ptr<User> agent = factory.createUser(username, password, rolesTypes::BOOKING_AGENT);
+            // Cast the User pointer to an Booking Agent pointer
+            BookingAgent *agentPtr = dynamic_cast<BookingAgent *>(agent.get());
+
             if (agent->login() == LOG_STATE_SUCCESSFUL)
             {
                 std::cout << "Login successful!\n";
@@ -95,27 +103,33 @@ int main()
                 while (true)
                 {
                     // Display the Booking Agent menu
-                    BookingAgent::displayMenu();
+                    BookingAgent::displayMenu(*agentPtr);
                     std::cin >> choice;
                     std::cin.ignore(); // Clear the input buffer
 
                     if (choice == 1)
-                    { // Book a Flight
-                        // Implement Book a Flight functionality
-                        std::cout << "Book a Flight functionality not implemented yet.\n";
+                    {
+                        // Search a Flight
+                        agentPtr->searchFlight();
                     }
                     else if (choice == 2)
-                    { // Modify Reservation
-                        // Implement Modify Reservation functionality
-                        std::cout << "Modify Reservation functionality not implemented yet.\n";
+                    {
+                        // Book a Flight
+                        agentPtr->bookFlight();
                     }
                     else if (choice == 3)
-                    { // Cancel Reservation
-                        // Implement Cancel Reservation functionality
-                        std::cout << "Cancel Reservation functionality not implemented yet.\n";
+                    {
+                        // Modify Reservation
+                        agentPtr->modifyReservation();
                     }
                     else if (choice == 4)
-                    { // Logout
+                    {
+                        // Cancel Reservation
+                        agentPtr->cancelReservation();
+                    }
+                    else if (choice == 5)
+                    {
+                        // Logout
                         agent->logout();
                         std::cout << "Logging out...\n";
                         break;
@@ -132,7 +146,8 @@ int main()
             }
         }
         else if (choice == 3)
-        { // Passenger
+        {
+            // Passenger
             std::cout << "--- Passenger Login ---\n";
             std::cout << "Username: ";
             std::getline(std::cin, username);
@@ -140,6 +155,9 @@ int main()
             std::getline(std::cin, password);
 
             std::unique_ptr<User> passenger = factory.createUser(username, password, rolesTypes::PASSENGER);
+            // Cast the User pointer to an Booking Agent pointer
+            Passenger *passPtr = dynamic_cast<Passenger *>(passenger.get());
+
             if (passenger->login() == LOG_STATE_SUCCESSFUL)
             {
                 std::cout << "Login successful!\n";
@@ -152,22 +170,23 @@ int main()
                     std::cin.ignore(); // Clear the input buffer
 
                     if (choice == 1)
-                    { // Search Flights
-                        // Implement Search Flights functionality
-                        std::cout << "Search Flights functionality not implemented yet.\n";
+                    {
+                        // Search Flights
+                        passPtr->searchFlight();
                     }
                     else if (choice == 2)
-                    { // View Reservations
-                        // Implement View Reservations functionality
-                        std::cout << "View Reservations functionality not implemented yet.\n";
+                    {
+                        // View Reservations
+                        passPtr->viewReservation();
                     }
                     else if (choice == 3)
-                    { // Check-In
-                        // Implement Check-In functionality
-                        std::cout << "Check-In functionality not implemented yet.\n";
+                    {
+                        // Check-In
+                        passPtr->checkIn();
                     }
                     else if (choice == 4)
-                    { // Logout
+                    {
+                        // Logout
                         passenger->logout();
                         std::cout << "Logging out...\n";
                         break;

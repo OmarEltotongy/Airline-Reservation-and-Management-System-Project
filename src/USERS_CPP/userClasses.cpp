@@ -10,7 +10,7 @@ std::string flightAttendantDB = "data/flightAttendant.json";
 std::string AirCraftDB = "data/aircraft.json";
 
 User::User(const std::string &name, const std::string &pass, const rolesTypes &r)
-: username(name), password(pass), role(r)
+    : username(name), password(pass), role(r)
 
 {
 #if DEBUG
@@ -181,10 +181,9 @@ User::~User()
 
 /********************************************************************/
 
-Passenger::Passenger(const std::string &name, const std::string &pass, const rolesTypes &r, const std::string &contactInfo, int &loyaltyPoints,const std::string &id )
-: User(name, pass, r), passengerID(id), contactInfo(contactInfo), loyaltyPoints(loyaltyPoints)
+Passenger::Passenger(const std::string &name, const std::string &pass, const rolesTypes &r, const std::string &contactInfo, int &loyaltyPoints, const std::string &id)
+    : User(name, pass, r), passengerID(id), contactInfo(contactInfo), loyaltyPoints(loyaltyPoints)
 {
-
 
 #if DEBUG
     cout << "Constructor of Passenger is called" << endl;
@@ -198,6 +197,20 @@ void Passenger::displayMenu()
     std::cout << ("2. View Reservations") << endl;
     std::cout << ("3. Check-In") << endl;
     std::cout << ("4. Logout") << endl;
+    std::cout << "Enter choice: ";
+}
+
+void Passenger::searchFlight()
+{
+    cout<<"S"<<endl;
+}
+void Passenger::viewReservation()
+{
+    cout<<"V"<<endl;
+}
+void Passenger::checkIn()
+{
+    cout<<"C"<<endl;
 }
 
 json Passenger::toJson() const
@@ -291,6 +304,41 @@ void Administrator::mangeUsersMenu(Administrator &admin)
     }
 }
 
+void Administrator::generateReportsMenu(Administrator &admin)
+{
+    std::cout << "Reports will be Viewed by: " << admin.getName() << std::endl;
+    /*already validated the username and the password in the main*/
+    int choice;
+    while (true)
+    {
+        std::cout << "--- Generate Reports ---\n";
+        std::cout << "1. Operational Reports\n";
+        std::cout << "2. Maintenance Reports\n";
+        std::cout << "3. User Activity Reports\n";
+        std::cout << "4. Back to Main Menu\n";
+        std::cout << "Enter choice: ";
+        std::cin >> choice;
+
+        switch (choice)
+        {
+        case 1:
+            admin.operationalReports();
+            break;
+        case 2:
+            admin.maintenanceReports();
+            break;
+        case 3:
+            admin.userActivityReports();
+            break;
+        case 4:
+            return; // Go back to the previous menu
+        default:
+            std::cout << "Invalid choice. Please try again.\n";
+        }
+    }
+}
+
+/************************************ User Function***************************************/
 userState Administrator::viewAllUsers()
 {
     json users = readFromDP(UserDP);
@@ -595,6 +643,20 @@ userState Administrator::searchForUser()
     return state;
 }
 
+/************************************* Reports Function **********************************/
+void Administrator::operationalReports()
+{
+
+}
+void Administrator::maintenanceReports()
+{
+
+}
+void Administrator::userActivityReports()
+{
+
+}
+/******************************************************************************************/
 Administrator::~Administrator()
 {
 #if DEBUG
@@ -602,7 +664,7 @@ Administrator::~Administrator()
 #endif // 1
 }
 
-/************************************************************************/
+/******************************************************************************************/
 
 BookingAgent::BookingAgent(const std::string &name, const std::string &pass, const rolesTypes &r,
                            const std::string &contactinfo, int loyaltyPoints, const std::string &id)
@@ -621,14 +683,39 @@ json BookingAgent::toJson() const
         {"userID", agentID},
     };
 }
-void BookingAgent::displayMenu()
+void BookingAgent::displayMenu(BookingAgent &agent)
 {
+    std::cout << "Actions will be done by: " << agent.getName() << std::endl;
+
     // Display booking agent-specific menu options
-    std::cout << ("1. Book a Flight") << endl;
-    std::cout << ("2. Modify Reservation") << endl;
-    std::cout << ("3. Cancel Reservation") << endl;
-    std::cout << ("4. Logout") << endl;
+    std::cout << ("1. Search a Flight") << endl;
+    std::cout << ("2. Book a Flight") << endl;
+    std::cout << ("3. Modify Reservation") << endl;
+    std::cout << ("4. Cancel Reservation") << endl;
+    std::cout << ("5. Logout") << endl;
 }
+
+/************************************ Agent Functionality ************************************/
+void BookingAgent::searchFlight()
+{
+    cout<<"S"<<endl;
+}
+void BookingAgent::bookFlight()
+{
+    cout<<"B"<<endl;
+
+}
+void BookingAgent::modifyReservation()
+{
+    cout<<"M"<<endl;
+
+}
+void BookingAgent::cancelReservation()
+{
+    cout<<"C"<<endl;
+
+}
+/*********************************************************************************************/
 
 BookingAgent::~BookingAgent()
 {
@@ -644,7 +731,7 @@ std::unique_ptr<User> userFactory::createUser(const std::string &name, const std
     switch (role)
     {
     case rolesTypes::ADMIN:
-        return std::make_unique<Administrator>(name, pass, role,userID);
+        return std::make_unique<Administrator>(name, pass, role, userID);
     case rolesTypes::BOOKING_AGENT:
         return std::make_unique<BookingAgent>(name, pass, role, userID);
     case rolesTypes::PASSENGER:

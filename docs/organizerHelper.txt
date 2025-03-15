@@ -1,3 +1,6 @@
+-add try catch to not break the program and start from the begining again
+-use lambda expression in each class
+
 ADMIN :
 --- Administrator Menu ---
 1. Manage Flights - > menu below -- (DONE)
@@ -38,7 +41,6 @@ arrivalTime, aircraftID) -> Ur implementation (DONE)
 -if the flight has assigned with flight, make it avaliable before delete
 -who the admin that edited the aircraft or made one
 -----------------------------------------------
-
 3. Manage Users -> Ur implementation (DONE)
 -convert from role number to string in add
 -check for id is not repeated
@@ -49,20 +51,19 @@ arrivalTime, aircraftID) -> Ur implementation (DONE)
 4. Delete a User (DONE)
 5. Search for a User (DONE)
 6. Back to Administrator Menu (DONE)
+4. Generate Reports 
 
-
-4. Generate Reports -> exist sequence
  --- Generate Reports ---
-1. Operational Reports
-2. Maintenance Reports
-3. User Activity Reports
-4. Back to Main Menu
+1. Operational Reports -> exist sequence
+2. Maintenance Reports -> Ur implementation
+3. User Activity Reports -> Ur implementation
+4. Back to Main Menu (DONE)
 
 5. Logout (DONE)
 
 
 
-TESTCASES FOR ADMIN:
+TESTCASES FOR ADMIN FUNCTIONALITIES:
 -
 /----------------------------------------------------/
 
@@ -74,6 +75,8 @@ BookingAgent:
 4. Cancel Reservation -> exist sequence --
 5. Logout (DONE)
 
+TESTCASES FOR BOOKING AGENT FUNCTIONALITIES:
+-
 /***********************************************************/
 --- Passenger Menu ---
 1. Search Flights and book one -> exist sequence -- 
@@ -81,4 +84,5 @@ BookingAgent:
 3. Check-In -> exist sequence --
 4. Logout (DONE)
 
-add try catch to not break the program and start from the begining again
+TESTCASES FOR PASSENGER FUNCTIONALITIES
+
