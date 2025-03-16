@@ -26,15 +26,21 @@ private:
     std::string passengerID;
     std::string seatNumber;
     reservationState status;
+    std::string origin;
+    std::string destination;
+    std::string departureTime;
 
 public:
     Reservation(const reservationState &st = CREAT_RESERVATION);
     reservationState createReservation(const std::string &reservationID = " ",
                                        const std::string &flightNumber = " ",
                                        const std::string &passengerID = " ",
-                                       const std::string &seatNumber = " ");
+                                       const std::string &seatNumber = " ",
+                                       const std::string &origin =" ",
+                                       const std::string &destination= " ",
+                                       const std::string &departureTime = " ");
 
-    reservationState viewReservation(const std::string &passID= "");
+    reservationState viewReservation(const std::string &passID = "");
     reservationState modifyReservation(const std::string &passID = " ");
     reservationState cancelReservation(const std::string &passID = " ");
 };

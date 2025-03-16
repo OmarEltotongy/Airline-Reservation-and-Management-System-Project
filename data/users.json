@@ -5,7 +5,6 @@
             "role": "ADMIN",
             "userID": "U000",
             "username": "1"
-            
         },
         {
             "password": "admin123",
@@ -25,7 +24,14 @@
             "password": "111",
             "role": "PASSENGER",
             "userID": "U003",
-            "username": "111"
+            "username": "111",
+            "wallet": 1000.00,
+            "creditCard": {
+                "cardNumber": "4111111111111111",
+                "expiryDate": "12/25",
+                "cvv": "123"
+            },
+            "paypalAccount": "mike.paypal@example.com"
         },
         {
             "contactInfo": "passenger2@example.com",
@@ -33,7 +39,14 @@
             "password": "pass456",
             "role": "PASSENGER",
             "userID": "U004",
-            "username": "passenger2"
+            "username": "passenger2",
+            "wallet": 750.00,
+            "creditCard": {
+                "cardNumber": "5555555555554444",
+                "expiryDate": "06/26",
+                "cvv": "456"
+            },
+            "paypalAccount": "john.paypal@example.com"
         },
         {
             "password": "admin456",
@@ -53,7 +66,14 @@
             "password": "pass789",
             "role": "PASSENGER",
             "userID": "U007",
-            "username": "passenger3"
+            "username": "passenger3",
+            "wallet": 1200.00,
+            "creditCard": {
+                "cardNumber": "378282246310005",
+                "expiryDate": "09/24",
+                "cvv": "789"
+            },
+            "paypalAccount": "sara.paypal@example.com"
         },
         {
             "contactInfo": "passenger4@example.com",
@@ -61,7 +81,14 @@
             "password": "pass101",
             "role": "PASSENGER",
             "userID": "U008",
-            "username": "passenger4"
+            "username": "passenger4",
+            "wallet": 900.00,
+            "creditCard": {
+                "cardNumber": "6011111111111117",
+                "expiryDate": "03/27",
+                "cvv": "321"
+            },
+            "paypalAccount": "emma.paypal@example.com"
         },
         {
             "password": "admin789",
@@ -87,7 +114,14 @@
             "password": "123",
             "role": 2,
             "userID": "",
-            "username": "Omarya3m"
+            "username": "Omarya3m",
+            "wallet": 500.00,
+            "creditCard": {
+                "cardNumber": "4222222222222",
+                "expiryDate": "11/25",
+                "cvv": "999"
+            },
+            "paypalAccount": "omar.paypal@example.com"
         },
         {
             "password": "1523",

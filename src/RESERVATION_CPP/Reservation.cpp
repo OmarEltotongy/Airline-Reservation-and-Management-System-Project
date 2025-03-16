@@ -9,16 +9,22 @@ Reservation::Reservation(const reservationState &st)
 #endif
 }
 
-reservationState Reservation::createReservation(const std::string &rID,
-                                                const std::string &fn,
-                                                const std::string &pID,
-                                                const std::string &sn)
+reservationState Reservation::createReservation(const std::string &reservationID, const std::string &flightNumber,
+    const std::string &passengerID,
+    const std::string &seatNumber,
+    const std::string &origin,
+    const std::string &destination,
+    const std::string &departureTime)
 {
-    this->reservationID = rID;
-    this->flightNumber = fn;
-    this->passengerID = pID;
-    this->seatNumber = sn;
-    /*Push the reservation in container*/
+    this->reservationID = reservationID;
+    this->flightNumber = flightNumber;
+    this->passengerID =passengerID;
+    this->seatNumber =seatNumber;
+    this->origin = origin;
+    this -> destination = destination;
+    this->departureTime = departureTime;
+
+    /*Push the reservation in DB*/
 
     return CREAT_RESERVATION;
 }
@@ -32,11 +38,12 @@ reservationState Reservation::viewReservation(const std::string& passID)
     {
         if (reservations["reservations"][i]["passengerID"] == passID)
         {
-            std::cout << "Reservation NO " << i << " :" << std::endl;
-            // print the Reservation data
-            std::cout << "Flight Number: " << (reservations["reservations"][i]["flightNumber"]) << std::endl;
             std::cout << "Reservation ID: " << (reservations["reservations"][i]["reservationID"]) << std::endl;
-            std::cout << "Passenger ID: " << (reservations["reservations"][i]["passengerID"]) << std::endl;
+            // print the Reservation data
+            std::cout << "Flight " << (reservations["reservations"][i]["flightNumber"]) 
+            << " From " << reservations["reservations"][i]["origin"] << " To " <<
+            reservations["reservations"][i]["destination"] <<std::endl;
+            std::cout << "Departure: " << (reservations["reservations"][i]["departureTime"]) << std::endl;
             std::cout << "Seat Number: " << (reservations["reservations"][i]["seatNumber"]) << std::endl;
             std::cout << "Status: " << (reservations["reservations"][i]["status"]) << std::endl;
         }
