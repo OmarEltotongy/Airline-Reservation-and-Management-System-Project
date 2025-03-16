@@ -1,7 +1,7 @@
 #include "../../include/USERS_HPP/userClasses.hpp"
 #include "../../include/FLIGHT_HPP/Flight.hpp"
 #include "../../include/AIRCRAFT_HPP/Aircraft.hpp"
-// #include "../../include/RESERVATION_HPP/Reservation.hpp"
+#include "../../include/RESERVATION_HPP/Reservation.hpp"
 #include <memory> // for unique ptr
 
 using namespace std;
@@ -114,20 +114,15 @@ int main()
                     }
                     else if (choice == 2)
                     {
-                        // Book a Flight
-                        agentPtr->bookFlight();
-                    }
-                    else if (choice == 3)
-                    {
                         // Modify Reservation
                         agentPtr->modifyReservation();
                     }
-                    else if (choice == 4)
+                    else if (choice == 3)
                     {
                         // Cancel Reservation
                         agentPtr->cancelReservation();
                     }
-                    else if (choice == 5)
+                    else if (choice == 4)
                     {
                         // Logout
                         agent->logout();

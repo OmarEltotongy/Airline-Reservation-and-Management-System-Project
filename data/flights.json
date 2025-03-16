@@ -2,7 +2,7 @@
     "flights": [
         {
             "aircraftID": "B737",
-            "arrivalTime": "2023-12-15 11:45",
+            "arrivalTime": "2023-12-18 12:30",
             "assignedCrew": {
                 "flightAttendantIDs": [
                     "FA010",
@@ -93,7 +93,7 @@
             "destination": "Berlin (BER)",
             "flightNumber": "AF303",
             "origin": "Paris (CDG)",
-            "status": "ON_TIMEON_TIME"
+            "status": "ON_TIME"
         },
         {
             "aircraftID": "A321",

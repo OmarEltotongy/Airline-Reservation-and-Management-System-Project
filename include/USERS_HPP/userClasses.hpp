@@ -79,7 +79,6 @@ public:
     virtual json toJson() const;
 
     void searchFlight();
-    void bookFlight();
     void modifyReservation();
     void cancelReservation();
     

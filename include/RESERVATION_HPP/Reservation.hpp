@@ -4,6 +4,8 @@
 #include <iostream>
 #include <vector>
 #include <string>
+#include "../JSON_HPP/jsonHelperFunctions.hpp"
+
 using namespace std;
 
 #define DEBUG 1
@@ -27,13 +29,14 @@ private:
 
 public:
     Reservation(const reservationState &st = CREAT_RESERVATION);
-    reservationState createReservation( const std::string &reservationID = " ",
-                                        const std::string &flightNumber = " ",
-                                        const std::string &passengerID = " ",
-                                        const std::string &seatNumber = " ");
+    reservationState createReservation(const std::string &reservationID = " ",
+                                       const std::string &flightNumber = " ",
+                                       const std::string &passengerID = " ",
+                                       const std::string &seatNumber = " ");
 
-    reservationState modifyReservation(const std::string &reservationID = " ");
-    reservationState cancelReservation(const std::string &reservationID = " ");
+    reservationState viewReservation(const std::string &passID= "");
+    reservationState modifyReservation(const std::string &passID = " ");
+    reservationState cancelReservation(const std::string &passID = " ");
 };
 
 #endif // __RESERVATION_H__

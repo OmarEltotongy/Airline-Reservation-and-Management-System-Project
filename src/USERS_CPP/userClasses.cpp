@@ -202,15 +202,77 @@ void Passenger::displayMenu()
 
 void Passenger::searchFlight()
 {
-    cout<<"S"<<endl;
+    std::string flightNum;
+    std::string flightDate;
+    std::string origin;
+    std::string destination;
+
+    std::vector<int> avaFlightsIndex;
+    json flights = readFromDP(flightDP);
+    std::string choice;
+
+    std::cout << "--- Searching Flights ---\n"
+              << std::endl;
+    std::cout << "Enter Origin: ";
+    std::getline(std::cin, origin);
+
+    std::cout << "Enter Destination: ";
+    std::getline(std::cin, destination);
+
+    std::cout << "Please enter a date in this format(YYYY-MM-DD HH:MM): ";
+    std::getline(std::cin, flightDate);
+
+    auto i = 0;
+    // Iterate through the "flight" array
+    for (i = 0; i < flights["flights"].size(); ++i)
+    {
+        if ((flights["flights"][i]["departureTime"] == flightDate) && (flights["flights"][i]["origin"] == origin) && (flights["flights"][i]["destination"] == destination))
+        {
+            std::cout << "Available flights: " << i << " :" << std::endl;
+            // print the flight data
+            std::cout << "Flight Number: " << (flights["flights"][i]["flightNumber"]) << std::endl;
+            std::cout << "Origin: " << (flights["flights"][i]["origin"]) << std::endl;
+            std::cout << "Destination: " << (flights["flights"][i]["destination"]) << std::endl;
+            std::cout << "Departure Time: " << (flights["flights"][i]["departureTime"]) << std::endl;
+            std::cout << "Arrival Time: " << (flights["flights"][i]["arrivalTime"]) << std::endl;
+            std::cout << "Status: " << (flights["flights"][i]["status"]) << std::endl;
+
+            avaFlightsIndex.push_back(i);
+        }
+    }
+
+    if (!avaFlightsIndex.empty())
+    {
+        std::cout << "Do u wanna book a flight? (y/n): ";
+        std::cin >> choice;
+        if (choice == "y" || choice == "Y")
+        {
+            cout << "Please Enter The Flight Number: ";
+
+            std::getline(std::cin, flightNum);
+            int index = isFlightExists(flights, flightNum);
+
+            // Check if he entered the flight number correct
+            if (index == -1)
+            {
+                std::cout << "Error: Flight " << flightNum << " does not exist.\n";
+                return;
+            }
+        }
+        else
+        {
+            std::cout << "Thank U for ur visit" << std::endl;
+            return;
+        }
+    }
 }
 void Passenger::viewReservation()
 {
-    cout<<"V"<<endl;
+    cout << "V" << endl;
 }
 void Passenger::checkIn()
 {
-    cout<<"C"<<endl;
+    cout << "C" << endl;
 }
 
 json Passenger::toJson() const
@@ -646,15 +708,12 @@ userState Administrator::searchForUser()
 /************************************* Reports Function **********************************/
 void Administrator::operationalReports()
 {
-
 }
 void Administrator::maintenanceReports()
 {
-
 }
 void Administrator::userActivityReports()
 {
-
 }
 /******************************************************************************************/
 Administrator::~Administrator()
@@ -688,32 +747,87 @@ void BookingAgent::displayMenu(BookingAgent &agent)
     std::cout << "Actions will be done by: " << agent.getName() << std::endl;
 
     // Display booking agent-specific menu options
-    std::cout << ("1. Search a Flight") << endl;
-    std::cout << ("2. Book a Flight") << endl;
-    std::cout << ("3. Modify Reservation") << endl;
-    std::cout << ("4. Cancel Reservation") << endl;
-    std::cout << ("5. Logout") << endl;
+    std::cout << ("1. Search a Flight to Book") << endl;
+    std::cout << ("2. Modify Reservation") << endl;
+    std::cout << ("3. Cancel Reservation") << endl;
+    std::cout << ("4. Logout") << endl;
+    std::cout << ("Enter Choice: ");
 }
 
 /************************************ Agent Functionality ************************************/
 void BookingAgent::searchFlight()
 {
-    cout<<"S"<<endl;
-}
-void BookingAgent::bookFlight()
-{
-    cout<<"B"<<endl;
+    std::string flightNum;
+    std::string flightDate;
+    std::string origin;
+    std::string destination;
 
+    std::vector<int> avaFlightsIndex;
+    json flights = readFromDP(flightDP);
+    std::string choice;
+
+    std::cout << "--- Searching Flights ---\n"<< std::endl;
+    std::cout << "Enter Origin: ";
+    std::getline(std::cin, origin);
+
+    std::cout << "Enter Destination: ";
+    std::getline(std::cin, destination);
+
+    std::cout << "Please enter a date in this format(YYYY-MM-DD HH:MM): ";
+    std::getline(std::cin, flightDate);
+
+    auto i = 0;
+    // Iterate through the "flight" array
+    for (i = 0; i < flights["flights"].size(); ++i)
+    {
+        if ((flights["flights"][i]["departureTime"] == flightDate) && (flights["flights"][i]["origin"] == origin) && (flights["flights"][i]["destination"] == destination))
+        {
+            std::cout << "Available flights: " << i << " :" << std::endl;
+            // print the flight data
+            std::cout << "Flight Number: " << (flights["flights"][i]["flightNumber"]) << std::endl;
+            std::cout << "Origin: " << (flights["flights"][i]["origin"]) << std::endl;
+            std::cout << "Destination: " << (flights["flights"][i]["destination"]) << std::endl;
+            std::cout << "Departure Time: " << (flights["flights"][i]["departureTime"]) << std::endl;
+            std::cout << "Arrival Time: " << (flights["flights"][i]["arrivalTime"]) << std::endl;
+            std::cout << "Status: " << (flights["flights"][i]["status"]) << std::endl;
+
+            avaFlightsIndex.push_back(i);
+        }
+    }
+
+    if (!avaFlightsIndex.empty())
+    {
+        std::cout << "Do u wanna book a flight? (y/n): ";
+        std::cin >> choice;
+        if (choice == "y" || choice == "Y")
+        {
+            cout << "Please Enter The Flight Number: ";
+
+            std::getline(std::cin, flightNum);
+            int index = isFlightExists(flights, flightNum);
+
+            // Check if he entered the flight number correct
+            if (index == -1)
+            {
+                std::cout << "Error: Flight " << flightNum << " does not exist.\n";
+                return;
+            }
+        }
+        else
+        {
+            std::cout << "Thank U for ur visit" << std::endl;
+            return;
+        }
+    }
 }
+
 void BookingAgent::modifyReservation()
 {
-    cout<<"M"<<endl;
-
+    cout << "M" << endl;
 }
 void BookingAgent::cancelReservation()
 {
-    cout<<"C"<<endl;
-
+    cout << "C" << endl;
 }
 /*********************************************************************************************/
 
