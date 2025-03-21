@@ -1,7 +1,3 @@
-Here’s a **modern, detailed, and large-scale** `README.md` for your **Airline Reservation and Management System** project, structured to match the requested format. It’s designed to reflect the complexity and professionalism of your project.
-
----
-
 # ✈️ Airline Reservation and Management System
 
 Welcome to the **Airline Reservation and Management System**, a **Modern C++** console-based application designed to simulate the comprehensive operations of an airline. This project leverages **Object-Oriented Programming (OOP)** principles, **Modern C++ features**, and **JSON-based data persistence** to provide a robust and scalable solution for managing flights, aircraft, crew, reservations, and passenger profiles.
@@ -162,10 +158,3 @@ The project is organized into a **modular and scalable structure** to ensure mai
 - **Cloud Integration**: Store data in a cloud database (e.g., **Firebase** or **AWS DynamoDB**).
 
 ---
-
-## 📜 License
-This project is licensed under the **MIT License**. See the `LICENSE` file for details.
-
----
-
-This `README.md` is designed to be **modern, professional, and comprehensive**, reflecting the scale and complexity of your project. Let me know if you need further adjustments! 🚀
