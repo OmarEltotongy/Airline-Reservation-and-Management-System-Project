@@ -43,6 +43,8 @@ public:
     reservationState viewReservation(const std::string &passID = "");
     reservationState modifyReservation(const std::string &passID = " ");
     reservationState cancelReservation(const std::string &passID = " ");
+    json toJson() const; // Method to convert Reservation object to JSON
+
 };
 
 #endif // __RESERVATION_H__

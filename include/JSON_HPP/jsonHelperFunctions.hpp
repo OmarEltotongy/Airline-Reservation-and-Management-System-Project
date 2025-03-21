@@ -16,7 +16,7 @@ json readFromDP(const std::string &filename);
 void writeToDP(const std::string &filename, const json &data);
 
 void addUserToFile(const std::string &filename, const std::string &username, const std::string &password, const std::string &role);
-
+int isUserIDExists(const json &users, const std::string &userID);
 int isUsernameExists(const json &users, const std::string &username);
 
 void addFlightToDP(const std::string &filename, const std::string &flightNumber, const std::string &origin,

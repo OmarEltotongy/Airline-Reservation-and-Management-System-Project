@@ -70,3 +70,16 @@ reservationState Reservation::cancelReservation(const std::string &passID)
 
     return CANCEL_RESERVATION;
 }
+
+json Reservation::toJson() const
+{
+    return {
+        {"reservationID", reservationID},
+        {"flightNumber", flightNumber},
+        {"passengerID", passengerID},
+        {"seatNumber", seatNumber},
+        {"origin", origin},
+        {"destination", destination},
+        {"departureTime", departureTime}
+    };
+}
