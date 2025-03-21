@@ -15,7 +15,9 @@ enum reservationState
     CREAT_RESERVATION,
     EXIST_RESERVATION,
     MODIFY_RESERVATION,
+    MODIFY_RESERVATION_FAILED,
     CANCEL_RESERVATION
+
 };
 
 class Reservation
@@ -25,10 +27,11 @@ private:
     std::string flightNumber;
     std::string passengerID;
     std::string seatNumber;
-    reservationState status;
     std::string origin;
     std::string destination;
     std::string departureTime;
+    reservationState status;
+
 
 public:
     Reservation(const reservationState &st = CREAT_RESERVATION);

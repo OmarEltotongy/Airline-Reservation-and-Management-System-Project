@@ -1,6 +1,7 @@
 -add try catch to not break the program and start from the begining again
 -use lambda expression in each class
-
+-testcases
+-readmefile
 ADMIN :
 --- Administrator Menu ---
 1. Manage Flights - > menu below -- (DONE) 
@@ -51,12 +52,11 @@ arrivalTime, aircraftID) -> Ur implementation (DONE)
 TESTCASES FOR ADMIN FUNCTIONALITIES:
 -
 /----------------------------------------------------/
-
 BookingAgent:
 --- Booking Agent Menu ---
 1. Search and Book Flights -> Ur implementation (DONE)
-2. Modify Reservation -> Ur implementation (NOT YET)
-3. Cancel Reservation -> exist sequence -- (NOT YET)
+2. Modify Reservation -> Ur implementation (DONE)
+3. Cancel Reservation -> exist sequence -- (DONE)
 //--- Cancel Reservation ---
 //Enter Reservation ID: R321
 
