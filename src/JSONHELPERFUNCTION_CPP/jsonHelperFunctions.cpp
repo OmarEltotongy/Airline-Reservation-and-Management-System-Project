@@ -47,6 +47,7 @@ void addUserToFile(const std::string &filename, const std::string &username, con
     std::cout << "User '" << username << "' added successfully!" << std::endl;
 }
 
+
 int isUsernameExists(const json &users, const std::string &username)
 {
     for(size_t i =0; i < users["users"].size() ; i++)
@@ -57,6 +58,17 @@ int isUsernameExists(const json &users, const std::string &username)
         }
     }
     return -1; // Username does not exist
+}
+int isUserIDExists(const json &users, const std::string &userID)
+{
+    for (size_t i = 0; i < users["users"].size(); i++)
+    {
+        if (users["users"][i]["userID"] == userID)
+        {
+            return i; // Return the index if the user ID exists
+        }
+    }
+    return -1; // Return -1 if the user ID does not exist
 }
 
 int isFlightExists(const json &flights, const std::string &flightNumber)
