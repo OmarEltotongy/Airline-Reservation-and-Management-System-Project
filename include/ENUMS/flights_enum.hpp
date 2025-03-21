@@ -15,7 +15,7 @@ enum flightStatus
 {
     ON_TIME,
     DELAYED,
-    CANCELLED
+    CANCELED
 };
 
 struct AssignedCrew

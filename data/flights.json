@@ -14,7 +14,8 @@
             "status": "ON_TIME",
             "maxSeats": 150,
             "price": 250.00,
-            "availableSeats": 148
+            "availableSeats": 148,
+            "gate": "A1"
         },
         {
             "aircraftID": "A320",
@@ -30,7 +31,8 @@
             "status": "ON_TIME",
             "maxSeats": 180,
             "price": 300.00,
-            "availableSeats": 179
+            "availableSeats": 179,
+            "gate": "B2"
         },
         {
             "aircraftID": "B757",
@@ -46,7 +48,8 @@
             "status": "ON_TIME",
             "maxSeats": 200,
             "price": 200.00,
-            "availableSeats": 198
+            "availableSeats": 198,
+            "gate": "C3"
         },
         {
             "aircraftID": "B737",
@@ -62,7 +65,8 @@
             "status": "ON_TIME",
             "maxSeats": 150,
             "price": 220.00,
-            "availableSeats": 149
+            "availableSeats": 149,
+            "gate": "D4"
         },
         {
             "aircraftID": "B737",
@@ -78,7 +82,8 @@
             "status": "ON_TIME",
             "maxSeats": 150,
             "price": 180.00,
-            "availableSeats": 148
+            "availableSeats": 148,
+            "gate": "E5"
         },
         {
             "aircraftID": "A320",
@@ -94,7 +99,8 @@
             "status": "ON_TIME",
             "maxSeats": 180,
             "price": 280.00,
-            "availableSeats": 179
+            "availableSeats": 179,
+            "gate": "F6"
         },
         {
             "aircraftID": "A321",
@@ -110,7 +116,8 @@
             "status": "DELAYED",
             "maxSeats": 220,
             "price": 320.00,
-            "availableSeats": 219
+            "availableSeats": 219,
+            "gate": "G7"
         },
         {
             "aircraftID": "B787",
@@ -126,7 +133,8 @@
             "status": "DELAYED",
             "maxSeats": 300,
             "price": 500.00,
-            "availableSeats": 298
+            "availableSeats": 298,
+            "gate": "H8"
         },
         {
             "aircraftID": "A380",
@@ -142,7 +150,8 @@
             "status": "DELAYED",
             "maxSeats": 500,
             "price": 600.00,
-            "availableSeats": 499
+            "availableSeats": 499,
+            "gate": "I9"
         },
         {
             "aircraftID": "B777",
@@ -158,7 +167,8 @@
             "status": "CANCELED",
             "maxSeats": 400,
             "price": 450.00,
-            "availableSeats": 400
+            "availableSeats": 400,
+            "gate": "J10"
         }
     ]
 }

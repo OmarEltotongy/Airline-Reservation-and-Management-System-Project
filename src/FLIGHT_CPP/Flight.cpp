@@ -4,14 +4,33 @@
 
 Flight::Flight(const std::string &FN, const std::string &origin, const std::string &destination,
                const std::string &DT, const std::string &AT, const flightStatus &FS,
-               const std::string &ACID, const AssignedCrew &assignedCrew)
+               const std::string &ACID, const AssignedCrew &assignedCrew,
+               int maxSeats, double price, const std::string &gate)
     : flightNumber(FN), departureLocation(origin), arrivalLocation(destination),
-      departureTime(DT), arrivalTime(AT), status(FS), aircraftID(ACID), assignedCrew(assignedCrew)
+      departureTime(DT), arrivalTime(AT), status(FS), aircraftID(ACID),
+      assignedCrew(assignedCrew), maxSeats(maxSeats), price(price),
+      availableSeats(maxSeats), gate(gate)
 {
 #if DEBUG
     cout << "Constructor of Flight is called" << endl;
 #endif
 }
+
+std::string flightStatusToString(flightStatus status)
+{
+    switch (status)
+    {
+    case ON_TIME:
+        return "ON_TIME";
+    case DELAYED:
+        return "DELAYED";
+    case CANCELED:
+        return "CANCELED";
+    default:
+        return "UNKNOWN";
+    }
+}
+
 Flight::Flight(Administrator &admin)
 {
     cout << "Edits will be done with Admin: " << admin.getName() << endl;
@@ -108,7 +127,7 @@ flightStatus intStatusToflightStatus(int s)
     case 1:
         return DELAYED;
     case 2:
-        return CANCELLED;
+        return CANCELED;
     default:
         throw std::invalid_argument("Invalid status type");
     }
@@ -239,16 +258,26 @@ json Flight::toJson() const
         {"destination", arrivalLocation},
         {"departureTime", departureTime},
         {"arrivalTime", arrivalTime},
-        {"status", status},
         {"aircraftID", aircraftID},
-        {"assignedCrew", {{"pilotID", assignedCrew.pilotID}, {"flightAttendantIDs", assignedCrew.flightAttendantIDs}}}};
+        {"status", flightStatusToString(status)},
+        {"assignedCrew", {
+            {"pilotID", assignedCrew.pilotID},
+            {"flightAttendantIDs", assignedCrew.flightAttendantIDs}
+        }},
+        {"maxSeats", maxSeats},
+        {"price", price},
+        {"availableSeats", availableSeats},
+        {"gate", gate}
+    };
 }
 
 flightProcess Flight::addFlight(Flight &flight_admin)
 {
     int s;
     flightStatus status;
-    std::string flightNumber, origin, destination, departureTime, arrivalTime, aircraftID;
+    std::string flightNumber, origin, destination, departureTime, arrivalTime, aircraftID, gate;
+    int maxSeats;
+    double price;
     AssignedCrew ac;
 
     std::cout << "--- Add New Flight ---\n";
@@ -270,6 +299,15 @@ flightProcess Flight::addFlight(Flight &flight_admin)
     std::cin.ignore(); // Clear the input buffer after reading the status
     status = intStatusToflightStatus(s);
 
+    // Input new fields
+    std::cout << "Enter Maximum Seats: ";
+    std::cin >> maxSeats;
+    std::cout << "Enter Price: ";
+    std::cin >> price;
+    std::cin.ignore(); // Clear the input buffer
+    std::cout << "Enter Gate: ";
+    std::getline(std::cin, gate);
+
     // Read existing pilots from the file
     json pilots = readFromDP(pilotDP);
     // Read existing Flight Attendant from the file
@@ -278,7 +316,7 @@ flightProcess Flight::addFlight(Flight &flight_admin)
     auto crew = flight_admin.assignCrewToFlight(flightNumber, pilots, Flight_Attendant);
 
     // Create a new Flight object
-    Flight newFlight(flightNumber, origin, destination, departureTime, arrivalTime, status, aircraftID, crew);
+    Flight newFlight(flightNumber, origin, destination, departureTime, arrivalTime, status, aircraftID, crew, maxSeats, price, gate);
 
     // Convert the Flight object to JSON
     json newFlightEntry = newFlight.toJson();
@@ -530,7 +568,7 @@ flightProcess Flight::deleteFlight()
             {
                 if (pilot["ID"] == pilotID)
                 {
-                    pilot["status"] = "FREE"; // Set status to Available
+                    pilot["status"] = "FREE";     // Set status to Available
                     pilot["assignedFlight"] = ""; // Remove the assigned flight
                     break;
                 }
@@ -544,7 +582,7 @@ flightProcess Flight::deleteFlight()
             {
                 if (fa["ID"] == faID)
                 {
-                    fa["status"] = "FREE"; // Set status to Available
+                    fa["status"] = "FREE";     // Set status to Available
                     fa["assignedFlight"] = ""; // Remove the assigned flight
                     break;
                 }

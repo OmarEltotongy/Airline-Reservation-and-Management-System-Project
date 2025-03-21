@@ -26,15 +26,19 @@ private:
     std::string aircraftID;        // ID of the assigned aircraft.
     flightStatus status;           // Current status of the flight (e.g., "On Time", "Delayed").
     AssignedCrew assignedCrew;     // Nested struct for assigned crew
+    int maxSeats;                  // Maximum number of seats on the flight.
+    double price;                  // Price of the flight.
+    int availableSeats;            // Number of available seats.
+    std::string gate;              // Gate for the flight.
 
 public:
     Flight(const std::string &FN, const std::string &origin, const std::string &destination,
            const std::string &DT, const std::string &AT, const flightStatus &FS,
-           const std::string &ACID, const AssignedCrew &assignedCrew);
+           const std::string &ACID, const AssignedCrew &assignedCrew,
+           int maxSeats, double price, const std::string &gate);
     Flight(Administrator &admin);
     static void ManageFlightsMenu(Administrator &admin);
-    // Method to convert Flight object to JSON
-    json toJson() const;
+    json toJson() const; // Method to convert Flight object to JSON
 
     /************************************Flights Functions*************************************/
     AssignedCrew assignCrewToFlight(const std::string &flightNumber, json &pilots, json &Flight_Attendant);
@@ -43,7 +47,7 @@ public:
     flightProcess deleteFlight();
     /******************************************************************************************/
 
-    void viewAllFlights(); // print the database
+    void viewAllFlights(); // Print the database
 
     ~Flight();
 };
