@@ -141,7 +141,7 @@ aircraftProcess Aircraft::addAircraft()
 
     json newAircraftEntry = newAircraft.toJson();
     json aircrafts = readFromDP(AirCraftDB);
-    
+
     // add the new aircraft
     aircrafts["aircraft"].push_back(newAircraftEntry);
     // Write the updated flights back to the file
@@ -245,14 +245,18 @@ aircraftProcess Aircraft::removeAircraft()
     int choice;
     aircraftProcess ap = AIRCRAFT_PROCESS_IS_FAILED;
     std::string aircraftID;
-    std::cout << "--- Delete Aircraft ---\n";
+    std::cout << "--- Remove Aircraft Assignment ---\n";
     std::cin.ignore(); // Clear the input buffer
-    std::cout << "Enter Flight Number to Delete: ";
+    std::cout << "Enter Aircraft ID to Remove Assignment: ";
     std::getline(std::cin, aircraftID);
 
-    // Read existing flights from the file
+    // Read existing aircraft and flights from their files
     json aircrafts = readFromDP(AirCraftDB);
+    json flights = readFromDP(flightDP);
+
     int index = isAircraftExist(aircrafts, aircraftID);
+
+    // Check if the aircraft exists
     if (index == -1)
     {
         std::cout << "Error: Aircraft " << aircraftID << " does not exist.\n";
@@ -262,15 +266,42 @@ aircraftProcess Aircraft::removeAircraft()
 
     json &aircraft = aircrafts["aircraft"][index];
 
-    // Remove the aircraft at the found index
-    aircrafts["aircraft"].erase(aircrafts["aircraft"].begin() + index);
-    std::cout << "Aircraft with ID " << aircraftID << " has been successfully deleted.\n";
+    // Check if the aircraft is assigned to a flight
+    if (!aircraft["assignedFlight"].empty())
+    {
+        std::string assignedFlight = aircraft["assignedFlight"];
+        std::cout << "Aircraft " << aircraftID << " is assigned to flight " << assignedFlight << ".\n";
 
-    // Write the updated data back to the file
+        // Update the aircraft's availability and clear the assigned flight
+        aircraft["availability"] = true;
+        aircraft["assignedFlight"] = "";
+
+        // Find and update the corresponding flight
+        for (auto &flight : flights["flights"])
+        {
+            if (flight["flightNumber"] == assignedFlight)
+            {
+                flight["aircraftID"]=""; // Remove the aircraftID field from the flight
+                std::cout << "Aircraft ID removed from flight " << assignedFlight << ".\n";
+                break;
+            }
+        }
+
+        // Notify the user
+        std::cout << "Aircraft " << aircraftID << " is now available and no longer assigned to any flight.\n";
+    }
+    else
+    {
+        std::cout << "Aircraft " << aircraftID << " is not assigned to any flight.\n";
+    }
+
+    // Write the updated data back to the files
     writeToDP(AirCraftDB, aircrafts);
-    return AIRCRAFT_PROCESS_IS_SUCCESSFUL;
-}
+    writeToDP(flightDP, flights);
 
+    ap = AIRCRAFT_PROCESS_IS_SUCCESSFUL;
+    return ap;
+}
 aircraftProcess Aircraft::assignAircraftToFlight()
 {
     int choice;
