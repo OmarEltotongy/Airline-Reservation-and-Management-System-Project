@@ -1,16 +1,10 @@
 -add try catch to not break the program and start from the begining again
 -use lambda expression in each class
--add payment method and wallet initial deposite
 
 ADMIN :
 --- Administrator Menu ---
-1. Manage Flights - > menu below -- (DONE) (NEEDS EDITS)
+1. Manage Flights - > menu below -- (DONE) 
 -----------------------------------------------
--if the flight has assigned with crew, make them avaliable before delete
--the crew is not updated with the new state (update the state if they are assigned to a flight)
--the crew is not assigned to flight if they are updated (add fligh for each pilot and FA)
--who the admin that edited the flight or made one
-
 -- Manage Flights ---
 1. Add New Flight (DONE)
 2. Update Existing Flight -> menu bleow (DONE)
@@ -23,13 +17,11 @@ arrivalTime, aircraftID) -> Ur implementation (DONE)
 3. Status -> Ur implementation -- (DONE)
 4. Back to Manage Flights -- main (DONE)
 /**********************************/
-
 3. Remove Flight -> Ur implementation (DONE)
 4. View All Flights -> Ur implementation (DONE)
 5. Back to Main Menu -- main (DONE)
 ----------------------------------------------------
-
-2. Manage Aircraft -> Ur implementation -> menu below (DONE) (NEEDS EDITS)
+2. Manage Aircraft -> Ur implementation -> menu below (DONE) 
 --- Manage Air Crafts ---
 1. View All Aircraft (DONE)
 2. Add New Aircraft (DONE)
@@ -39,13 +31,8 @@ arrivalTime, aircraftID) -> Ur implementation (DONE)
 6. Schedule Maintenance (DONE)
 7. Check Availability (DONE)
 8. Back to Main Menu (DONE)
-
--if the flight has assigned with flight, make it avaliable before delete
--who the admin that edited the aircraft or made one
 -----------------------------------------------
-3. Manage Users -> Ur implementation (DONE) (NEEDS EDITS)
--convert from role number to string in add
--check for id is not repeated
+3. Manage Users -> Ur implementation (DONE) 
 --- Manage Users ---
 1. View All Users (DONE)
 2. Add a New User (DONE)
@@ -59,10 +46,7 @@ arrivalTime, aircraftID) -> Ur implementation (DONE)
 2. Maintenance Reports -> Ur implementation
 3. User Activity Reports -> Ur implementation
 4. Back to Main Menu (DONE)
-
 5. Logout (DONE)
-
-
 
 TESTCASES FOR ADMIN FUNCTIONALITIES:
 -
@@ -70,7 +54,7 @@ TESTCASES FOR ADMIN FUNCTIONALITIES:
 
 BookingAgent:
 --- Booking Agent Menu ---
-1. Search and Book Flights -> Ur implementation (Half DONE) like passenger, creat reservation
+1. Search and Book Flights -> Ur implementation (DONE)
 2. Modify Reservation -> Ur implementation (NOT YET)
 3. Cancel Reservation -> exist sequence -- (NOT YET)
 //--- Cancel Reservation ---
@@ -82,66 +66,18 @@ BookingAgent:
 
 //Reservation R321 has been successfully canceled.
 //Refund Amount: $250.00 has been credited to your PayPal account.
-
 4. Logout (DONE)
-
 TESTCASES FOR BOOKING AGENT FUNCTIONALITIES:
 -
 /***********************************************************/
 --- Passenger Menu ---
-1. Search Flights and book one -> exist sequence -- (Half DONE), creat reservation
-//display the price
-
-// decrease the number of avaliable seat by one and confirm booking
-// minus the price of the flight from it then print this:
-
-//Enter the Flight Number you wish to book (or '0' to cancel): BA456
-//Enter Seat Number (e.g., 14C): 22A
-//Enter Payment Method (Credit Card/Cash/PayPal): PayPal
-//Enter Payment Details: mike.paypal@example.com
-//Booking successful! 
-// creat reservation and add to database
-//Reservation ID: R321
-//Flight: BA456 from Chicago (ORD) to Miami (MIA)
-//Seat: 22A
-//Total Cost: $250.00
+1. Search Flights and book one -> exist sequence -- (DONE)
 //Payment Method: PayPal  
-
-
-2. View My Reservations (travel histroy) -> exist sequence -- (Half DONE)
-//--- My Reservations ---
-//Fetching reservations for Passenger Mike Smith...
-
-//1. Reservation ID: R321
-//   Flight: BA456 from Chicago (ORD) to Miami (MIA)
-//   Departure: 2023-12-20 09:00
-//   Seat: 22A
-//   Status: Confirmed
-
-//2. Reservation ID: R322
-//   Flight: AA123 from New York (JFK) to Los Angeles (LAX)
-//  Departure: 2023-12-25 14:00
-//   Seat: 12C
+2. View My Reservations (travel histroy) -> exist sequence -- (DONE)
 //   Status: Canceled
-
-3. Check-In -> exist sequence -- (NOT YET)
-//--- Check-In ---
-//Enter Reservation ID: R321
-
-//Check-In Successful!
-//Boarding Pass:
------------------------------
-//Reservation ID: R321
-//Passenger: Mike Smith
-//Flight: BA456
-//Origin: Chicago (ORD)
-//Destination: Miami (MIA)
-//Departure: 2023-12-20 09:00
-//Seat: 22A
-//Gate: B12
+3. Check-In -> exist sequence -- (DONE)
 //Boarding Time: 07:30
-
 4. Logout (DONE)
 
 TESTCASES FOR PASSENGER FUNCTIONALITIES
-
+-
