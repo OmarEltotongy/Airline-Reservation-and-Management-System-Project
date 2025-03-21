@@ -42,7 +42,7 @@ public:
     logState login();
     logState logout();
     std::string getName();
-    virtual json toJson() const = 0;// pure virtual function
+    virtual json toJson() const = 0; // pure virtual function
     virtual ~User();
 };
 
@@ -54,9 +54,15 @@ private:
     std::string contactInfo;
     std::map<std::string, std::string> travelHistory; // place, date
     int loyaltyPoints;                                // counter
+    double wallet;                                    // wallet balance
+    std::map<std::string, std::string> creditCard;    // credit card details
+    std::string paypalAccount;                        // PayPal account
 
 public:
-    Passenger(const std::string &name, const std::string &pass, const rolesTypes &r, const std::string &contactInfo, int &loyaltyPoints, const std::string &id);
+    Passenger(const std::string &name, const std::string &pass, const rolesTypes &r,
+              const std::string &contactInfo, int &loyaltyPoints, const std::string &id,
+              double wallet, const std::map<std::string, std::string> &creditCard,
+              const std::string &paypalAccount);
     static void displayMenu();
     virtual json toJson() const;
     void searchFlight();
@@ -74,14 +80,14 @@ private:
     std::vector<Reservation> reservationsHandled; // A list of reservations handled by the booking agent
 public:
     BookingAgent(const std::string &name, const std::string &pass, const rolesTypes &r,
-        const std::string &contactinfo = "", int loyaltyPoints = 0, const std::string &id = "");
+                 const std::string &contactinfo = "", int loyaltyPoints = 0, const std::string &id = "");
     static void displayMenu(BookingAgent &agent); // if pure virtual function is used, must have prototype in inhereted too
     virtual json toJson() const;
 
     void searchFlight();
     void modifyReservation();
     void cancelReservation();
-    
+
     ~BookingAgent();
 };
 
@@ -95,7 +101,7 @@ private:
 
 public:
     Administrator(const std::string &name, const std::string &pass, const rolesTypes &r,
-        const std::string &contactinfo = "", int loyaltyPoints = 0, const std::string &id ="");
+                  const std::string &contactinfo = "", int loyaltyPoints = 0, const std::string &id = "");
     static void mainDisplayMenu();
     static void mangeUsersMenu(Administrator &admin);
     /*****************************Users Functions****************************/
@@ -119,7 +125,11 @@ public:
 class userFactory
 {
 public:
-    std::unique_ptr<User> createUser(const std::string &name, const std::string &pass, const rolesTypes &role, const std::string &contactinfo = "", int loyaltyPoints = 0, const std::string &userID ="");
+    std::unique_ptr<User> createUser(const std::string &name, const std::string &pass, const rolesTypes &role, 
+                                     const std::string &contactinfo = "", int loyaltyPoints = 0, 
+                                     const std::string &userID = "", double wallet = 0.0, 
+                                     const std::map<std::string, std::string> &creditCard = {}, 
+                                     const std::string &paypalAccount = "");
 };
 
 std::string roleToString(rolesTypes role);

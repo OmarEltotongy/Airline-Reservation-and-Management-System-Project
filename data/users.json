@@ -101,33 +101,6 @@
             "role": "BOOKING_AGENT",
             "userID": "U010",
             "username": "agent4"
-        },
-        {
-            "password": "123",
-            "role": 0,
-            "userID": "",
-            "username": "omarMahrous"
-        },
-        {
-            "contactInfo": "",
-            "loyaltyPoints": 0,
-            "password": "123",
-            "role": 2,
-            "userID": "",
-            "username": "Omarya3m",
-            "wallet": 500.00,
-            "creditCard": {
-                "cardNumber": "4222222222222",
-                "expiryDate": "11/25",
-                "cvv": "999"
-            },
-            "paypalAccount": "omar.paypal@example.com"
-        },
-        {
-            "password": "1523",
-            "role": 1,
-            "userID": "",
-            "username": "BOOK"
-        }
+        }  
     ]
 }
