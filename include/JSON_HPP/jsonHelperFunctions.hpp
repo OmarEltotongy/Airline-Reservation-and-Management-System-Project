@@ -23,7 +23,7 @@ void addFlightToDP(const std::string &filename, const std::string &flightNumber,
                    const std::string &destination, const std::string &departureTime, const std::string &arrivalTime,
                    const std::string &aircraftType, int totalSeats, const std::string &status);
 
-                   bool isPilotExists(json &pilots, const std::string &ID);
+bool isPilotExists(json &pilots, const std::string &ID);
 bool isFlightAttendantExist(json &flightAttendant, const std::string &ID);
 
 int isFlightExists(const json &flights, const std::string &flightNumber);

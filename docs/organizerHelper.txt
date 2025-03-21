@@ -92,9 +92,9 @@ TESTCASES FOR BOOKING AGENT FUNCTIONALITIES:
 1. Search Flights and book one -> exist sequence -- (Half DONE), creat reservation
 //display the price
 
-
 // decrease the number of avaliable seat by one and confirm booking
 // minus the price of the flight from it then print this:
+
 //Enter the Flight Number you wish to book (or '0' to cancel): BA456
 //Enter Seat Number (e.g., 14C): 22A
 //Enter Payment Method (Credit Card/Cash/PayPal): PayPal

@@ -169,6 +169,16 @@ AssignedCrew Flight::assignCrewToFlight(const std::string &flightNumber, json &p
 
         if (isPilotExists(pilots, pilotID))
         {
+            // Update the pilot's state to reflect they are assigned to a flight
+            for (auto &pilot : pilots["pilots"])
+            {
+                if (pilot["ID"] == pilotID)
+                {
+                    pilot["status"] = "BUSY";
+                    pilot["assignedFlight"] = flightNumber; // Assign the flight number to the pilot
+                    break;
+                }
+            }
             crew.pilotID.push_back(pilotID); // Store the flight attendant ID
             std::cout << "Pilot " << pilotID << " assigned to flight.\n";
         }
@@ -199,6 +209,16 @@ AssignedCrew Flight::assignCrewToFlight(const std::string &flightNumber, json &p
 
         if (isFlightAttendantExist(flightAttendant, faID))
         {
+            // Update the flight attendant's state to reflect they are assigned to a flight
+            for (auto &fa : flightAttendant["flight_attendants"])
+            {
+                if (fa["ID"] == faID)
+                {
+                    fa["status"] = "BUSY";
+                    fa["assignedFlight"] = flightNumber; // Assign the flight number to the flight attendant
+                    break;
+                }
+            }
             crew.flightAttendantIDs.push_back(faID); // Store the flight attendant ID
             std::cout << "Flight Attendant " << faID << " assigned to flight.\n";
         }
@@ -394,23 +414,55 @@ flightProcess Flight::updateFlight(Flight &flight_admin)
     }
     case 2:
     {
-
         // Read existing pilots and flight attendants from their files
         json pilots = readFromDP(pilotDP);
-        json flightAttendant = readFromDP(flightAttendantDB);
+        json flightAttendants = readFromDP(flightAttendantDB);
+
+        // Free the old crew (if any)
+        if (flight.contains("assignedCrew"))
+        {
+            // Free the old pilots
+            for (const auto &oldPilotID : flight["assignedCrew"]["pilotID"])
+            {
+                for (auto &pilot : pilots["pilots"])
+                {
+                    if (pilot["ID"] == oldPilotID)
+                    {
+                        pilot["status"] = "FREE";     // Set status to Available
+                        pilot["assignedFlight"] = ""; // Remove the assigned flight
+                        break;
+                    }
+                }
+            }
+
+            // Free the old flight attendants
+            for (const auto &oldFaID : flight["assignedCrew"]["flightAttendantIDs"])
+            {
+                for (auto &fa : flightAttendants["flight_attendants"])
+                {
+                    if (fa["ID"] == oldFaID)
+                    {
+                        fa["status"] = "FREE";     // Set status to Available
+                        fa["assignedFlight"] = ""; // Remove the assigned flight
+                        break;
+                    }
+                }
+            }
+        }
 
         // Assign new crew to the flight
-        auto newCrew = flight_admin.assignCrewToFlight(flightNumber, pilots, flightAttendant);
+        auto newCrew = flight_admin.assignCrewToFlight(flightNumber, pilots, flightAttendants);
 
+        // Update the flight's assigned crew
         flight["assignedCrew"]["pilotID"] = newCrew.pilotID;
         flight["assignedCrew"]["flightAttendantIDs"] = newCrew.flightAttendantIDs;
 
         std::cout << "Crew for flight " << flightNumber << " has been updated.\n";
 
-        // Write the updated flights back to the file
+        // Write the updated data back to the files
         writeToDP(flightDP, flights);
         writeToDP(pilotDP, pilots);
-        writeToDP(flightAttendantDB, flightAttendant);
+        writeToDP(flightAttendantDB, flightAttendants);
 
         break;
     }
@@ -452,8 +504,11 @@ flightProcess Flight::deleteFlight()
     std::cout << "Enter Flight Number to Delete: ";
     std::getline(std::cin, flightNumber);
 
-    // Read existing flights from the file
+    // Read existing flights, pilots, and flight attendants from their files
     json flights = readFromDP(flightDP);
+    json pilots = readFromDP(pilotDP);
+    json flightAttendants = readFromDP(flightAttendantDB);
+
     int index = isFlightExists(flights, flightNumber);
 
     // Check if the flight exists
@@ -465,11 +520,49 @@ flightProcess Flight::deleteFlight()
 
     json &flight = flights["flights"][index];
 
+    // Check if the flight has assigned crew
+    if (flight.contains("assignedCrew"))
+    {
+        // Free the assigned pilots
+        for (const auto &pilotID : flight["assignedCrew"]["pilotID"])
+        {
+            for (auto &pilot : pilots["pilots"])
+            {
+                if (pilot["ID"] == pilotID)
+                {
+                    pilot["status"] = "FREE"; // Set status to Available
+                    pilot["assignedFlight"] = ""; // Remove the assigned flight
+                    break;
+                }
+            }
+        }
+
+        // Free the assigned flight attendants
+        for (const auto &faID : flight["assignedCrew"]["flightAttendantIDs"])
+        {
+            for (auto &fa : flightAttendants["flight_attendants"])
+            {
+                if (fa["ID"] == faID)
+                {
+                    fa["status"] = "FREE"; // Set status to Available
+                    fa["assignedFlight"] = ""; // Remove the assigned flight
+                    break;
+                }
+            }
+        }
+
+        std::cout << "Crew members assigned to flight " << flightNumber << " have been marked as available.\n";
+    }
+
+    // Delete the flight
     flights["flights"].erase(flights["flights"].begin() + index);
     std::cout << "Flight with number " << flightNumber << " has been successfully deleted.\n";
 
-    // Write the updated data back to the file
+    // Write the updated data back to the files
     writeToDP(flightDP, flights);
+    writeToDP(pilotDP, pilots);
+    writeToDP(flightAttendantDB, flightAttendants);
+
     return FLIGHT_PROCESS_IS_SUCCESSFUL;
 }
 

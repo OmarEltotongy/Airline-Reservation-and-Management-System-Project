@@ -3,52 +3,62 @@
         {
             "ID": "FA001",
             "name": "Alice Johnson",
-            "status": "FREE"
+            "status": "FREE",
+            "assignedFlight": ""
         },
         {
             "ID": "FA002",
             "name": "Bob Brown",
-            "status": "FREE"
+            "status": "FREE",
+            "assignedFlight": ""
         },
         {
             "ID": "FA003",
             "name": "Charlie Davis",
-            "status": "BUSY"
+            "status": "BUSY",
+            "assignedFlight": ""
         },
         {
             "ID": "FA004",
             "name": "Diana Evans",
-            "status": "FREE"
+            "status": "FREE",
+            "assignedFlight": ""
         },
         {
             "ID": "FA005",
             "name": "Ethan Harris",
-            "status": "FREE"
+            "status": "FREE",
+            "assignedFlight": ""
         },
         {
             "ID": "FA006",
             "name": "Fiona Clark",
-            "status": "FREE"
+            "status": "FREE",
+            "assignedFlight": ""
         },
         {
             "ID": "FA007",
             "name": "George Lewis",
-            "status": "FREE"
+            "status": "FREE",
+            "assignedFlight": ""
         },
         {
             "ID": "FA008",
             "name": "Hannah Walker",
-            "status": "FREE"
+            "status": "FREE",
+            "assignedFlight": ""
         },
         {
             "ID": "FA009",
             "name": "Ian Hall",
-            "status": "BUSY"
+            "status": "BUSY",
+            "assignedFlight": ""
         },
         {
             "ID": "FA010",
             "name": "Julia Young",
-            "status": "BUSY"
+            "status": "BUSY",
+            "assignedFlight": ""
         }
     ]
 }
