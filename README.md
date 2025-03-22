@@ -150,6 +150,158 @@ The project is organized into a **modular and scalable structure** to ensure mai
 
 ---
 
+## **Test Cases**
+
+This section outlines the test cases for the **Airline Reservation and Management System**. These test cases cover all functionalities for the **Administrator**, **Booking Agent**, and **Passenger** roles.
+
+---
+
+### **1. Administrator Test Cases**
+
+#### **1.1. Manage Flights**
+- **Test Case 1.1.1: Add a New Flight**
+  - **Input**: Flight Number: `AA123`, Origin: `New York (JFK)`, Destination: `Los Angeles (LAX)`, Departure Time: `2023-12-15 08:30`, Arrival Time: `2023-12-15 12:30`, Aircraft ID: `B737`, Status: `ON_TIME`, Max Seats: `150`, Price: `250.00`, Gate: `A1`
+  - **Expected Output**: Flight `AA123` is added to the `flights.json` file. Success message: `Flight AA123 has been successfully added.`
+
+- **Test Case 1.1.2: Update an Existing Flight**
+  - **Input**: Flight Number: `AA123`, Field to Update: `Status`, New Status: `DELAYED`
+  - **Expected Output**: Flight `AA123` status is updated to `DELAYED`. Success message: `Flight AA123 has been successfully updated.`
+
+- **Test Case 1.1.3: Delete a Flight**
+  - **Input**: Flight Number: `AA123`
+  - **Expected Output**: Flight `AA123` is removed. Success message: `Flight AA123 has been successfully deleted.`
+
+- **Test Case 1.1.4: View All Flights**
+  - **Input**: None
+  - **Expected Output**: A list of all flights is displayed.
+
+---
+
+#### **1.2. Manage Aircraft**
+- **Test Case 1.2.1: Add a New Aircraft**
+  - **Input**: Aircraft ID: `B787`, Model: `Boeing 787`, Maintenance Schedule: `2024-01-15`, Availability: `true`
+  - **Expected Output**: Aircraft `B787` is added. Success message: `Aircraft B787 has been successfully added.`
+
+- **Test Case 1.2.2: Update an Existing Aircraft**
+  - **Input**: Aircraft ID: `B787`, Field to Update: `Availability`, New Availability: `false`
+  - **Expected Output**: Aircraft `B787` availability is updated. Success message: `Aircraft B787 has been successfully updated.`
+
+- **Test Case 1.2.3: Remove an Aircraft**
+  - **Input**: Aircraft ID: `B787`
+  - **Expected Output**: Aircraft `B787` is removed. Success message: `Aircraft B787 has been successfully removed.`
+
+- **Test Case 1.2.4: View All Aircraft**
+  - **Input**: None
+  - **Expected Output**: A list of all aircraft is displayed.
+
+---
+
+#### **1.3. Manage Users**
+- **Test Case 1.3.1: Add a New User**
+  - **Input**: Username: `newuser`, Password: `newpass`, Role: `PASSENGER`, User ID: `U011`
+  - **Expected Output**: User `newuser` is added. Success message: `User newuser has been successfully added.`
+
+- **Test Case 1.3.2: Update User Information**
+  - **Input**: Username: `newuser`, Field to Update: `Password`, New Password: `updatedpass`
+  - **Expected Output**: User `newuser` password is updated. Success message: `User newuser has been successfully updated.`
+
+- **Test Case 1.3.3: Delete a User**
+  - **Input**: Username: `newuser`
+  - **Expected Output**: User `newuser` is removed. Success message: `User newuser has been successfully deleted.`
+
+- **Test Case 1.3.4: View All Users**
+  - **Input**: None
+  - **Expected Output**: A list of all users is displayed.
+
+---
+
+#### **1.4. Generate Reports**
+- **Test Case 1.4.1: Operational Reports**
+  - **Input**: Month and Year: `12-2023`
+  - **Expected Output**: A summary of flights, reservations, and revenue for December 2023.
+
+- **Test Case 1.4.2: Maintenance Reports**
+  - **Input**: Month and Year: `01-2024`
+  - **Expected Output**: A summary of maintenance tasks for January 2024.
+
+- **Test Case 1.4.3: User Activity Reports**
+  - **Input**: Month and Year: `12-2023`
+  - **Expected Output**: A summary of user activity and reservations for December 2023.
+
+---
+
+### **2. Booking Agent Test Cases**
+
+#### **2.1. Search Flights**
+- **Test Case 2.1.1: Search for Flights**
+  - **Input**: Origin: `New York (JFK)`, Destination: `Los Angeles (LAX)`, Date: `2023-12-15`
+  - **Expected Output**: A list of available flights matching the criteria.
+
+---
+
+#### **2.2. Modify Reservation**
+- **Test Case 2.2.1: Modify a Reservation**
+  - **Input**: Reservation ID: `R001`, New Seat Number: `14B`
+  - **Expected Output**: Reservation `R001` is updated. Success message: `Reservation R001 has been successfully modified.`
+
+---
+
+#### **2.3. Cancel Reservation**
+- **Test Case 2.3.1: Cancel a Reservation**
+  - **Input**: Reservation ID: `R001`
+  - **Expected Output**: Reservation `R001` is canceled. Success message: `Reservation R001 has been successfully canceled.`
+
+---
+
+### **3. Passenger Test Cases**
+
+#### **3.1. Search Flights**
+- **Test Case 3.1.1: Search for Flights**
+  - **Input**: Origin: `New York (JFK)`, Destination: `Los Angeles (LAX)`, Date: `2023-12-15`
+  - **Expected Output**: A list of available flights matching the criteria.
+
+---
+
+#### **3.2. View Reservations**
+- **Test Case 3.2.1: View Reservations**
+  - **Input**: Passenger ID: `U003`
+  - **Expected Output**: A list of reservations for passenger `U003`.
+
+---
+
+#### **3.3. Check-In**
+- **Test Case 3.3.1: Check-In for a Flight**
+  - **Input**: Reservation ID: `R001`
+  - **Expected Output**: Check-in is successful. Boarding pass is generated.
+
+---
+
+#### **3.4. Loyalty Program**
+- **Test Case 3.4.1: View Loyalty Points**
+  - **Input**: Passenger ID: `U003`
+  - **Expected Output**: Loyalty points for passenger `U003` are displayed.
+
+---
+
+### **4. General Test Cases**
+
+#### **4.1. Login**
+- **Test Case 4.1.1: Valid Login**
+  - **Input**: Username: `admin1`, Password: `admin123`, Role: `ADMIN`
+  - **Expected Output**: Login successful.
+
+- **Test Case 4.1.2: Invalid Login**
+  - **Input**: Username: `admin1`, Password: `wrongpass`, Role: `ADMIN`
+  - **Expected Output**: Login failed.
+
+---
+
+#### **4.2. Logout**
+- **Test Case 4.2.1: Logout**
+  - **Input**: None
+  - **Expected Output**: Logout successful.
+
+---
 ## 🔮 Future Enhancements
 - **Graphical User Interface (GUI)**: Implement a modern GUI using frameworks like **Qt** or **ImGui**.
 - **Real-Time Flight Status Updates**: Integrate with external APIs for real-time flight tracking.
