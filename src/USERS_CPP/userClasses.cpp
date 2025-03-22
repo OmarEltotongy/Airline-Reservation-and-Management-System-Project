@@ -652,10 +652,17 @@ void Administrator::operationalReports() {
     int totalReservations = 0;
     double totalRevenue = 0.0;
 
+    // Extract month and year from the input
+    std::string inputMonth = monthYear.substr(0, 2); // MM
+    std::string inputYear = monthYear.substr(3, 4);  // YYYY
+
     // Filter flights for the specified month and year
     for (const auto &flight : flights["flights"]) {
         std::string departureTime = flight["departureTime"];
-        if (departureTime.substr(3, 7) == monthYear) { // Check if the month and year match
+        std::string flightMonth = departureTime.substr(5, 2); // Extract MM
+        std::string flightYear = departureTime.substr(0, 4);  // Extract YYYY
+
+        if (flightMonth == inputMonth && flightYear == inputYear) {
             totalFlightsScheduled++;
             std::string status = flight["status"];
             if (status == "ON_TIME" || status == "DELAYED") {
@@ -693,7 +700,10 @@ void Administrator::operationalReports() {
     std::cout << "Detailed Flight Performance:\n";
     for (const auto &flight : flights["flights"]) {
         std::string departureTime = flight["departureTime"];
-        if (departureTime.substr(3, 7) == monthYear) {
+        std::string flightMonth = departureTime.substr(5, 2); // Extract MM
+        std::string flightYear = departureTime.substr(0, 4);  // Extract YYYY
+
+        if (flightMonth == inputMonth && flightYear == inputYear) {
             std::string flightNumber = flight["flightNumber"];
             std::string status = flight["status"];
             double price = flight["price"];
@@ -707,7 +717,6 @@ void Administrator::operationalReports() {
         }
     }
 }
-
 void Administrator::maintenanceReports() {
     std::string monthYear;
     std::cout << "--- Maintenance Reports ---\n";
@@ -722,10 +731,17 @@ void Administrator::maintenanceReports() {
     int tasksScheduled = 0;
     int tasksInProgress = 0;
 
+    // Extract month and year from the input
+    std::string inputMonth = monthYear.substr(0, 2); // MM
+    std::string inputYear = monthYear.substr(3, 4);  // YYYY
+
     // Filter maintenance tasks for the specified month and year
     for (const auto &task : maintenance["maintenance"]) {
         std::string maintenanceDate = task["maintenanceDate"];
-        if (maintenanceDate.substr(3, 7) == monthYear) { // Check if the month and year match
+        std::string taskMonth = maintenanceDate.substr(5, 2); // Extract MM
+        std::string taskYear = maintenanceDate.substr(0, 4);  // Extract YYYY
+
+        if (taskMonth == inputMonth && taskYear == inputYear) {
             totalMaintenanceTasks++;
             std::string status = task["status"];
             if (status == "COMPLETED") {
@@ -749,7 +765,10 @@ void Administrator::maintenanceReports() {
     std::cout << "Detailed Maintenance Tasks:\n";
     for (const auto &task : maintenance["maintenance"]) {
         std::string maintenanceDate = task["maintenanceDate"];
-        if (maintenanceDate.substr(3, 7) == monthYear) {
+        std::string taskMonth = maintenanceDate.substr(5, 2); // Extract MM
+        std::string taskYear = maintenanceDate.substr(0, 4);  // Extract YYYY
+
+        if (taskMonth == inputMonth && taskYear == inputYear) {
             std::string maintenanceID = task["maintenanceID"];
             std::string aircraftID = task["aircraftID"];
             std::string description = task["description"];
@@ -775,30 +794,14 @@ void Administrator::userActivityReports() {
     int totalReservations = 0;
     double totalRevenue = 0.0;
 
-    // Filter reservations for the specified month and year
-    for (const auto &reservation : reservations["reservations"]) {
-        std::string departureTime = reservation["departureTime"];
-        if (departureTime.substr(3, 7) == monthYear) { // Check if the month and year match
-            totalReservations++;
-            double price = 250.0; // Assuming a fixed price for simplicity
-            totalRevenue += price;
-        }
-    }
-
-    // Count total users
-    totalUsers = users["users"].size();
-
-    // Round total revenue to 2 decimal places
-    totalRevenue = round(totalRevenue * 100) / 100;
+    // Extract month and year from the input
+    std::string inputMonth = monthYear.substr(0, 2); // MM
+    std::string inputYear = monthYear.substr(3, 4);  // YYYY
 
     // Generate the report
     std::cout << "\nGenerating User Activity Report for " << monthYear << "...\n\n";
-    std::cout << "Report Summary:\n";
-    std::cout << "- Total Users: " << totalUsers << "\n";
-    std::cout << "- Total Reservations Made: " << totalReservations << "\n";
-    std::cout << "- Total Revenue: $" << std::fixed << std::setprecision(2) << totalRevenue << "\n\n";
 
-    std::cout << "Detailed User Activity:\n";
+    std::cout << "Detailed User Activity (Non-Zero Reservations):\n";
     for (const auto &user : users["users"]) {
         std::string userID = user["userID"];
         std::string username = user["username"];
@@ -807,14 +810,32 @@ void Administrator::userActivityReports() {
 
         // Count reservations for the user
         for (const auto &reservation : reservations["reservations"]) {
-            if (reservation["passengerID"] == userID) {
+            std::string departureTime = reservation["departureTime"];
+            std::string reservationMonth = departureTime.substr(5, 2); // Extract MM
+            std::string reservationYear = departureTime.substr(0, 4);  // Extract YYYY
+
+            if (reservation["passengerID"] == userID && reservationMonth == inputMonth && reservationYear == inputYear) {
                 reservationsCount++;
+                double price = 250.0; // Assuming a fixed price for simplicity
+                totalRevenue += price;
             }
         }
 
-        std::cout << "User " << username << " (" << role << "): "
-                  << reservationsCount << " Reservations\n";
+        // Display user activity only if reservationsCount > 0
+        if (reservationsCount > 0) {
+            std::cout << "User " << username << " (" << role << "): "
+                      << reservationsCount << " Reservations\n";
+            totalReservations += reservationsCount;
+        }
     }
+
+    // Round total revenue to 2 decimal places
+    totalRevenue = round(totalRevenue * 100) / 100;
+
+    // Display summary
+    std::cout << "\nReport Summary:\n";
+    std::cout << "- Total Users with Reservations: " << totalReservations << "\n";
+    std::cout << "- Total Revenue: $" << std::fixed << std::setprecision(2) << totalRevenue << "\n";
 }
 /******************************************************************************************/
 Administrator::~Administrator()
