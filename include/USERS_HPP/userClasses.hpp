@@ -12,6 +12,8 @@
 #include <string>
 #include <map>
 #include <memory>
+#include <iomanip> // For std::setw, std::left, etc.
+#include <cmath>   // For rounding revenue
 using namespace std;
 
 // Forward declaration and Externs

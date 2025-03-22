@@ -634,14 +634,187 @@ return state;
 }
 
 /************************************* Reports Function **********************************/
-void Administrator::operationalReports()
-{
+
+void Administrator::operationalReports() {
+    std::string monthYear;
+    std::cout << "--- Operational Reports ---\n";
+    std::cout << "Enter Month and Year for Report (MM-YYYY): ";
+    std::cin >> monthYear;
+
+    // Read flights and reservations from JSON files
+    json flights = readFromDP(flightDP);
+    json reservations = readFromDP(ReservationDP);
+
+    int totalFlightsScheduled = 0;
+    int flightsCompleted = 0;
+    int flightsDelayed = 0;
+    int flightsCanceled = 0;
+    int totalReservations = 0;
+    double totalRevenue = 0.0;
+
+    // Filter flights for the specified month and year
+    for (const auto &flight : flights["flights"]) {
+        std::string departureTime = flight["departureTime"];
+        if (departureTime.substr(3, 7) == monthYear) { // Check if the month and year match
+            totalFlightsScheduled++;
+            std::string status = flight["status"];
+            if (status == "ON_TIME" || status == "DELAYED") {
+                flightsCompleted++;
+                if (status == "DELAYED") {
+                    flightsDelayed++;
+                }
+            } else if (status == "CANCELED") {
+                flightsCanceled++;
+            }
+
+            // Calculate revenue for the flight
+            double price = flight["price"];
+            int availableSeats = flight["availableSeats"];
+            int maxSeats = flight["maxSeats"];
+            int bookings = maxSeats - availableSeats;
+            totalReservations += bookings;
+            totalRevenue += bookings * price;
+        }
+    }
+
+    // Round total revenue to 2 decimal places
+    totalRevenue = round(totalRevenue * 100) / 100;
+
+    // Generate the report
+    std::cout << "\nGenerating Operational Report for " << monthYear << "...\n\n";
+    std::cout << "Report Summary:\n";
+    std::cout << "- Total Flights Scheduled: " << totalFlightsScheduled << "\n";
+    std::cout << "- Flights Completed: " << flightsCompleted << "\n";
+    std::cout << "- Flights Delayed: " << flightsDelayed << "\n";
+    std::cout << "- Flights Canceled: " << flightsCanceled << "\n";
+    std::cout << "- Total Reservations Made: " << totalReservations << "\n";
+    std::cout << "- Total Revenue: $" << std::fixed << std::setprecision(2) << totalRevenue << "\n\n";
+
+    std::cout << "Detailed Flight Performance:\n";
+    for (const auto &flight : flights["flights"]) {
+        std::string departureTime = flight["departureTime"];
+        if (departureTime.substr(3, 7) == monthYear) {
+            std::string flightNumber = flight["flightNumber"];
+            std::string status = flight["status"];
+            double price = flight["price"];
+            int availableSeats = flight["availableSeats"];
+            int maxSeats = flight["maxSeats"];
+            int bookings = maxSeats - availableSeats;
+            double revenue = bookings * price;
+
+            std::cout << "Flight " << flightNumber << ": " << status
+                      << " (" << bookings << " Bookings, $" << std::fixed << std::setprecision(2) << revenue << ")\n";
+        }
+    }
 }
-void Administrator::maintenanceReports()
-{
+
+void Administrator::maintenanceReports() {
+    std::string monthYear;
+    std::cout << "--- Maintenance Reports ---\n";
+    std::cout << "Enter Month and Year for Report (MM-YYYY): ";
+    std::cin >> monthYear;
+
+    // Read maintenance data from JSON file
+    json maintenance = readFromDP("data/maintenance.json");
+
+    int totalMaintenanceTasks = 0;
+    int tasksCompleted = 0;
+    int tasksScheduled = 0;
+    int tasksInProgress = 0;
+
+    // Filter maintenance tasks for the specified month and year
+    for (const auto &task : maintenance["maintenance"]) {
+        std::string maintenanceDate = task["maintenanceDate"];
+        if (maintenanceDate.substr(3, 7) == monthYear) { // Check if the month and year match
+            totalMaintenanceTasks++;
+            std::string status = task["status"];
+            if (status == "COMPLETED") {
+                tasksCompleted++;
+            } else if (status == "SCHEDULED") {
+                tasksScheduled++;
+            } else if (status == "IN_PROGRESS") {
+                tasksInProgress++;
+            }
+        }
+    }
+
+    // Generate the report
+    std::cout << "\nGenerating Maintenance Report for " << monthYear << "...\n\n";
+    std::cout << "Report Summary:\n";
+    std::cout << "- Total Maintenance Tasks: " << totalMaintenanceTasks << "\n";
+    std::cout << "- Tasks Completed: " << tasksCompleted << "\n";
+    std::cout << "- Tasks Scheduled: " << tasksScheduled << "\n";
+    std::cout << "- Tasks In Progress: " << tasksInProgress << "\n\n";
+
+    std::cout << "Detailed Maintenance Tasks:\n";
+    for (const auto &task : maintenance["maintenance"]) {
+        std::string maintenanceDate = task["maintenanceDate"];
+        if (maintenanceDate.substr(3, 7) == monthYear) {
+            std::string maintenanceID = task["maintenanceID"];
+            std::string aircraftID = task["aircraftID"];
+            std::string description = task["description"];
+            std::string status = task["status"];
+
+            std::cout << "Task " << maintenanceID << ": " << description
+                      << " (Aircraft: " << aircraftID << ", Status: " << status << ")\n";
+        }
+    }
 }
-void Administrator::userActivityReports()
-{
+
+void Administrator::userActivityReports() {
+    std::string monthYear;
+    std::cout << "--- User Activity Reports ---\n";
+    std::cout << "Enter Month and Year for Report (MM-YYYY): ";
+    std::cin >> monthYear;
+
+    // Read users and reservations from JSON files
+    json users = readFromDP(UserDP);
+    json reservations = readFromDP(ReservationDP);
+
+    int totalUsers = 0;
+    int totalReservations = 0;
+    double totalRevenue = 0.0;
+
+    // Filter reservations for the specified month and year
+    for (const auto &reservation : reservations["reservations"]) {
+        std::string departureTime = reservation["departureTime"];
+        if (departureTime.substr(3, 7) == monthYear) { // Check if the month and year match
+            totalReservations++;
+            double price = 250.0; // Assuming a fixed price for simplicity
+            totalRevenue += price;
+        }
+    }
+
+    // Count total users
+    totalUsers = users["users"].size();
+
+    // Round total revenue to 2 decimal places
+    totalRevenue = round(totalRevenue * 100) / 100;
+
+    // Generate the report
+    std::cout << "\nGenerating User Activity Report for " << monthYear << "...\n\n";
+    std::cout << "Report Summary:\n";
+    std::cout << "- Total Users: " << totalUsers << "\n";
+    std::cout << "- Total Reservations Made: " << totalReservations << "\n";
+    std::cout << "- Total Revenue: $" << std::fixed << std::setprecision(2) << totalRevenue << "\n\n";
+
+    std::cout << "Detailed User Activity:\n";
+    for (const auto &user : users["users"]) {
+        std::string userID = user["userID"];
+        std::string username = user["username"];
+        std::string role = user["role"];
+        int reservationsCount = 0;
+
+        // Count reservations for the user
+        for (const auto &reservation : reservations["reservations"]) {
+            if (reservation["passengerID"] == userID) {
+                reservationsCount++;
+            }
+        }
+
+        std::cout << "User " << username << " (" << role << "): "
+                  << reservationsCount << " Reservations\n";
+    }
 }
 /******************************************************************************************/
 Administrator::~Administrator()

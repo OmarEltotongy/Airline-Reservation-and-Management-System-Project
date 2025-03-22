@@ -2,6 +2,7 @@
 -use lambda expression in each class
 -testcases
 -readmefile
+
 ADMIN :
 --- Administrator Menu ---
 1. Manage Flights - > menu below -- (DONE) 
@@ -44,6 +45,23 @@ arrivalTime, aircraftID) -> Ur implementation (DONE)
 4. Generate Reports 
  --- Generate Reports ---
 1. Operational Reports -> exist sequence
+Operational Reports ---
+Enter Month and Year for Report (MM-YYYY): 12-2023
+
+Generating Operational Report for December 2023...
+
+Report Summary:
+- Total Flights Scheduled: 150
+- Flights Completed: 145
+- Flights Delayed: 3
+- Flights Canceled: 2
+- Total Reservations Made: 10,500
+- Total Revenue: $3,675,000.00
+
+Detailed Flight Performance:
+1. Flight AA123: On Time (120 Bookings, $42,000)
+2. Flight BA456: Delayed (80 Bookings, $20,000)
+...
 2. Maintenance Reports -> Ur implementation
 3. User Activity Reports -> Ur implementation
 4. Back to Main Menu (DONE)
