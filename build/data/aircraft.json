@@ -1,0 +1,74 @@
+{
+    "aircraft": [
+        {
+            "aircraftID": "B737",
+            "availability": false,
+            "assignedFlight": "AA123",
+            "maintenanceSchedule": "13-03-2025",
+            "model": "Boeing 737"
+        },
+        {
+            "aircraftID": "A320",
+            "availability": true,
+            "assignedFlight": "",
+            "maintenanceSchedule": "22-03-2025",
+            "model": "Airbus A320"
+        },
+        {
+            "aircraftID": "B757",
+            "availability": false,
+            "assignedFlight": "DL789",
+            "maintenanceSchedule": "23-03-2025",
+            "model": "Boeing 757"
+        },
+        {
+            "aircraftID": "B787",
+            "availability": true,
+            "assignedFlight": "",
+            "maintenanceSchedule": "24-03-2025",
+            "model": "Boeing 787"
+        },
+        {
+            "aircraftID": "A380",
+            "availability": true,
+            "assignedFlight": "",
+            "maintenanceSchedule": "25-03-2025",
+            "model": "Airbus A380"
+        },
+        {
+            "aircraftID": "B777",
+            "availability": false,
+            "assignedFlight": "SQ707",
+            "maintenanceSchedule": "26-03-2025",
+            "model": "Boeing 777"
+        },
+        {
+            "aircraftID": "A350",
+            "availability": true,
+            "assignedFlight": "",
+            "maintenanceSchedule": "27-03-2025",
+            "model": "Airbus A350"
+        },
+        {
+            "aircraftID": "B747",
+            "availability": true,
+            "assignedFlight": "",
+            "maintenanceSchedule": "28-03-2025",
+            "model": "Boeing 747"
+        },
+        {
+            "aircraftID": "A330",
+            "availability": false,
+            "assignedFlight": "",
+            "maintenanceSchedule": "29-03-2025",
+            "model": "Airbus A330"
+        },
+        {
+            "aircraftID": "B767",
+            "availability": true,
+            "assignedFlight": "",
+            "maintenanceSchedule": "30-03-2025",
+            "model": "Boeing 767"
+        }
+    ]
+}

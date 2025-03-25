@@ -1,0 +1,174 @@
+{
+    "flights": [
+        {
+            "aircraftID": "B737",
+            "arrivalTime": "2023-12-18 12:30",
+            "assignedCrew": {
+                "flightAttendantIDs": ["FA010", "FA009"],
+                "pilotID": ["P004"]
+            },
+            "departureTime": "2023-12-15 08:30",
+            "destination": "Los Angeles (LAX)",
+            "flightNumber": "AA123",
+            "origin": "New York (JFK)",
+            "status": "ON_TIME",
+            "maxSeats": 150,
+            "price": 250.00,
+            "availableSeats": 148,
+            "gate": "A1"
+        },
+        {
+            "aircraftID": "A320",
+            "arrivalTime": "2023-12-20 11:00",
+            "assignedCrew": {
+                "flightAttendantIDs": ["FA003"],
+                "pilotID": ["P002"]
+            },
+            "departureTime": "2023-12-20 09:00",
+            "destination": "Paris (CDG)",
+            "flightNumber": "BA456",
+            "origin": "London (LHR)",
+            "status": "ON_TIME",
+            "maxSeats": 180,
+            "price": 300.00,
+            "availableSeats": 179,
+            "gate": "B2"
+        },
+        {
+            "aircraftID": "B757",
+            "arrivalTime": "2023-12-18 12:30",
+            "assignedCrew": {
+                "flightAttendantIDs": ["FA004", "FA005"],
+                "pilotID": ["P003"]
+            },
+            "departureTime": "2023-12-18 10:15",
+            "destination": "Chicago (ORD)",
+            "flightNumber": "DL789",
+            "origin": "Atlanta (ATL)",
+            "status": "ON_TIME",
+            "maxSeats": 200,
+            "price": 200.00,
+            "availableSeats": 198,
+            "gate": "C3"
+        },
+        {
+            "aircraftID": "B737",
+            "arrivalTime": "2023-12-22 09:15",
+            "assignedCrew": {
+                "flightAttendantIDs": ["FA006"],
+                "pilotID": ["P004"]
+            },
+            "departureTime": "2023-12-22 07:00",
+            "destination": "Seattle (SEA)",
+            "flightNumber": "UA101",
+            "origin": "San Francisco (SFO)",
+            "status": "ON_TIME",
+            "maxSeats": 150,
+            "price": 220.00,
+            "availableSeats": 149,
+            "gate": "D4"
+        },
+        {
+            "aircraftID": "B737",
+            "arrivalTime": "2023-12-25 14:30",
+            "assignedCrew": {
+                "flightAttendantIDs": ["FA007", "FA008"],
+                "pilotID": ["P005"]
+            },
+            "departureTime": "2023-12-25 12:00",
+            "destination": "Denver (DEN)",
+            "flightNumber": "SW202",
+            "origin": "Dallas (DFW)",
+            "status": "ON_TIME",
+            "maxSeats": 150,
+            "price": 180.00,
+            "availableSeats": 148,
+            "gate": "E5"
+        },
+        {
+            "aircraftID": "A320",
+            "arrivalTime": "2023-12-28 10:30",
+            "assignedCrew": {
+                "flightAttendantIDs": ["FA009"],
+                "pilotID": ["P006"]
+            },
+            "departureTime": "2023-12-28 08:45",
+            "destination": "Berlin (BER)",
+            "flightNumber": "AF303",
+            "origin": "Paris (CDG)",
+            "status": "ON_TIME",
+            "maxSeats": 180,
+            "price": 280.00,
+            "availableSeats": 179,
+            "gate": "F6"
+        },
+        {
+            "aircraftID": "A321",
+            "arrivalTime": "2023-12-30 12:00",
+            "assignedCrew": {
+                "flightAttendantIDs": ["FA010"],
+                "pilotID": ["P007"]
+            },
+            "departureTime": "2023-12-30 11:00",
+            "destination": "Munich (MUC)",
+            "flightNumber": "LH404",
+            "origin": "Frankfurt (FRA)",
+            "status": "DELAYED",
+            "maxSeats": 220,
+            "price": 320.00,
+            "availableSeats": 219,
+            "gate": "G7"
+        },
+        {
+            "aircraftID": "B787",
+            "arrivalTime": "2024-01-05 08:00",
+            "assignedCrew": {
+                "flightAttendantIDs": ["FA011", "FA012"],
+                "pilotID": ["P008"]
+            },
+            "departureTime": "2024-01-05 06:30",
+            "destination": "Melbourne (MEL)",
+            "flightNumber": "QF505",
+            "origin": "Sydney (SYD)",
+            "status": "DELAYED",
+            "maxSeats": 300,
+            "price": 500.00,
+            "availableSeats": 298,
+            "gate": "H8"
+        },
+        {
+            "aircraftID": "A380",
+            "arrivalTime": "2024-01-10 18:00",
+            "assignedCrew": {
+                "flightAttendantIDs": ["FA013"],
+                "pilotID": ["P009"]
+            },
+            "departureTime": "2024-01-10 14:00",
+            "destination": "London (LHR)",
+            "flightNumber": "EK606",
+            "origin": "Dubai (DXB)",
+            "status": "DELAYED",
+            "maxSeats": 500,
+            "price": 600.00,
+            "availableSeats": 499,
+            "gate": "I9"
+        },
+        {
+            "aircraftID": "B777",
+            "arrivalTime": "2024-01-15 16:00",
+            "assignedCrew": {
+                "flightAttendantIDs": ["FA014", "FA015"],
+                "pilotID": ["P010"]
+            },
+            "departureTime": "2024-01-15 09:00",
+            "destination": "Tokyo (NRT)",
+            "flightNumber": "SQ707",
+            "origin": "Singapore (SIN)",
+            "status": "CANCELED",
+            "maxSeats": 400,
+            "price": 450.00,
+            "availableSeats": 400,
+            "gate": "J10"
+        }
+    ]
+}

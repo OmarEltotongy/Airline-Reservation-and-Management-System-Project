@@ -1,0 +1,64 @@
+{ 
+    "pilots": [
+        {
+            "ID": "P001",
+            "name": "John Doe",
+            "status": "FREE",
+            "assignedFlight": ""
+        },
+        {
+            "ID": "P002",
+            "name": "Jane Smith",
+            "status": "BUSY",
+            "assignedFlight": "BA456"
+        },
+        {
+            "ID": "P003",
+            "name": "Michael Johnson",
+            "status": "BUSY",
+            "assignedFlight": "DL789"
+        },
+        {
+            "ID": "P004",
+            "name": "Emily Davis",
+            "status": "BUSY",
+            "assignedFlight": "AA123"
+        },
+        {
+            "ID": "P005",
+            "name": "David Wilson",
+            "status": "BUSY",
+            "assignedFlight": "SW202"
+        },
+        {
+            "ID": "P006",
+            "name": "Sarah Brown",
+            "status": "BUSY",
+            "assignedFlight": "AF303"
+        },
+        {
+            "ID": "P007",
+            "name": "James Miller",
+            "status": "BUSY",
+            "assignedFlight": "LH404"
+        },
+        {
+            "ID": "P008",
+            "name": "Linda Garcia",
+            "status": "BUSY",
+            "assignedFlight": "QF505"
+        },
+        {
+            "ID": "P009",
+            "name": "Robert Martinez",
+            "status": "BUSY",
+            "assignedFlight": "EK606"
+        },
+        {
+            "ID": "P010",
+            "name": "Patricia Anderson",
+            "status": "BUSY",
+            "assignedFlight": "SQ707"
+        }
+    ]
+}
