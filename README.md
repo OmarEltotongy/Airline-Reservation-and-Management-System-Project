@@ -89,7 +89,7 @@ The project is organized into a **modular and scalable structure** to ensure mai
 │   └── 📂 USERS_CPP/
 │       └── userClasses.cpp      # Implementation of user-related classes
 │
-│── CMakeLists.txt               # CMake build configuration (optional)
+│── CMakeLists.txt               # CMake build configuration 
 │── README.md                    # Project documentation (this file)
 ```
 
