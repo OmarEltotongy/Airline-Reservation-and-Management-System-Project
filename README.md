@@ -104,7 +104,7 @@ The project is organized into a **modular and scalable structure** to ensure mai
 ### Steps to Build and Run
 1. **Clone the Repository**:
    ```bash
-   git clone <repository-url>
+   git clone https://github.com/OmarEltotongy/Airline-Reservation-and-Management-System-Project.git
    cd airline-reservation-system
    ```
 
